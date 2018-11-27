@@ -15,10 +15,10 @@ class BillsController {
     static let shared = BillsController()
     private init() {}
     
-    var bills: [Bills] {
+    var bills: [Bill] {
         
         let moc = CoreDataStack.context
-        let fetchRequest: NSFetchRequest<Bills> = Bills.fetchRequest()
+        let fetchRequest: NSFetchRequest<Bill> = Bill.fetchRequest()
         
         return (try?  moc.fetch(fetchRequest)) ?? []
 

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3B1FA41D21A64A4B00B2A84B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FA41C21A64A4B00B2A84B /* AppDelegate.swift */; };
-		3B1FA41F21A64A4B00B2A84B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FA41E21A64A4B00B2A84B /* ViewController.swift */; };
 		3B1FA42221A64A4B00B2A84B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B1FA42021A64A4B00B2A84B /* Main.storyboard */; };
 		3B1FA42521A64A4B00B2A84B /* Billy.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FA42321A64A4B00B2A84B /* Billy.xcdatamodeld */; };
 		3B1FA42721A64A4C00B2A84B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B1FA42621A64A4C00B2A84B /* Assets.xcassets */; };
@@ -17,12 +16,12 @@
 		3B1FA43B21ACED6900B2A84B /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FA43A21ACED6900B2A84B /* CoreDataStack.swift */; };
 		3B1FA43D21ACEE4900B2A84B /* Bills+Convinience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FA43C21ACEE4900B2A84B /* Bills+Convinience.swift */; };
 		3B1FA43F21ACEF4A00B2A84B /* BillsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FA43E21ACEF4A00B2A84B /* BillsController.swift */; };
+		3B1FA44121ACF97C00B2A84B /* BillsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FA44021ACF97C00B2A84B /* BillsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3B1FA41921A64A4B00B2A84B /* Billy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Billy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B1FA41C21A64A4B00B2A84B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3B1FA41E21A64A4B00B2A84B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3B1FA42121A64A4B00B2A84B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3B1FA42421A64A4B00B2A84B /* Billy.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Billy.xcdatamodel; sourceTree = "<group>"; };
 		3B1FA42621A64A4C00B2A84B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -32,6 +31,7 @@
 		3B1FA43A21ACED6900B2A84B /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		3B1FA43C21ACEE4900B2A84B /* Bills+Convinience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bills+Convinience.swift"; sourceTree = "<group>"; };
 		3B1FA43E21ACEF4A00B2A84B /* BillsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsController.swift; sourceTree = "<group>"; };
+		3B1FA44021ACF97C00B2A84B /* BillsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +107,7 @@
 		3B1FA43421A64ABC00B2A84B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				3B1FA41E21A64A4B00B2A84B /* ViewController.swift */,
+				3B1FA44021ACF97C00B2A84B /* BillsTableViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -200,8 +200,8 @@
 			files = (
 				3B1FA43D21ACEE4900B2A84B /* Bills+Convinience.swift in Sources */,
 				3B1FA43B21ACED6900B2A84B /* CoreDataStack.swift in Sources */,
+				3B1FA44121ACF97C00B2A84B /* BillsTableViewController.swift in Sources */,
 				3B1FA43921ACED0200B2A84B /* Bill+Convinience.swift in Sources */,
-				3B1FA41F21A64A4B00B2A84B /* ViewController.swift in Sources */,
 				3B1FA42521A64A4B00B2A84B /* Billy.xcdatamodeld in Sources */,
 				3B1FA41D21A64A4B00B2A84B /* AppDelegate.swift in Sources */,
 				3B1FA43F21ACEF4A00B2A84B /* BillsController.swift in Sources */,
@@ -352,7 +352,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5EAUJPVR66;
-				INFOPLIST_FILE = Billy/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Billy/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -370,7 +370,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5EAUJPVR66;
-				INFOPLIST_FILE = Billy/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Billy/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
