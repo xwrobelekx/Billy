@@ -18,29 +18,52 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="IX5-xW-fTK" detailTextLabel="qwS-OF-CKO" style="IBUITableViewCellStyleValue1" id="UNs-rV-I1s">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="UNs-rV-I1s" customClass="BillCustomCell" customModule="Billy" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UNs-rV-I1s" id="qbW-7H-sw0">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IX5-xW-fTK">
-                                            <rect key="frame" x="16" y="12" width="33.5" height="20.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oPx-xX-u53">
+                                            <rect key="frame" x="26" y="11.5" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qwS-OF-CKO">
-                                            <rect key="frame" x="315" y="12" width="44" height="20.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(due date)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAG-su-aYo">
+                                            <rect key="frame" x="246.5" y="11.5" width="79.5" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kau-lP-92q">
+                                            <rect key="frame" x="336" y="7.5" width="29" height="29"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="29" id="Fj0-1Y-m3B"/>
+                                                <constraint firstAttribute="height" constant="29" id="hQQ-NY-CXr"/>
+                                            </constraints>
+                                            <size key="titleShadowOffset" width="29" height="29"/>
+                                            <state key="normal" title="Button" image="incomplete"/>
+                                            <connections>
+                                                <action selector="isPaidButtonTapped:" destination="UNs-rV-I1s" eventType="touchUpInside" id="MMg-KC-cwm"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Kau-lP-92q" firstAttribute="leading" secondItem="gAG-su-aYo" secondAttribute="trailing" constant="10" id="Deq-KD-1r3"/>
+                                        <constraint firstAttribute="trailing" secondItem="Kau-lP-92q" secondAttribute="trailing" constant="10" id="MP3-O5-zU3"/>
+                                        <constraint firstItem="oPx-xX-u53" firstAttribute="leading" secondItem="qbW-7H-sw0" secondAttribute="leadingMargin" constant="10" id="QTe-vh-C7Y"/>
+                                        <constraint firstItem="gAG-su-aYo" firstAttribute="centerY" secondItem="qbW-7H-sw0" secondAttribute="centerY" id="T5y-Vx-m2P"/>
+                                        <constraint firstItem="oPx-xX-u53" firstAttribute="centerY" secondItem="qbW-7H-sw0" secondAttribute="centerY" id="qI0-JB-T30"/>
+                                        <constraint firstItem="Kau-lP-92q" firstAttribute="centerY" secondItem="qbW-7H-sw0" secondAttribute="centerY" id="uFa-Kj-6Dz"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="billNameLabel" destination="oPx-xX-u53" id="Woj-Xy-CyF"/>
+                                    <outlet property="dueDateLabel" destination="gAG-su-aYo" id="RAX-qR-tEL"/>
+                                    <outlet property="isPaidButton" destination="Kau-lP-92q" id="QLP-RU-GD8"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -157,4 +180,7 @@
             <point key="canvasLocation" x="13.6" y="99.400299850074973"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="incomplete" width="20.803611755371094" height="20.803611755371094"/>
+    </resources>
 </document>

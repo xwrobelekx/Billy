@@ -8,7 +8,14 @@
 
 import UIKit
 
-class BillsTableViewController: UITableViewController {
+class BillsTableViewController: UITableViewController, BillCustomCellDelegate {
+    
+    
+    
+ 
+    
+ 
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,13 +42,16 @@ class BillsTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? BillCustomCell else {return UITableViewCell()}
 
         let bill = BillsController.shared.bills[indexPath.row]
+        cell.cellDelegate = self
         
-        cell.textLabel?.text = bill.title
-        cell.detailTextLabel?.text = "\(bill.payementAmount)"
+//        cell.textLabel?.text = bill.title
+//        cell.detailTextLabel?.text = "\(bill.payementAmount)"
         // Configure the cell...
+        
+        cell.bill = bill
 
         return cell
     }
@@ -93,8 +103,16 @@ class BillsTableViewController: UITableViewController {
     */
     
     
-
+    //MARK: - Cell Protocol conforamnce
     
+    func billHasBeenPaidToggle(cell: UITableViewCell) {
+        print("calling the delegate")
+        guard let index = tableView.indexPath(for: cell) else {return}
+        BillsController.shared.bills[index.row].isPaid.toggle()
+        BillsController.shared.saveToPersistentStore()
+         print("done")
+        tableView.reloadRows(at: [index], with: .automatic)
+    }
     
     
     
