@@ -12,9 +12,14 @@ class BillsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-     
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.tableView.reloadData()
+    }
+    
+    
 
     // MARK: - Table view data source
 
@@ -88,33 +93,7 @@ class BillsTableViewController: UITableViewController {
     */
     
     
-    @IBAction func addButtonTapped(_ sender: Any) {
-        
-        let alert = UIAlertController(title: "Add Bill", message: nil, preferredStyle: .alert)
-        alert.addTextField { (titleTextField) in
-            titleTextField.placeholder = "Enter bill name..."
-        }
-        alert.addTextField { (amoutTextField) in
-            amoutTextField.placeholder = "Enter amout"
-            amoutTextField.keyboardType = .numberPad
-        }
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { (_) in
-            guard let title = alert.textFields?[0].text, title != "" ,
-                let amount = alert.textFields?[1].text, amount != "" else {return}
-            guard let amountAsDouble = Double(amount) else {return}
-            
-            let bill = Bill(title: title, payementAmount: amountAsDouble)
-            BillsController.shared.create(bill: bill)
-            self.tableView.reloadData()
-            
-        }))
-        
-        
-        present(alert, animated: true)
-        
-        
-    }
+
     
     
     

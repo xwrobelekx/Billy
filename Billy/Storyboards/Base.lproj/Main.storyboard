@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LTw-JX-tzX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LTw-JX-tzX">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -50,7 +51,7 @@
                     <navigationItem key="navigationItem" id="Y7H-97-CoD">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="CYo-OW-aZx">
                             <connections>
-                                <action selector="addButtonTapped:" destination="vSL-YH-gCD" id="HH7-iL-O8o"/>
+                                <segue destination="5mT-dZ-8PW" kind="show" id="2GA-ki-jeD"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -58,6 +59,83 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aUw-Zu-6Ot" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="952.79999999999995" y="99.400299850074973"/>
+        </scene>
+        <!--Add BillVC-->
+        <scene sceneID="z8Q-jl-7gT">
+            <objects>
+                <viewController id="5mT-dZ-8PW" customClass="AddBillVC" customModule="Billy" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BcZ-BH-MEh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sxc-FM-ob4">
+                                <rect key="frame" x="170.5" y="617" width="34" height="30"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveButtonTapped:" destination="5mT-dZ-8PW" eventType="touchUpInside" id="zUJ-hF-i9o"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="DKV-fu-sgC">
+                                <rect key="frame" x="37.5" y="84" width="300" height="230"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XY0-yR-77R">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="payment ampunt" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yel-IZ-z4K">
+                                        <rect key="frame" x="0.0" y="40" width="300" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="due date" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BFN-4w-B09">
+                                        <rect key="frame" x="0.0" y="80" width="300" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="optional" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FAS-RJ-ahZ">
+                                        <rect key="frame" x="0.0" y="120" width="300" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="optional" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GHn-cm-RCS">
+                                        <rect key="frame" x="0.0" y="160" width="300" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="optional" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dul-U2-uUN">
+                                        <rect key="frame" x="0.0" y="200" width="300" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="DKV-fu-sgC" firstAttribute="centerX" secondItem="BcZ-BH-MEh" secondAttribute="centerX" id="UiQ-1c-3ZC"/>
+                            <constraint firstItem="DKV-fu-sgC" firstAttribute="width" secondItem="BcZ-BH-MEh" secondAttribute="width" multiplier="0.8" id="WCV-sR-3WJ"/>
+                            <constraint firstItem="szp-zi-8wa" firstAttribute="bottom" secondItem="sxc-FM-ob4" secondAttribute="bottom" constant="20" id="pbb-uV-Gkp"/>
+                            <constraint firstItem="sxc-FM-ob4" firstAttribute="centerX" secondItem="BcZ-BH-MEh" secondAttribute="centerX" id="rEw-Iv-rhe"/>
+                            <constraint firstItem="DKV-fu-sgC" firstAttribute="top" secondItem="szp-zi-8wa" secondAttribute="top" constant="20" id="yJg-em-222"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="szp-zi-8wa"/>
+                    </view>
+                    <connections>
+                        <outlet property="dueDateTextField" destination="BFN-4w-B09" id="QOr-3m-pta"/>
+                        <outlet property="payemntAmoutTextField" destination="Yel-IZ-z4K" id="mNM-Rf-hAF"/>
+                        <outlet property="titleTextField" destination="XY0-yR-77R" id="04o-yL-KW3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PdM-Pe-fV5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1790" y="99"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="6Gr-Y8-l2o">
