@@ -10,11 +10,11 @@ import UIKit
 
 class AddBillVC: UIViewController, UITextFieldDelegate {
     
+    var date: Date?
+    
     
     @IBOutlet weak var titleTextField: UITextField!
-    
     @IBOutlet weak var payemntAmoutTextField: UITextField!
-    
     @IBOutlet weak var dueDateTextField: UITextField!
     
     //is it monthly - weekley - biwilkey - quarterley
@@ -28,8 +28,13 @@ class AddBillVC: UIViewController, UITextFieldDelegate {
         titleTextField.delegate = self
         payemntAmoutTextField.delegate = self
         dueDateTextField.delegate = self
-
-        // Do any additional setup after loading the view.
+        
+        
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        datePicker.backgroundColor = .green //not doing anything
+        datePicker.addTarget(self, action: #selector(datePickerValueChanged), for: UIControl.Event.valueChanged)
+        dueDateTextField.inputView = datePicker
     }
     
     
@@ -41,22 +46,33 @@ class AddBillVC: UIViewController, UITextFieldDelegate {
     }
     
     
-
-
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         guard let title = titleTextField.text, title != "",
         let paymentAmout = payemntAmoutTextField.text, paymentAmout != "",
-            let dueDate = dueDateTextField.text, dueDate != "" else {return}
+            let dueDate = date else {return}
         
         guard let payment = Double(paymentAmout) else {return}
-        let bill = Bill(title: title, payementAmount: payment)
+        let bill = Bill(title: title, payementAmount: payment, dueDate: dueDate)
         BillsController.shared.create(bill: bill)
-        
-
         navigationController?.popToRootViewController(animated: true)
-        
     }
+    
+    
+    
+    @objc func datePickerValueChanged(sender: UIDatePicker){
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        dueDateTextField.text = formatter.string(from: sender.date)
+        date = sender.date
+    }
+    
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
     
     
     

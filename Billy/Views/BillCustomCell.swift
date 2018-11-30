@@ -20,6 +20,7 @@ class BillCustomCell: UITableViewCell {
     @IBOutlet weak var billNameLabel: UILabel!
     @IBOutlet weak var dueDateLabel: UILabel!
     @IBOutlet weak var isPaidButton: UIButton!
+    @IBOutlet weak var amoutLabel: UILabel!
     
     
     //MARK: - Properties
@@ -49,8 +50,8 @@ class BillCustomCell: UITableViewCell {
     func updateViews() {
         guard let bill = bill else {return}
         billNameLabel.text = bill.title
-        #warning("for now i have amout insted of due date, probaly gone need both")
-        dueDateLabel.text = String(bill.payementAmount)
+        dueDateLabel.text = bill.dueDate?.asString()
+        amoutLabel.text = String(bill.payementAmount)
         
         if bill.isPaid {
             isPaidButton.setImage(#imageLiteral(resourceName: "complete"), for: .normal)

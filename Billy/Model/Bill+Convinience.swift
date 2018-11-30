@@ -11,11 +11,12 @@ import CoreData
 
 extension Bill {
     
-    convenience init(title: String, payementAmount: Double, isPaid: Bool = false, context: NSManagedObjectContext = CoreDataStack.context){
+    convenience init(title: String, payementAmount: Double, isPaid: Bool = false, dueDate: Date, context: NSManagedObjectContext = CoreDataStack.context){
         self.init(context: context)
         self.title = title
         self.payementAmount = payementAmount
         self.isPaid = isPaid
+        self.dueDate = dueDate
     }
     
     
