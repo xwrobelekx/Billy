@@ -50,7 +50,7 @@ class BillCustomCell: UITableViewCell {
     func updateViews() {
         guard let bill = bill else {return}
         billNameLabel.text = bill.title
-        dueDateLabel.text = bill.dueDate?.asString()
+        dueDateLabel.text = bill.dueDate?.dayAndMonthAsString()
         amoutLabel.text = String(bill.payementAmount)
         
         if bill.isPaid {
