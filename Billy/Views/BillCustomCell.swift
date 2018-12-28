@@ -9,7 +9,7 @@
 import UIKit
 
 protocol BillCustomCellDelegate: class{
-    func billHasBeenPaidToggle(cell: UITableViewCell)
+    func billHasBeenPaidToggle(cell: BillCustomCell)
 }
 
 

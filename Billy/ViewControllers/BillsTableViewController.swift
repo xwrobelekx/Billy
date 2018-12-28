@@ -11,11 +11,6 @@ import UIKit
 class BillsTableViewController: UITableViewController, BillCustomCellDelegate {
     
     
-    
- 
-    
- 
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,29 +25,70 @@ class BillsTableViewController: UITableViewController, BillCustomCellDelegate {
 
     // MARK: - Table view data source
 
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return
-//    }
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 5
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return "Past Due"
+        case 1:
+            return "Due this week"
+        case 2:
+            return "Due next week"
+        case 3:
+            return "Due this month"
+        case 4:
+            return "Paid"
+        default:
+            return "Not a valid section"
+        }
+    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return BillsController.shared.bills.count
+        //        return BillsController.shared.bills.count
+        
+        switch section {
+        case 0:
+            return BillsController.shared.filterBills(by: .isPastDue).count
+        case 1:
+            return BillsController.shared.filterBills(by: .isDueNextWeek).count
+        case 2:
+            return BillsController.shared.filterBills(by: .isDueInTwoWeeks).count
+        case 3:
+            return BillsController.shared.filterBills(by: .isDueThisMonth).count
+        case 4:
+            return BillsController.shared.filterBills(by: .isPaid).count
+        default: return 0
+        }
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? BillCustomCell else {return UITableViewCell()}
 
-        let bill = BillsController.shared.bills[indexPath.row]
+       // let bill = BillsController.shared.bills[indexPath.row]
         cell.cellDelegate = self
+       
+    
+        switch indexPath.section {
+        case 0:
+           cell.bill = BillsController.shared.filterBills(by: .isPastDue)[indexPath.row]
+        case 1:
+            cell.bill = BillsController.shared.filterBills(by: .isDueNextWeek)[indexPath.row]
+        case 2:
+            cell.bill = BillsController.shared.filterBills(by: .isDueInTwoWeeks)[indexPath.row]
+        case 3:
+            cell.bill = BillsController.shared.filterBills(by: .isDueThisMonth)[indexPath.row]
+        case 4:
+            cell.bill = BillsController.shared.filterBills(by: .isPaid)[indexPath.row]
+        default:
+            cell.bill = Bill(title: "Not a valid Bill", payementAmount: 111.11, paymentFrequency: "Anual", dueDate: Date())
+        }
         
-//        cell.textLabel?.text = bill.title
-//        cell.detailTextLabel?.text = "\(bill.payementAmount)"
-        // Configure the cell...
-        
-        cell.bill = bill
-
         return cell
     }
  
@@ -72,46 +108,28 @@ class BillsTableViewController: UITableViewController, BillCustomCellDelegate {
             // Delete the row from the data source
             let bill = BillsController.shared.bills[indexPath.row]
             BillsController.shared.delete(bill: bill)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.reloadData()
+            //this crashes
+           // tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
  
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
 
-    }
-    */
+    
 
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     
     //MARK: - Cell Protocol conforamnce
-    
-    func billHasBeenPaidToggle(cell: UITableViewCell) {
+    func billHasBeenPaidToggle(cell: BillCustomCell) {
         print("calling the delegate")
-        guard let index = tableView.indexPath(for: cell) else {return}
-        BillsController.shared.bills[index.row].isPaid.toggle()
+       // guard let indexPath = tableView.indexPath(for: cell) else {return}
+        guard let bill = cell.bill else {return}
+        guard let indexOfBill = BillsController.shared.bills.index(of: bill) else {return}
+        BillsController.shared.bills[indexOfBill].isPaid.toggle()
         BillsController.shared.saveToPersistentStore()
-         print("done")
-        tableView.reloadRows(at: [index], with: .automatic)
+       // tableView.reloadRows(at: [indexPath], with: .automatic)
+        tableView.reloadData()
     }
     
     

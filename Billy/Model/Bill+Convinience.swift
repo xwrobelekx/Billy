@@ -11,13 +11,18 @@ import CoreData
 
 extension Bill {
     
-    convenience init(title: String, payementAmount: Double, isPaid: Bool = false, dueDate: Date, context: NSManagedObjectContext = CoreDataStack.context){
+    //i thinik i need to add month property to Bill class which would hold a string value of a month based on the date that was entered
+    
+    convenience init(title: String, payementAmount: Double, paymentFrequency: String, isPaid: Bool = false, dueDate: Date, context: NSManagedObjectContext = CoreDataStack.context){
         self.init(context: context)
         self.title = title
         self.payementAmount = payementAmount
+        self.payementFrequency = paymentFrequency
         self.isPaid = isPaid
         self.dueDate = dueDate
     }
+    
+    
     
     
     

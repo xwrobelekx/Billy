@@ -92,6 +92,107 @@
             </objects>
             <point key="canvasLocation" x="952.79999999999995" y="99.400299850074973"/>
         </scene>
+        <!--MonthVC-->
+        <scene sceneID="VXn-eQ-oyY">
+            <objects>
+                <viewController id="WJu-wq-NKh" customClass="MonthVC" customModule="Billy" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0Hg-ci-cr0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GuA-DK-OAt">
+                                <rect key="frame" x="10" y="84" width="355" height="573"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uyy-yD-lcM">
+                                    <size key="itemSize" width="347" height="606"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="monthCell" id="mJx-WP-PIg" customClass="MonthCollectionViewCell" customModule="Billy" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="-16.5" width="347" height="606"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="347" height="606"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lk7-80-i38">
+                                                    <rect key="frame" x="8" y="28" width="331" height="570"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <prototypes>
+                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell1" rowHeight="64" id="nTC-ju-vb8" customClass="BillTableViewCell" customModule="Billy" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="28" width="331" height="64"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nTC-ju-vb8" id="Sw6-Yp-05k">
+                                                                <rect key="frame" x="0.0" y="0.0" width="331" height="63.5"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="bill..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PUu-83-Xwu">
+                                                                        <rect key="frame" x="15" y="21" width="36" height="21"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zZc-wU-NbX">
+                                                                        <rect key="frame" x="296" y="21" width="20" height="22"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                        <state key="normal" title="Button" image="incomplete"/>
+                                                                        <connections>
+                                                                            <action selector="billIsCompletedButtonTapped:" destination="nTC-ju-vb8" eventType="touchUpInside" id="scD-zq-KNT"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(amount)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HD6-Kq-kuN">
+                                                                        <rect key="frame" x="206" y="21" width="71" height="21"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </tableViewCellContentView>
+                                                            <connections>
+                                                                <outlet property="billAmountLabel" destination="HD6-Kq-kuN" id="MKe-D7-ijx"/>
+                                                                <outlet property="billName" destination="PUu-83-Xwu" id="A3p-FF-MKL"/>
+                                                            </connections>
+                                                        </tableViewCell>
+                                                    </prototypes>
+                                                    <sections/>
+                                                </tableView>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailingMargin" secondItem="lk7-80-i38" secondAttribute="trailing" id="iZa-GC-x4L"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="lk7-80-i38" secondAttribute="bottom" id="kvP-rd-lQt"/>
+                                            <constraint firstItem="lk7-80-i38" firstAttribute="leading" secondItem="mJx-WP-PIg" secondAttribute="leadingMargin" id="oJe-x4-xrd"/>
+                                            <constraint firstItem="lk7-80-i38" firstAttribute="top" secondItem="mJx-WP-PIg" secondAttribute="topMargin" id="q4y-7T-jb8"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="billTableView" destination="lk7-80-i38" id="0mO-ZC-i09"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.82352941180000006" blue="0.01176470588" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="ekK-P6-CYH" firstAttribute="trailing" secondItem="GuA-DK-OAt" secondAttribute="trailing" constant="10" id="DOC-oV-X6g"/>
+                            <constraint firstItem="ekK-P6-CYH" firstAttribute="bottom" secondItem="GuA-DK-OAt" secondAttribute="bottom" constant="10" id="Ee8-sF-Z7C"/>
+                            <constraint firstItem="GuA-DK-OAt" firstAttribute="top" secondItem="ekK-P6-CYH" secondAttribute="top" constant="20" id="Lba-vf-6k4"/>
+                            <constraint firstItem="GuA-DK-OAt" firstAttribute="leading" secondItem="ekK-P6-CYH" secondAttribute="leading" constant="10" id="fv2-au-m2d"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ekK-P6-CYH"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="5gt-Wk-iAd"/>
+                    <connections>
+                        <outlet property="monthCollectionView" destination="GuA-DK-OAt" id="fD7-tr-fmc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uXa-IC-5xf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1892" y="902.69865067466276"/>
+        </scene>
         <!--Add BillVC-->
         <scene sceneID="z8Q-jl-7gT">
             <objects>
@@ -128,7 +229,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" keyboardAppearance="alert"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="optional" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FAS-RJ-ahZ">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="bill frequency" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FAS-RJ-ahZ">
                                         <rect key="frame" x="0.0" y="120" width="300" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -162,10 +263,15 @@
                     <connections>
                         <outlet property="dueDateTextField" destination="BFN-4w-B09" id="QOr-3m-pta"/>
                         <outlet property="payemntAmoutTextField" destination="Yel-IZ-z4K" id="mNM-Rf-hAF"/>
+                        <outlet property="paymentFrequency" destination="FAS-RJ-ahZ" id="bNX-Hq-cU4"/>
                         <outlet property="titleTextField" destination="XY0-yR-77R" id="04o-yL-KW3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PdM-Pe-fV5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pickerView contentMode="scaleToFill" id="VVy-nn-Pk5">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="216"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                </pickerView>
             </objects>
             <point key="canvasLocation" x="1790" y="99"/>
         </scene>
@@ -187,6 +293,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dbK-OW-1If" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="13.6" y="99.400299850074973"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="YNC-7v-ub6">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rPh-tV-Aar" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cZa-Bt-cnG">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="WJu-wq-NKh" kind="relationship" relationship="rootViewController" id="TPA-RU-Yei"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ima-Vh-IMZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="952.79999999999995" y="902.69865067466276"/>
         </scene>
     </scenes>
     <resources>
