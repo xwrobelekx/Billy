@@ -20,6 +20,7 @@
 		3B63561E21D0F35900186EBD /* MonthCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B63561D21D0F35900186EBD /* MonthCollectionViewCell.swift */; };
 		3B63562021D0F3BA00186EBD /* MonthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B63561F21D0F3BA00186EBD /* MonthVC.swift */; };
 		3B63562421D0FEA800186EBD /* BillTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B63562321D0FEA800186EBD /* BillTableViewCell.swift */; };
+		3B63562621D5CE0500186EBD /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B63562521D5CE0500186EBD /* MainVC.swift */; };
 		3B9FCC4F21AF7A910092ADBA /* AddBillVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9FCC4E21AF7A910092ADBA /* AddBillVC.swift */; };
 		3B9FCC5121AF82A50092ADBA /* BillCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9FCC5021AF82A50092ADBA /* BillCustomCell.swift */; };
 		3B9FCC5421B0C4F40092ADBA /* DateFormater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9FCC5321B0C4F40092ADBA /* DateFormater.swift */; };
@@ -45,6 +46,7 @@
 		3B63561D21D0F35900186EBD /* MonthCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthCollectionViewCell.swift; sourceTree = "<group>"; };
 		3B63561F21D0F3BA00186EBD /* MonthVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthVC.swift; sourceTree = "<group>"; };
 		3B63562321D0FEA800186EBD /* BillTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillTableViewCell.swift; sourceTree = "<group>"; };
+		3B63562521D5CE0500186EBD /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		3B9FCC4E21AF7A910092ADBA /* AddBillVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBillVC.swift; sourceTree = "<group>"; };
 		3B9FCC5021AF82A50092ADBA /* BillCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCustomCell.swift; sourceTree = "<group>"; };
 		3B9FCC5321B0C4F40092ADBA /* DateFormater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormater.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				3B1FA44021ACF97C00B2A84B /* BillsTableViewController.swift */,
 				3B9FCC4E21AF7A910092ADBA /* AddBillVC.swift */,
 				3B63561F21D0F3BA00186EBD /* MonthVC.swift */,
+				3B63562521D5CE0500186EBD /* MainVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 				3B9FCC5121AF82A50092ADBA /* BillCustomCell.swift in Sources */,
 				3B1FA41D21A64A4B00B2A84B /* AppDelegate.swift in Sources */,
 				3BD271C621B8B87B00926257 /* BilllFrequencyEnum.swift in Sources */,
+				3B63562621D5CE0500186EBD /* MainVC.swift in Sources */,
 				3B9FCC5421B0C4F40092ADBA /* DateFormater.swift in Sources */,
 				3BD271C221B76B2900926257 /* MonthsEnum.swift in Sources */,
 				3B1FA43F21ACEF4A00B2A84B /* BillsController.swift in Sources */,
