@@ -12,10 +12,9 @@ import CoreData
 
 extension Month {
     
-    convenience init(name: Year, bills: Bills, context: NSManagedObjectContext = CoreDataStack.context){
+    convenience init(name: Year, context: NSManagedObjectContext = CoreDataStack.context){
         self.init(context: context)
         self.name = name.rawValue
-        self.bills = bills
     }
     
     

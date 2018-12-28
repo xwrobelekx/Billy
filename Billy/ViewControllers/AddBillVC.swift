@@ -63,6 +63,7 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
         
         guard let payment = Double(paymentAmout) else {return}
         let bill = Bill(title: title, payementAmount: payment, paymentFrequency: paymentFrequency.text ?? "", dueDate: dueDate)
+        print("🚀\(paymentFrequency.text!)") //confirms selected frequancy in debugger when saving the bill
         BillsController.shared.create(bill: bill, frequency: BillFrequency.anual)
         navigationController?.popToRootViewController(animated: true)
     }
@@ -95,6 +96,11 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return BillFrequency.allCases[row].rawValue
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let selectedOption = BillFrequency.allCases[row]
+        paymentFrequency.text = selectedOption.rawValue
     }
     
     

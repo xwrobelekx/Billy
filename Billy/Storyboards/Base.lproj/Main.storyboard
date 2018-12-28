@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LTw-JX-tzX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rPh-tV-Aar">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -100,7 +100,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GuA-DK-OAt">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GuA-DK-OAt">
                                 <rect key="frame" x="10" y="84" width="355" height="573"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uyy-yD-lcM">
@@ -118,7 +118,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lk7-80-i38">
-                                                    <rect key="frame" x="8" y="28" width="331" height="570"/>
+                                                    <rect key="frame" x="8" y="53" width="331" height="545"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <prototypes>
                                                         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell1" rowHeight="64" id="nTC-ju-vb8" customClass="BillTableViewCell" customModule="Billy" customModuleProvider="target">
@@ -160,16 +160,29 @@
                                                     </prototypes>
                                                     <sections/>
                                                 </tableView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Month)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8gB-53-kFa">
+                                                    <rect key="frame" x="8" y="28" width="331" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="Wm4-L3-fW4"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </view>
                                         <constraints>
+                                            <constraint firstAttribute="trailingMargin" secondItem="8gB-53-kFa" secondAttribute="trailing" id="7RG-1o-yaZ"/>
+                                            <constraint firstItem="8gB-53-kFa" firstAttribute="leading" secondItem="mJx-WP-PIg" secondAttribute="leadingMargin" id="Jfj-Ij-kkS"/>
+                                            <constraint firstItem="8gB-53-kFa" firstAttribute="top" secondItem="mJx-WP-PIg" secondAttribute="topMargin" id="ckZ-GD-Mxu"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="lk7-80-i38" secondAttribute="trailing" id="iZa-GC-x4L"/>
                                             <constraint firstAttribute="bottomMargin" secondItem="lk7-80-i38" secondAttribute="bottom" id="kvP-rd-lQt"/>
                                             <constraint firstItem="lk7-80-i38" firstAttribute="leading" secondItem="mJx-WP-PIg" secondAttribute="leadingMargin" id="oJe-x4-xrd"/>
-                                            <constraint firstItem="lk7-80-i38" firstAttribute="top" secondItem="mJx-WP-PIg" secondAttribute="topMargin" id="q4y-7T-jb8"/>
+                                            <constraint firstItem="lk7-80-i38" firstAttribute="top" secondItem="8gB-53-kFa" secondAttribute="bottom" id="t8e-wq-qlv"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="billTableView" destination="lk7-80-i38" id="0mO-ZC-i09"/>
+                                            <outlet property="monthNameLabel" destination="8gB-53-kFa" id="POf-WC-rVQ"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

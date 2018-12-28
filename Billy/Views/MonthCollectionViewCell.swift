@@ -12,6 +12,7 @@ class MonthCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITabl
  
     
     @IBOutlet weak var billTableView: UITableView!
+    @IBOutlet weak var monthNameLabel: UILabel!
     
     //create outlet to the tablw view which this cell holds - then implement same methods as in my other table view
     
@@ -20,6 +21,7 @@ class MonthCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITabl
         didSet {
             //is this gone work?
         bills = currentMonth?.bills
+            monthNameLabel.text = currentMonth?.name
         }
     }
     
@@ -30,8 +32,6 @@ class MonthCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITabl
         super.awakeFromNib()
         billTableView.delegate = self
         billTableView.dataSource = self
-        
-
     }
     
     
