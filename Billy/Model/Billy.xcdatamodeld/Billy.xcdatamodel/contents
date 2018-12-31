@@ -7,16 +7,11 @@
         <attribute name="payementAmount" attributeType="Double" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="Bills" representedClassName="Bills" syncable="YES" codeGenerationType="class">
-        <relationship name="bills" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Bill" syncable="YES"/>
-    </entity>
     <entity name="Month" representedClassName="Month" syncable="YES" codeGenerationType="class">
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <relationship name="bills" maxCount="1" deletionRule="Nullify" destinationEntity="Bills" syncable="YES"/>
     </entity>
     <elements>
         <element name="Bill" positionX="-81.33984375" positionY="-179.72265625" width="128" height="120"/>
-        <element name="Bills" positionX="-341.875" positionY="-165.55078125" width="128" height="60"/>
-        <element name="Month" positionX="-342.65625" positionY="5.98046875" width="128" height="75"/>
+        <element name="Month" positionX="-342.65625" positionY="5.98046875" width="128" height="60"/>
     </elements>
 </model>

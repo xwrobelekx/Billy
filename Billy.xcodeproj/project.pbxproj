@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B02767F21DAA95B000E51C1 /* BillStateEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B02767E21DAA95B000E51C1 /* BillStateEnum.swift */; };
 		3B1FA41D21A64A4B00B2A84B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FA41C21A64A4B00B2A84B /* AppDelegate.swift */; };
 		3B1FA42221A64A4B00B2A84B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B1FA42021A64A4B00B2A84B /* Main.storyboard */; };
 		3B1FA42521A64A4B00B2A84B /* Billy.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FA42321A64A4B00B2A84B /* Billy.xcdatamodeld */; };
@@ -14,7 +15,6 @@
 		3B1FA42A21A64A4C00B2A84B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B1FA42821A64A4C00B2A84B /* LaunchScreen.storyboard */; };
 		3B1FA43921ACED0200B2A84B /* Bill+Convinience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FA43821ACED0200B2A84B /* Bill+Convinience.swift */; };
 		3B1FA43B21ACED6900B2A84B /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FA43A21ACED6900B2A84B /* CoreDataStack.swift */; };
-		3B1FA43D21ACEE4900B2A84B /* Bills+Convinience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FA43C21ACEE4900B2A84B /* Bills+Convinience.swift */; };
 		3B1FA43F21ACEF4A00B2A84B /* BillsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FA43E21ACEF4A00B2A84B /* BillsController.swift */; };
 		3B1FA44121ACF97C00B2A84B /* BillsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FA44021ACF97C00B2A84B /* BillsTableViewController.swift */; };
 		3B63561E21D0F35900186EBD /* MonthCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B63561D21D0F35900186EBD /* MonthCollectionViewCell.swift */; };
@@ -31,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3B02767E21DAA95B000E51C1 /* BillStateEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillStateEnum.swift; sourceTree = "<group>"; };
 		3B1FA41921A64A4B00B2A84B /* Billy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Billy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B1FA41C21A64A4B00B2A84B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3B1FA42121A64A4B00B2A84B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -40,7 +41,6 @@
 		3B1FA42B21A64A4C00B2A84B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B1FA43821ACED0200B2A84B /* Bill+Convinience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bill+Convinience.swift"; sourceTree = "<group>"; };
 		3B1FA43A21ACED6900B2A84B /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
-		3B1FA43C21ACEE4900B2A84B /* Bills+Convinience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bills+Convinience.swift"; sourceTree = "<group>"; };
 		3B1FA43E21ACEF4A00B2A84B /* BillsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsController.swift; sourceTree = "<group>"; };
 		3B1FA44021ACF97C00B2A84B /* BillsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsTableViewController.swift; sourceTree = "<group>"; };
 		3B63561D21D0F35900186EBD /* MonthCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -122,7 +122,6 @@
 				3B1FA42321A64A4B00B2A84B /* Billy.xcdatamodeld */,
 				3B1FA43821ACED0200B2A84B /* Bill+Convinience.swift */,
 				3BD271C321B7737D00926257 /* Month+Convenience.swift */,
-				3B1FA43C21ACEE4900B2A84B /* Bills+Convinience.swift */,
 				3B1FA43A21ACED6900B2A84B /* CoreDataStack.swift */,
 			);
 			path = Model;
@@ -164,6 +163,7 @@
 				3B9FCC5321B0C4F40092ADBA /* DateFormater.swift */,
 				3BD271C121B76B2900926257 /* MonthsEnum.swift */,
 				3BD271C521B8B87B00926257 /* BilllFrequencyEnum.swift */,
+				3B02767E21DAA95B000E51C1 /* BillStateEnum.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -239,7 +239,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B1FA43D21ACEE4900B2A84B /* Bills+Convinience.swift in Sources */,
 				3B1FA43B21ACED6900B2A84B /* CoreDataStack.swift in Sources */,
 				3B1FA44121ACF97C00B2A84B /* BillsTableViewController.swift in Sources */,
 				3B63562421D0FEA800186EBD /* BillTableViewCell.swift in Sources */,
@@ -251,6 +250,7 @@
 				3B1FA42521A64A4B00B2A84B /* Billy.xcdatamodeld in Sources */,
 				3B9FCC5121AF82A50092ADBA /* BillCustomCell.swift in Sources */,
 				3B1FA41D21A64A4B00B2A84B /* AppDelegate.swift in Sources */,
+				3B02767F21DAA95B000E51C1 /* BillStateEnum.swift in Sources */,
 				3BD271C621B8B87B00926257 /* BilllFrequencyEnum.swift in Sources */,
 				3B63562621D5CE0500186EBD /* MainVC.swift in Sources */,
 				3B9FCC5421B0C4F40092ADBA /* DateFormater.swift in Sources */,

@@ -16,12 +16,14 @@ class BillsController {
     private init() {}
     let moc = CoreDataStack.context
     
+    //MARK: - Source of Truth
     var bills: [Bill] {
         let fetchRequest: NSFetchRequest<Bill> = Bill.fetchRequest()
         return (try?  moc.fetch(fetchRequest)) ?? []
     }
     
     
+    //MARK: - Create
     func create(bill: Bill, frequency: BillFrequency){
         guard let dueDate = bill.dueDate else {return}
         let calendar = Calendar.current
@@ -46,7 +48,7 @@ class BillsController {
             
         case .monthly:
             var monthsAmountToAdd = 1
-            for _ in 0..<12{
+            for _ in 0..<11{
                 print(monthsAmountToAdd)
                 guard let newDueDate = calendar.date(byAdding: DateComponents(month: monthsAmountToAdd), to: dueDate, wrappingComponents: false) else {return}
                 let _ = Bill(title: bill.title ?? "No Title", payementAmount: bill.payementAmount, dueDate: newDueDate, notes: bill.notes)
@@ -75,11 +77,15 @@ class BillsController {
         saveToPersistentStore()
     }
     
+    
+    //MARK: - Delete
     func delete(bill: Bill){
         moc.delete(bill)
         saveToPersistentStore()
     }
     
+    
+    //MARK: - Save
     func saveToPersistentStore() {
         do {
             try moc.save()
@@ -90,39 +96,9 @@ class BillsController {
     
     
     
-    //MARK: - Trying to separate bills into weakly segments here
-    
-    //paid tab for current month?
-    
-    //past due
-    
-    //due this week
-    
-    //due next week
-    
-    //due 2 weeks from now
-    
-    //due more than two weeks from now - but dont show more than a  month of bills - maybe include a quarterly bills
-    
-    /*
-  need curent date - then use filter to filter my array, and use if statments or case statement to put then in apropriate sections - try doing it in a fuction so is reusable for ading/deleting
- 
- */
-    //filter bills array and return an array fo bills with apropriate cryteria
-    
-    enum BillState{
-        case isPaid
-        case isPastDue
-        case isDueNextWeek
-        case isDueInTwoWeeks
-        case isDueThisMonth
-        case otherBills
-        #warning("extra case for testing")
-    }
-    
+    //MARK: - Filter methods
     func filterBills(by billState : BillState) -> [Bill]{
         let curnetDate = Date()
-        //check if the bill was paid if it was and its before or after the date of a current month, then move it to paid tab
         var currentBills = [Bill]()
         
         switch billState {
@@ -146,10 +122,6 @@ class BillsController {
 
     
     func filterBills(by month: Year ) -> [Bill]{
-      //  var filteredBills = [Bill]()
-//        print("🔸 \(month.rawValue)")
-//        print("🔹 \(bills[0].dueDate!.monthAsString())" )
-        
         switch month {
         case .january:
             return bills.filter { $0.dueDate!.monthAsString() == "01" }

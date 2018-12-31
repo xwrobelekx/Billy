@@ -111,11 +111,27 @@ class BillsTableViewController: UITableViewController, BillCustomCellDelegate {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            let bill = BillsController.shared.bills[indexPath.row]
-            BillsController.shared.delete(bill: bill)
-            tableView.reloadData()
-            //this crashes
-           // tableView.deleteRows(at: [indexPath], with: .fade)
+            var bill : Bill?
+            
+            switch indexPath.section {
+            case 0:
+                bill = BillsController.shared.filterBills(by: .isPastDue)[indexPath.row]
+            case 1:
+                bill = BillsController.shared.filterBills(by: .isDueNextWeek)[indexPath.row]
+            case 2:
+                bill = BillsController.shared.filterBills(by: .isDueInTwoWeeks)[indexPath.row]
+            case 3:
+                bill = BillsController.shared.filterBills(by: .isDueThisMonth)[indexPath.row]
+            case 4:
+                bill = BillsController.shared.filterBills(by: .isPaid)[indexPath.row]
+            case 5:
+                bill = BillsController.shared.filterBills(by: .otherBills)[indexPath.row]
+            default:
+                bill = nil
+            }
+            guard let billToDelete = bill else {return}
+            BillsController.shared.delete(bill: billToDelete)
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
  
@@ -127,13 +143,11 @@ class BillsTableViewController: UITableViewController, BillCustomCellDelegate {
     
     //MARK: - Cell Protocol conforamnce
     func billHasBeenPaidToggle(cell: BillCustomCell) {
-        print("calling the delegate")
-       // guard let indexPath = tableView.indexPath(for: cell) else {return}
         guard let bill = cell.bill else {return}
         guard let indexOfBill = BillsController.shared.bills.index(of: bill) else {return}
         BillsController.shared.bills[indexOfBill].isPaid.toggle()
         BillsController.shared.saveToPersistentStore()
-       // tableView.reloadRows(at: [indexPath], with: .automatic)
+       // tableView.reloadRows(at: [IndexPath], with: .automatic)
         tableView.reloadData()
     }
     
