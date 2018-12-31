@@ -252,7 +252,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="optional" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GHn-cm-RCS">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="optional notes" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GHn-cm-RCS">
                                         <rect key="frame" x="0.0" y="160" width="300" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -279,6 +279,7 @@
                     </view>
                     <connections>
                         <outlet property="dueDateTextField" destination="BFN-4w-B09" id="QOr-3m-pta"/>
+                        <outlet property="notesTextField" destination="GHn-cm-RCS" id="8eb-Tz-z2e"/>
                         <outlet property="payemntAmoutTextField" destination="Yel-IZ-z4K" id="mNM-Rf-hAF"/>
                         <outlet property="paymentFrequency" destination="FAS-RJ-ahZ" id="bNX-Hq-cU4"/>
                         <outlet property="titleTextField" destination="XY0-yR-77R" id="04o-yL-KW3"/>

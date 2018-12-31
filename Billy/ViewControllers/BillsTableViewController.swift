@@ -26,8 +26,8 @@ class BillsTableViewController: UITableViewController, BillCustomCellDelegate {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 5
+        #warning("extra case for testing")
+        return 6
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -42,6 +42,8 @@ class BillsTableViewController: UITableViewController, BillCustomCellDelegate {
             return "Due this month"
         case 4:
             return "Paid"
+        case 5:
+            return "Other Bills"
         default:
             return "Not a valid section"
         }
@@ -62,6 +64,8 @@ class BillsTableViewController: UITableViewController, BillCustomCellDelegate {
             return BillsController.shared.filterBills(by: .isDueThisMonth).count
         case 4:
             return BillsController.shared.filterBills(by: .isPaid).count
+        case 5:
+            return BillsController.shared.filterBills(by: .otherBills).count
         default: return 0
         }
     }
@@ -85,10 +89,11 @@ class BillsTableViewController: UITableViewController, BillCustomCellDelegate {
             cell.bill = BillsController.shared.filterBills(by: .isDueThisMonth)[indexPath.row]
         case 4:
             cell.bill = BillsController.shared.filterBills(by: .isPaid)[indexPath.row]
+        case 5:
+            cell.bill = BillsController.shared.filterBills(by: .otherBills)[indexPath.row]
         default:
-            cell.bill = Bill(title: "Not a valid Bill", payementAmount: 111.11, paymentFrequency: "Anual", dueDate: Date())
+            cell.bill = Bill(title: "Not a Bill", payementAmount: 0.00, dueDate: Date(), notes: "nothing")
         }
-        
         return cell
     }
  
@@ -127,7 +132,7 @@ class BillsTableViewController: UITableViewController, BillCustomCellDelegate {
         guard let bill = cell.bill else {return}
         guard let indexOfBill = BillsController.shared.bills.index(of: bill) else {return}
         BillsController.shared.bills[indexOfBill].isPaid.toggle()
-        BillsController.shared.saveToPersistentStore()
+        BillsController.shared.saveToPersistentStore(bill: bill)
        // tableView.reloadRows(at: [indexPath], with: .automatic)
         tableView.reloadData()
     }

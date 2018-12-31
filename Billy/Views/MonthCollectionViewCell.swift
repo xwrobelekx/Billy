@@ -41,7 +41,7 @@ class MonthCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITabl
     
      func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 5
+        return 6 // switch back to 5 later
     }
     
      func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -56,6 +56,9 @@ class MonthCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITabl
             return "Due this month"
         case 4:
             return "Paid"
+        case 5:
+            //extra section to check other bills
+            return "Other Bills"
         default:
             return "Not a valid section"
         }
@@ -76,6 +79,10 @@ class MonthCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITabl
             return BillsController.shared.filterBills(by: .isDueThisMonth).count
         case 4:
             return BillsController.shared.filterBills(by: .isPaid).count
+        case 5:
+            //extra section for other bills
+            #warning("extra case for testing")
+            return BillsController.shared.filterBills(by: .otherBills).count
         default: return 0
         }
     }
@@ -99,8 +106,11 @@ class MonthCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITabl
             cell.billName.text = BillsController.shared.filterBills(by: .isDueThisMonth)[indexPath.row].title
         case 4:
             cell.billName.text = BillsController.shared.filterBills(by: .isPaid)[indexPath.row].title
+        case 5:
+            #warning("extra case for testing")
+            cell.billName.text = BillsController.shared.filterBills(by: .otherBills)[indexPath.row].title
         default:
-            cell.billName.text = Bill(title: "Not a valid Bill", payementAmount: 111.11, paymentFrequency: "Anual", dueDate: Date()).title
+            cell.billName.text = "Default"
         }
         
         return cell

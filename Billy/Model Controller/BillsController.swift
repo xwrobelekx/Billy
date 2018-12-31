@@ -17,7 +17,7 @@ class BillsController {
     let moc = CoreDataStack.context
     
     var bills: [Bill] {
-        
+        print("fetching bills")
         let fetchRequest: NSFetchRequest<Bill> = Bill.fetchRequest()
         
         return (try?  moc.fetch(fetchRequest)) ?? []
@@ -27,60 +27,89 @@ class BillsController {
     
     func create(bill: Bill, frequency: BillFrequency){
     
-       // how is a bill being created and saved - its not getting added to the array - its being fetched from core data,
-        
-        
-        //when creating a bill need to assign a month to it, and frequency, if frequency is monthly, then i need to c reate 12 of them for that year
-        
-        //86400 is number of seconds in one day
-        let week = (TimeInterval(7 * 86400))
-        let month = (TimeInterval(30 * 86400))
-        let oneQuarter = (TimeInterval(91.25 * 86400))
-        
+        guard let dueDate = bill.dueDate else {return}
+        let calendar = Calendar.current
         
         switch frequency {
-         case .anual:
-            //dont need to do anyting
-            print("Created anual bill")
-         case .semiAnual:
+        case .anual:
+            print("anual")
+        case .semiAnual:
+            guard let newDueDate = calendar.date(byAdding: DateComponents(month: 6), to: dueDate, wrappingComponents: false) else {return}
+            let newBill = Bill(title: bill.title ?? "No Title", payementAmount: bill.payementAmount, dueDate: newDueDate, notes: bill.notes)
+          //  allTheBills.append(newBill)
+            saveToPersistentStore(bill: newBill)
             
-            var firstBillDate = bill.dueDate! + week //6 months
-           // let bill = Bill(title: <#T##String#>, payementAmount: <#T##Double#>, paymentFrequency: <#T##String#>, dueDate: <#T##Date#>)
-            
-            print("created 2 bills for semianual payments")
         case .quarterly:
             
-            print("created 4 bills for quarterly payments")
-
+            var monthsAmountToAdd = 3
+            
+            for _ in 0..<3{
+                print(monthsAmountToAdd)
+                guard let newDueDate = calendar.date(byAdding: DateComponents(month: monthsAmountToAdd), to: dueDate, wrappingComponents: false) else {return}
+               let newBill = Bill(title: bill.title ?? "No Title", payementAmount: bill.payementAmount, dueDate: newDueDate, notes: bill.notes)
+              //  allTheBills.append(newBill)
+                saveToPersistentStore(bill: newBill)
+                monthsAmountToAdd += 3
+            }
+            
         case .monthly:
+            var monthsAmountToAdd = 1
+            for _ in 0..<12{
+                print(monthsAmountToAdd)
+                guard let newDueDate = calendar.date(byAdding: DateComponents(month: monthsAmountToAdd), to: dueDate, wrappingComponents: false) else {return}
+                let newBill = Bill(title: bill.title ?? "No Title", payementAmount: bill.payementAmount, dueDate: newDueDate, notes: bill.notes)
+             //   allTheBills.append(newBill)
+                saveToPersistentStore(bill: newBill)
+                monthsAmountToAdd += 1
+            }
             
-            print("created 12 bills for monthly payments")
-
+            // add a month to the previous data leaving th day the samy - repeat remaining times for each month still remaining in the year - u
+            
+            print("monthly")
         case .biweekly:
-            
-            print("created 26 bills for biweekly payments")
-
+            var daysToAdd = 14
+            for _ in 0..<26{
+                print(daysToAdd)
+                
+                guard let newDueDate = calendar.date(byAdding: DateComponents(day: daysToAdd), to: dueDate, wrappingComponents: false) else {return}
+                let newBill = Bill(title: bill.title ?? "No Title", payementAmount: bill.payementAmount, dueDate: newDueDate, notes: bill.notes)
+               // allTheBills.append(newBill)
+                saveToPersistentStore(bill: newBill)
+                daysToAdd += 14
+            }
+            print("biweekly")
         case .weekly:
-            
-            print("created 52 bills for weekly payments")
-
-            
+            var daysToAdd = 7
+            for _ in 0..<52{
+                print(daysToAdd)
+                
+                guard let newDueDate = calendar.date(byAdding: DateComponents(day: daysToAdd), to: dueDate, wrappingComponents: false) else {return}
+               let newBill = Bill(title: bill.title ?? "No Title", payementAmount: bill.payementAmount, dueDate: newDueDate, notes: bill.notes)
+               // allTheBills.append(newBill)
+                saveToPersistentStore(bill: newBill)
+                daysToAdd += 7
+            }
+            print("weekly")
+        case .none:
+            print("none")
         }
+
         
         
         
         
         
-        saveToPersistentStore()
+        saveToPersistentStore(bill: bill)
     }
     
     func delete(bill: Bill){
         moc.delete(bill)
-        saveToPersistentStore()
+        saveToPersistentStore(bill: bill)
     }
     
-    
-    func saveToPersistentStore() {
+    #warning("remove the extra bill parameter - only used for testing")
+    func saveToPersistentStore(bill: Bill) {
+        print("Saving \(bill.title) with date: \(bill.dueDate?.asString())")
         do {
             try moc.save()
         } catch {
@@ -116,6 +145,8 @@ class BillsController {
         case isDueNextWeek
         case isDueInTwoWeeks
         case isDueThisMonth
+        case otherBills
+        #warning("extra case for testing")
     }
     
     func filterBills(by billState : BillState) -> [Bill]{
@@ -135,6 +166,8 @@ class BillsController {
             currentBills = bills.filter { $0.dueDate! >= (curnetDate + (TimeInterval( 7 * 86400))) && $0.dueDate! <= curnetDate + (TimeInterval(14 * 86400)) && $0.isPaid == false  }
         case .isDueThisMonth:
             currentBills = bills.filter { $0.dueDate! >= (curnetDate + (TimeInterval( 14 * 86400))) && $0.dueDate! <= curnetDate + (TimeInterval(31 * 86400)) && $0.isPaid == false  }
+        case .otherBills:
+            currentBills = bills.filter { $0.dueDate! > (curnetDate + (TimeInterval( 31 * 86400))) }
         }
         return currentBills
     }

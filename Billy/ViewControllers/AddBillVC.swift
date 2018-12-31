@@ -11,6 +11,10 @@ import UIKit
 class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
     
+    //MARK: - ask user if thay want to copy bill notes - or if they want to keep the notes in sync
+    
+    
+    
     //MARK: - Properties
     var date: Date?
     
@@ -20,6 +24,7 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     @IBOutlet weak var payemntAmoutTextField: UITextField!
     @IBOutlet weak var dueDateTextField: UITextField!
     @IBOutlet weak var paymentFrequency: UITextField!
+    @IBOutlet weak var notesTextField: UITextField!
     
     
     //MARK: - LifeCycle Methods
@@ -62,9 +67,13 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
             let dueDate = date else {return}
         
         guard let payment = Double(paymentAmout) else {return}
-        let bill = Bill(title: title, payementAmount: payment, paymentFrequency: paymentFrequency.text ?? "", dueDate: dueDate)
+        let bill = Bill(title: title, payementAmount: payment, dueDate: dueDate, notes: notesTextField.text)
         print("🚀\(paymentFrequency.text!)") //confirms selected frequancy in debugger when saving the bill
-        BillsController.shared.create(bill: bill, frequency: BillFrequency.anual)
+        
+        //need to take the string and get the case value for the raw value
+        guard let frequancy : BillFrequency = BillFrequency(rawValue: paymentFrequency.text ?? "None") else {return}
+        
+        BillsController.shared.create(bill: bill, frequency: frequancy)
         navigationController?.popToRootViewController(animated: true)
     }
     
