@@ -186,3 +186,23 @@ print("last bill \(allTheBills.last!.name), \(allTheBills.last!.dueDate.asString
 //fixed the problem - bill needs to be a struct - it needs to be copied not referenced
 
 
+
+
+enum Months222{
+    case january(Int, String)
+    case february(Int, String)
+    case march(Int, String)
+    case april(Int, String)
+    case may(Int, String)
+    case june(Int, String)
+    case july(Int, String)
+    case august(Int, String)
+    case september(Int, String)
+    case october(Int, String)
+    case november(Int, String)
+    case december(Int, String)
+    
+}
+
+
+let jan = Months222.january(01, "January")

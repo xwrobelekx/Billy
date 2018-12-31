@@ -14,24 +14,36 @@ class MonthCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITabl
     @IBOutlet weak var billTableView: UITableView!
     @IBOutlet weak var monthNameLabel: UILabel!
     
+    
+    
     //create outlet to the tablw view which this cell holds - then implement same methods as in my other table view
     
     //each month has bills
     var currentMonth : Month? {
         didSet {
             //is this gone work?
-        bills = currentMonth?.bills
+      //  bills = currentMonth?.bills
             monthNameLabel.text = currentMonth?.name
+            print("🀄️🇵🇱🇵🇱🇵🇱🇵🇱")
+            billTableView.reloadData()
         }
     }
     
-    var bills : Bills?
+   // var bills : Bills?
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
         billTableView.delegate = self
         billTableView.dataSource = self
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+       // currentMonth = nil
+        print("🔳 preparing for reuse month: \(currentMonth?.name)")
+      //  billTableView.reloadData()
+        
     }
     
     
@@ -41,77 +53,48 @@ class MonthCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITabl
     
      func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 6 // switch back to 5 later
+        return 1 // switch back to 5 later
     }
     
      func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 0:
-            return "Past Due"
-        case 1:
-            return "Due this week"
-        case 2:
-            return "Due next week"
-        case 3:
-            return "Due this month"
-        case 4:
-            return "Paid"
-        case 5:
-            //extra section to check other bills
-            return "Other Bills"
-        default:
-            return "Not a valid section"
-        }
+        return "Bills for this month:"
+
     }
     
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         //        return BillsController.shared.bills.count
         
-        switch section {
-        case 0:
-            return BillsController.shared.filterBills(by: .isPastDue).count
-        case 1:
-            return BillsController.shared.filterBills(by: .isDueNextWeek).count
-        case 2:
-            return BillsController.shared.filterBills(by: .isDueInTwoWeeks).count
-        case 3:
-            return BillsController.shared.filterBills(by: .isDueThisMonth).count
-        case 4:
-            return BillsController.shared.filterBills(by: .isPaid).count
-        case 5:
-            //extra section for other bills
-            #warning("extra case for testing")
-            return BillsController.shared.filterBills(by: .otherBills).count
-        default: return 0
-        }
+
+        guard let month = currentMonth else {
+            print("🔴 Returning zero")
+            return 0}
+        #warning("Lots of bangs - keep an eye on them")
+        
+    
+        
+        
+        
+        print("🔵 count: \(BillsController.shared.filterBills(by: Year(rawValue: month.name!)!).count)")
+        return BillsController.shared.filterBills(by: Year(rawValue: month.name!)!).count
     }
     
     
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as? BillTableViewCell else {return UITableViewCell()}
+        guard let month = currentMonth else {
+            print("🔴 No Cell")
+            return cell}
         
-        // let bill = BillsController.shared.bills[indexPath.row]
-      //  cell.cellDelegate = self
+     //   print("🌈 \(month.name)")
+      //  print("☀️\(indexPath.row)")
         
+        let bill = BillsController.shared.filterBills(by: Year(rawValue: month.name!)!)[indexPath.row]
+   //     print("🇦🇸 \(bill.title)")
+        cell.billName.text = bill.title
+        cell.billAmountLabel.text = "\(bill.payementAmount)"
+        cell.dueDateLabel.text = bill.dueDate?.asString()
         
-        switch indexPath.section {
-        case 0:
-            cell.billName.text = BillsController.shared.filterBills(by: .isPastDue)[indexPath.row].title
-        case 1:
-            cell.billName.text = BillsController.shared.filterBills(by: .isDueNextWeek)[indexPath.row].title
-        case 2:
-            cell.billName.text = BillsController.shared.filterBills(by: .isDueInTwoWeeks)[indexPath.row].title
-        case 3:
-            cell.billName.text = BillsController.shared.filterBills(by: .isDueThisMonth)[indexPath.row].title
-        case 4:
-            cell.billName.text = BillsController.shared.filterBills(by: .isPaid)[indexPath.row].title
-        case 5:
-            #warning("extra case for testing")
-            cell.billName.text = BillsController.shared.filterBills(by: .otherBills)[indexPath.row].title
-        default:
-            cell.billName.text = "Default"
-        }
         
         return cell
     }

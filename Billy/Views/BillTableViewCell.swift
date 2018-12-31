@@ -13,6 +13,8 @@ class BillTableViewCell: UITableViewCell {
     
     @IBOutlet weak var billName: UILabel!
     @IBOutlet weak var billAmountLabel: UILabel!
+    @IBOutlet weak var dueDateLabel: UILabel!
+    
     
     
 

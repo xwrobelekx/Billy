@@ -11,7 +11,7 @@
         <relationship name="bills" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Bill" syncable="YES"/>
     </entity>
     <entity name="Month" representedClassName="Month" syncable="YES" codeGenerationType="class">
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="bills" maxCount="1" deletionRule="Nullify" destinationEntity="Bills" syncable="YES"/>
     </entity>
     <elements>

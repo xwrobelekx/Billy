@@ -132,7 +132,7 @@ class BillsTableViewController: UITableViewController, BillCustomCellDelegate {
         guard let bill = cell.bill else {return}
         guard let indexOfBill = BillsController.shared.bills.index(of: bill) else {return}
         BillsController.shared.bills[indexOfBill].isPaid.toggle()
-        BillsController.shared.saveToPersistentStore(bill: bill)
+        BillsController.shared.saveToPersistentStore()
        // tableView.reloadRows(at: [indexPath], with: .automatic)
         tableView.reloadData()
     }

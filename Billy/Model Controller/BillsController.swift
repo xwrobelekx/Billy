@@ -17,38 +17,30 @@ class BillsController {
     let moc = CoreDataStack.context
     
     var bills: [Bill] {
-        print("fetching bills")
         let fetchRequest: NSFetchRequest<Bill> = Bill.fetchRequest()
-        
         return (try?  moc.fetch(fetchRequest)) ?? []
-
     }
     
     
     func create(bill: Bill, frequency: BillFrequency){
-    
         guard let dueDate = bill.dueDate else {return}
         let calendar = Calendar.current
-        
         switch frequency {
         case .anual:
             print("anual")
         case .semiAnual:
             guard let newDueDate = calendar.date(byAdding: DateComponents(month: 6), to: dueDate, wrappingComponents: false) else {return}
-            let newBill = Bill(title: bill.title ?? "No Title", payementAmount: bill.payementAmount, dueDate: newDueDate, notes: bill.notes)
-          //  allTheBills.append(newBill)
-            saveToPersistentStore(bill: newBill)
+            let _ = Bill(title: bill.title ?? "No Title", payementAmount: bill.payementAmount, dueDate: newDueDate, notes: bill.notes)
+            saveToPersistentStore()
             
         case .quarterly:
-            
             var monthsAmountToAdd = 3
-            
             for _ in 0..<3{
                 print(monthsAmountToAdd)
                 guard let newDueDate = calendar.date(byAdding: DateComponents(month: monthsAmountToAdd), to: dueDate, wrappingComponents: false) else {return}
-               let newBill = Bill(title: bill.title ?? "No Title", payementAmount: bill.payementAmount, dueDate: newDueDate, notes: bill.notes)
+               let _ = Bill(title: bill.title ?? "No Title", payementAmount: bill.payementAmount, dueDate: newDueDate, notes: bill.notes)
               //  allTheBills.append(newBill)
-                saveToPersistentStore(bill: newBill)
+                saveToPersistentStore()
                 monthsAmountToAdd += 3
             }
             
@@ -57,59 +49,38 @@ class BillsController {
             for _ in 0..<12{
                 print(monthsAmountToAdd)
                 guard let newDueDate = calendar.date(byAdding: DateComponents(month: monthsAmountToAdd), to: dueDate, wrappingComponents: false) else {return}
-                let newBill = Bill(title: bill.title ?? "No Title", payementAmount: bill.payementAmount, dueDate: newDueDate, notes: bill.notes)
-             //   allTheBills.append(newBill)
-                saveToPersistentStore(bill: newBill)
+                let _ = Bill(title: bill.title ?? "No Title", payementAmount: bill.payementAmount, dueDate: newDueDate, notes: bill.notes)
+                saveToPersistentStore()
                 monthsAmountToAdd += 1
             }
-            
-            // add a month to the previous data leaving th day the samy - repeat remaining times for each month still remaining in the year - u
-            
-            print("monthly")
         case .biweekly:
             var daysToAdd = 14
             for _ in 0..<26{
-                print(daysToAdd)
-                
                 guard let newDueDate = calendar.date(byAdding: DateComponents(day: daysToAdd), to: dueDate, wrappingComponents: false) else {return}
-                let newBill = Bill(title: bill.title ?? "No Title", payementAmount: bill.payementAmount, dueDate: newDueDate, notes: bill.notes)
-               // allTheBills.append(newBill)
-                saveToPersistentStore(bill: newBill)
+                let _ = Bill(title: bill.title ?? "No Title", payementAmount: bill.payementAmount, dueDate: newDueDate, notes: bill.notes)
+                saveToPersistentStore()
                 daysToAdd += 14
             }
-            print("biweekly")
         case .weekly:
             var daysToAdd = 7
             for _ in 0..<52{
-                print(daysToAdd)
-                
                 guard let newDueDate = calendar.date(byAdding: DateComponents(day: daysToAdd), to: dueDate, wrappingComponents: false) else {return}
-               let newBill = Bill(title: bill.title ?? "No Title", payementAmount: bill.payementAmount, dueDate: newDueDate, notes: bill.notes)
-               // allTheBills.append(newBill)
-                saveToPersistentStore(bill: newBill)
+               let _ = Bill(title: bill.title ?? "No Title", payementAmount: bill.payementAmount, dueDate: newDueDate, notes: bill.notes)
+                saveToPersistentStore()
                 daysToAdd += 7
             }
-            print("weekly")
         case .none:
             print("none")
         }
-
-        
-        
-        
-        
-        
-        saveToPersistentStore(bill: bill)
+        saveToPersistentStore()
     }
     
     func delete(bill: Bill){
         moc.delete(bill)
-        saveToPersistentStore(bill: bill)
+        saveToPersistentStore()
     }
     
-    #warning("remove the extra bill parameter - only used for testing")
-    func saveToPersistentStore(bill: Bill) {
-        print("Saving \(bill.title) with date: \(bill.dueDate?.asString())")
+    func saveToPersistentStore() {
         do {
             try moc.save()
         } catch {
@@ -172,21 +143,40 @@ class BillsController {
         return currentBills
     }
     
+
     
-//    func something() {
-//        let startDate = Date()
-//        let endDate = Date(timeInterval: 2*86400, since: startDate)
-//        
-//        
-//        let components = Calendar.current.dateComponents([.day], from: startDate, to: endDate)
-//        let numberOfDays = components.day ?? 0
-//        
-//        for i in 1...numberOfDays {
-//            let nextDate = Calendar.current.date(byAdding: .day, value: i, to: startDate)
-//            print(nextDate)
-//        }
-//    }
-    
+    func filterBills(by month: Year ) -> [Bill]{
+      //  var filteredBills = [Bill]()
+//        print("🔸 \(month.rawValue)")
+//        print("🔹 \(bills[0].dueDate!.monthAsString())" )
+        
+        switch month {
+        case .january:
+            return bills.filter { $0.dueDate!.monthAsString() == "01" }
+        case .february:
+             return bills.filter { $0.dueDate!.monthAsString() == "02" }
+        case .march:
+             return bills.filter { $0.dueDate!.monthAsString() == "03" }
+        case .april:
+             return bills.filter { $0.dueDate!.monthAsString() == "04" }
+        case .may:
+             return bills.filter { $0.dueDate!.monthAsString() == "05" }
+        case .june:
+            return bills.filter { $0.dueDate!.monthAsString() == "06" }
+        case .july:
+             return bills.filter { $0.dueDate!.monthAsString() == "07" }
+        case .august:
+             return bills.filter { $0.dueDate!.monthAsString() == "08" }
+        case .september:
+             return bills.filter { $0.dueDate!.monthAsString() == "09" }
+        case .october:
+             return bills.filter { $0.dueDate!.monthAsString() == "10" }
+        case .november:
+             return bills.filter { $0.dueDate!.monthAsString() == "11" }
+        case .december:
+             return bills.filter { $0.dueDate!.monthAsString() == "12" }
+        }
+    }
     
     
     

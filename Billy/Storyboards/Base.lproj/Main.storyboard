@@ -129,23 +129,31 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="331" height="63.5"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="bill..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PUu-83-Xwu">
-                                                                        <rect key="frame" x="20" y="21.5" width="36" height="21"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="bill..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PUu-83-Xwu">
+                                                                        <rect key="frame" x="20" y="22" width="108" height="21"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zZc-wU-NbX">
-                                                                        <rect key="frame" x="296" y="21" width="20" height="22"/>
-                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zZc-wU-NbX">
+                                                                        <rect key="frame" x="299" y="21" width="22" height="22"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="22" id="X8G-dT-svK"/>
+                                                                            <constraint firstAttribute="height" constant="22" id="coD-8Q-buv"/>
+                                                                        </constraints>
                                                                         <state key="normal" title="Button" image="incomplete"/>
                                                                         <connections>
                                                                             <action selector="billIsCompletedButtonTapped:" destination="nTC-ju-vb8" eventType="touchUpInside" id="scD-zq-KNT"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(amount)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HD6-Kq-kuN">
-                                                                        <rect key="frame" x="206" y="21" width="71" height="21"/>
-                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(amount)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HD6-Kq-kuN">
+                                                                        <rect key="frame" x="223" y="21.5" width="71" height="21"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(due)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2zV-qa-6C8">
+                                                                        <rect key="frame" x="177" y="21.5" width="41" height="21"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -153,12 +161,19 @@
                                                                 </subviews>
                                                                 <constraints>
                                                                     <constraint firstItem="PUu-83-Xwu" firstAttribute="centerY" secondItem="Sw6-Yp-05k" secondAttribute="centerY" id="4J9-ht-M9b"/>
+                                                                    <constraint firstItem="HD6-Kq-kuN" firstAttribute="leading" secondItem="2zV-qa-6C8" secondAttribute="trailing" constant="5" id="8QO-yx-ils"/>
+                                                                    <constraint firstItem="zZc-wU-NbX" firstAttribute="trailing" secondItem="Sw6-Yp-05k" secondAttribute="trailingMargin" constant="5" id="9bO-sP-Mq1"/>
+                                                                    <constraint firstItem="2zV-qa-6C8" firstAttribute="centerY" secondItem="Sw6-Yp-05k" secondAttribute="centerY" id="NSn-0W-eky"/>
                                                                     <constraint firstItem="PUu-83-Xwu" firstAttribute="leading" secondItem="Sw6-Yp-05k" secondAttribute="leadingMargin" constant="5" id="QVE-Sy-uoq"/>
+                                                                    <constraint firstItem="zZc-wU-NbX" firstAttribute="leading" secondItem="HD6-Kq-kuN" secondAttribute="trailing" constant="5" id="ea5-a3-DaH"/>
+                                                                    <constraint firstItem="zZc-wU-NbX" firstAttribute="centerY" secondItem="Sw6-Yp-05k" secondAttribute="centerY" id="km9-4c-hfs"/>
+                                                                    <constraint firstItem="HD6-Kq-kuN" firstAttribute="centerY" secondItem="Sw6-Yp-05k" secondAttribute="centerY" id="taf-hC-P0K"/>
                                                                 </constraints>
                                                             </tableViewCellContentView>
                                                             <connections>
                                                                 <outlet property="billAmountLabel" destination="HD6-Kq-kuN" id="MKe-D7-ijx"/>
                                                                 <outlet property="billName" destination="PUu-83-Xwu" id="A3p-FF-MKL"/>
+                                                                <outlet property="dueDateLabel" destination="2zV-qa-6C8" id="TgI-3Z-F5p"/>
                                                             </connections>
                                                         </tableViewCell>
                                                     </prototypes>
