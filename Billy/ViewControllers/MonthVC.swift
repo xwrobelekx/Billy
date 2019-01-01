@@ -24,6 +24,10 @@ class MonthVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         monthCollectionView.dataSource = self
 
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        monthCollectionView.reloadData()
+    }
     
 
     

@@ -18,6 +18,13 @@ extension Date {
         return formatter.string(from: self)
     }
     
+    func asStringLonger() -> String{
+        let formatter = DateFormatter()
+        formatter.dateStyle = .full
+        formatter.timeStyle = .none
+        return formatter.string(from: self)
+    }
+    
     func dayAndMonthAsString() -> String {
         let customFormat = "ddMM"
         let locale = Locale(identifier: "en_US")

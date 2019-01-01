@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3B02767F21DAA95B000E51C1 /* BillStateEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B02767E21DAA95B000E51C1 /* BillStateEnum.swift */; };
+		3B02768121DAC0E4000E51C1 /* MainViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B02768021DAC0E4000E51C1 /* MainViewTableViewCell.swift */; };
 		3B1FA41D21A64A4B00B2A84B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FA41C21A64A4B00B2A84B /* AppDelegate.swift */; };
 		3B1FA42221A64A4B00B2A84B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B1FA42021A64A4B00B2A84B /* Main.storyboard */; };
 		3B1FA42521A64A4B00B2A84B /* Billy.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FA42321A64A4B00B2A84B /* Billy.xcdatamodeld */; };
@@ -32,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		3B02767E21DAA95B000E51C1 /* BillStateEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillStateEnum.swift; sourceTree = "<group>"; };
+		3B02768021DAC0E4000E51C1 /* MainViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewTableViewCell.swift; sourceTree = "<group>"; };
 		3B1FA41921A64A4B00B2A84B /* Billy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Billy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B1FA41C21A64A4B00B2A84B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3B1FA42121A64A4B00B2A84B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				3B9FCC5021AF82A50092ADBA /* BillCustomCell.swift */,
 				3B63562321D0FEA800186EBD /* BillTableViewCell.swift */,
 				3B63561D21D0F35900186EBD /* MonthCollectionViewCell.swift */,
+				3B02768021DAC0E4000E51C1 /* MainViewTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -252,6 +255,7 @@
 				3B1FA41D21A64A4B00B2A84B /* AppDelegate.swift in Sources */,
 				3B02767F21DAA95B000E51C1 /* BillStateEnum.swift in Sources */,
 				3BD271C621B8B87B00926257 /* BilllFrequencyEnum.swift in Sources */,
+				3B02768121DAC0E4000E51C1 /* MainViewTableViewCell.swift in Sources */,
 				3B63562621D5CE0500186EBD /* MainVC.swift in Sources */,
 				3B9FCC5421B0C4F40092ADBA /* DateFormater.swift in Sources */,
 				3BD271C221B76B2900926257 /* MonthsEnum.swift in Sources */,

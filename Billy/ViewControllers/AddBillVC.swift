@@ -74,7 +74,9 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
         guard let frequancy : BillFrequency = BillFrequency(rawValue: paymentFrequency.text ?? "None") else {return}
         
         BillsController.shared.create(bill: bill, frequency: frequancy)
-        navigationController?.popToRootViewController(animated: true)
+        clearTextFields()
+        
+     //   tabBarController?.present(MainVC(), animated: true, completion: nil)
     }
     
     
@@ -110,6 +112,16 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let selectedOption = BillFrequency.allCases[row]
         paymentFrequency.text = selectedOption.rawValue
+    }
+    
+    
+    
+    func clearTextFields(){
+        titleTextField.text = ""
+        payemntAmoutTextField.text = ""
+        dueDateTextField.text = ""
+        paymentFrequency.text = ""
+        notesTextField.text = ""
     }
     
     
