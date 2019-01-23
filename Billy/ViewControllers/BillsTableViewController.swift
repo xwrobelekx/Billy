@@ -31,35 +31,47 @@ class BillsTableViewController: UITableViewController, BillCustomCellDelegate {
 
     // MARK: - Table view data source
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView()
-        view.backgroundColor = .clear
-        return view
-    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         #warning("extra case for testing")
         return 6
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = .clear
+        let label = UILabel()
+        label.textColor = .white
+        label.frame = CGRect(x: 30, y: 10, width: 400, height: 40)
+        
+        view.addSubview(label)
+        
+        
         switch section {
         case 0:
-            return "Past Due"
+            label.text = "Past Due"
         case 1:
-            return "Due this week"
+            label.text = "Due this week"
         case 2:
-            return "Due next week"
+            label.text =  "Due next week"
         case 3:
-            return "Due this month"
+            label.text =  "Due this month"
         case 4:
-            return "Paid"
+            label.text =  "Paid"
         case 5:
-            return "Other Bills"
+            label.text =  "Other Bills"
         default:
-            return "Not a valid section"
+            label.text =  "Not a valid section"
         }
+        
+        return view
     }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
+    
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
@@ -86,7 +98,6 @@ class BillsTableViewController: UITableViewController, BillCustomCellDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? BillCustomCell else {return UITableViewCell()}
 
-       // let bill = BillsController.shared.bills[indexPath.row]
         cell.cellDelegate = self
        
     
@@ -148,10 +159,6 @@ class BillsTableViewController: UITableViewController, BillCustomCellDelegate {
     }
  
 
-
-    
-
-    
     
     //MARK: - Cell Protocol conforamnce
     func billHasBeenPaidToggle(cell: BillCustomCell) {
