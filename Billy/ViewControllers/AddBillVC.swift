@@ -106,6 +106,9 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
         
         NotificationController.shared.setupCustomNotificationWith(title: "\(title) is due in \(daysDelay) days.", message: "Payment of $\(paymentAmout) is due on \(dueDate.asString()).", billDueDate: dueDate, daysDelay: daysDelay, atHour: timeSelected.hour, atMinute: timeSelected.minute)
         
+        
+        confirmattionPopUpWith(title: "Bill Saved", message: "Your bill named: \(title) with amount of $\(paymentAmout) was succesfully crerated with \(frequancy) frequency. You will be notified \(daysDelay) days before due date, at \(timeSelected.hour):\(timeSelected.minute)")
+        
         clearTextFields()
         
         //   tabBarController?.present(MainVC(), animated: true, completion: nil)
@@ -224,6 +227,15 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
         let hour = Int(time[..<colon])!
         let minute = Int(time[time.index(after: colon)...]) ?? 0
         return (hour, minute)
+    }
+    
+    func confirmattionPopUpWith(title: String, message: String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (_) in
+            
+        }))
+        
+        present(alert, animated: true)
     }
     
 }

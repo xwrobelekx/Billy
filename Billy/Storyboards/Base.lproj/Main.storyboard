@@ -122,6 +122,7 @@
                                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lk7-80-i38">
                                                     <rect key="frame" x="8" y="53" width="331" height="545"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="sectionIndexBackgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <prototypes>
                                                         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell1" rowHeight="64" id="nTC-ju-vb8" customClass="BillTableViewCell" customModule="Billy" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="28" width="331" height="64"/>
@@ -171,6 +172,7 @@
                                                                     <constraint firstItem="HD6-Kq-kuN" firstAttribute="centerY" secondItem="Sw6-Yp-05k" secondAttribute="centerY" id="taf-hC-P0K"/>
                                                                 </constraints>
                                                             </tableViewCellContentView>
+                                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <connections>
                                                                 <outlet property="billAmountLabel" destination="HD6-Kq-kuN" id="MKe-D7-ijx"/>
                                                                 <outlet property="billName" destination="PUu-83-Xwu" id="A3p-FF-MKL"/>
@@ -214,11 +216,11 @@
                             <constraint firstAttribute="bottomMargin" secondItem="N9c-hs-xVq" secondAttribute="bottom" id="6gY-r8-0wN"/>
                             <constraint firstAttribute="trailingMargin" secondItem="N9c-hs-xVq" secondAttribute="trailing" constant="-20" id="7D3-Na-dj5"/>
                             <constraint firstItem="N9c-hs-xVq" firstAttribute="top" secondItem="0Hg-ci-cr0" secondAttribute="topMargin" constant="-50" id="ATi-u1-4nM"/>
-                            <constraint firstItem="ekK-P6-CYH" firstAttribute="trailing" secondItem="GuA-DK-OAt" secondAttribute="trailing" id="DOC-oV-X6g"/>
+                            <constraint firstItem="ekK-P6-CYH" firstAttribute="trailing" secondItem="GuA-DK-OAt" secondAttribute="trailing" constant="10" id="DOC-oV-X6g"/>
                             <constraint firstItem="ekK-P6-CYH" firstAttribute="bottom" secondItem="GuA-DK-OAt" secondAttribute="bottom" id="Ee8-sF-Z7C"/>
                             <constraint firstItem="GuA-DK-OAt" firstAttribute="top" secondItem="0Hg-ci-cr0" secondAttribute="top" constant="10" id="Lba-vf-6k4"/>
                             <constraint firstItem="N9c-hs-xVq" firstAttribute="leading" secondItem="0Hg-ci-cr0" secondAttribute="leadingMargin" constant="-20" id="Vzd-eb-39Z"/>
-                            <constraint firstItem="GuA-DK-OAt" firstAttribute="leading" secondItem="ekK-P6-CYH" secondAttribute="leading" id="fv2-au-m2d"/>
+                            <constraint firstItem="GuA-DK-OAt" firstAttribute="leading" secondItem="ekK-P6-CYH" secondAttribute="leading" constant="10" id="fv2-au-m2d"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ekK-P6-CYH"/>
                     </view>
