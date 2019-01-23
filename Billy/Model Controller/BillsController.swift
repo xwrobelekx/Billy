@@ -40,8 +40,8 @@ class BillsController {
             for _ in 0..<3{
                 print(monthsAmountToAdd)
                 guard let newDueDate = calendar.date(byAdding: DateComponents(month: monthsAmountToAdd), to: dueDate, wrappingComponents: false) else {return}
-               let _ = Bill(title: bill.title ?? "No Title", payementAmount: bill.payementAmount, dueDate: newDueDate, notes: bill.notes)
-              //  allTheBills.append(newBill)
+                let _ = Bill(title: bill.title ?? "No Title", payementAmount: bill.payementAmount, dueDate: newDueDate, notes: bill.notes)
+                //  allTheBills.append(newBill)
                 saveToPersistentStore()
                 monthsAmountToAdd += 3
             }
@@ -67,7 +67,7 @@ class BillsController {
             var daysToAdd = 7
             for _ in 0..<52{
                 guard let newDueDate = calendar.date(byAdding: DateComponents(day: daysToAdd), to: dueDate, wrappingComponents: false) else {return}
-               let _ = Bill(title: bill.title ?? "No Title", payementAmount: bill.payementAmount, dueDate: newDueDate, notes: bill.notes)
+                let _ = Bill(title: bill.title ?? "No Title", payementAmount: bill.payementAmount, dueDate: newDueDate, notes: bill.notes)
                 saveToPersistentStore()
                 daysToAdd += 7
             }
@@ -119,34 +119,34 @@ class BillsController {
         return currentBills
     }
     
-
+    
     
     func filterBills(by month: Year ) -> [Bill]{
         switch month {
         case .january:
             return bills.filter { $0.dueDate!.monthAsString() == "01" }
         case .february:
-             return bills.filter { $0.dueDate!.monthAsString() == "02" }
+            return bills.filter { $0.dueDate!.monthAsString() == "02" }
         case .march:
-             return bills.filter { $0.dueDate!.monthAsString() == "03" }
+            return bills.filter { $0.dueDate!.monthAsString() == "03" }
         case .april:
-             return bills.filter { $0.dueDate!.monthAsString() == "04" }
+            return bills.filter { $0.dueDate!.monthAsString() == "04" }
         case .may:
-             return bills.filter { $0.dueDate!.monthAsString() == "05" }
+            return bills.filter { $0.dueDate!.monthAsString() == "05" }
         case .june:
             return bills.filter { $0.dueDate!.monthAsString() == "06" }
         case .july:
-             return bills.filter { $0.dueDate!.monthAsString() == "07" }
+            return bills.filter { $0.dueDate!.monthAsString() == "07" }
         case .august:
-             return bills.filter { $0.dueDate!.monthAsString() == "08" }
+            return bills.filter { $0.dueDate!.monthAsString() == "08" }
         case .september:
-             return bills.filter { $0.dueDate!.monthAsString() == "09" }
+            return bills.filter { $0.dueDate!.monthAsString() == "09" }
         case .october:
-             return bills.filter { $0.dueDate!.monthAsString() == "10" }
+            return bills.filter { $0.dueDate!.monthAsString() == "10" }
         case .november:
-             return bills.filter { $0.dueDate!.monthAsString() == "11" }
+            return bills.filter { $0.dueDate!.monthAsString() == "11" }
         case .december:
-             return bills.filter { $0.dueDate!.monthAsString() == "12" }
+            return bills.filter { $0.dueDate!.monthAsString() == "12" }
         }
     }
     

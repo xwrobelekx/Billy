@@ -18,6 +18,7 @@
 		3B1FA43B21ACED6900B2A84B /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FA43A21ACED6900B2A84B /* CoreDataStack.swift */; };
 		3B1FA43F21ACEF4A00B2A84B /* BillsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FA43E21ACEF4A00B2A84B /* BillsController.swift */; };
 		3B1FA44121ACF97C00B2A84B /* BillsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FA44021ACF97C00B2A84B /* BillsTableViewController.swift */; };
+		3B5E9C6521EECEB900E31BBA /* DayDelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5E9C6421EECEB900E31BBA /* DayDelay.swift */; };
 		3B63561E21D0F35900186EBD /* MonthCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B63561D21D0F35900186EBD /* MonthCollectionViewCell.swift */; };
 		3B63562021D0F3BA00186EBD /* MonthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B63561F21D0F3BA00186EBD /* MonthVC.swift */; };
 		3B63562421D0FEA800186EBD /* BillTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B63562321D0FEA800186EBD /* BillTableViewCell.swift */; };
@@ -29,6 +30,8 @@
 		3BD271C221B76B2900926257 /* MonthsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD271C121B76B2900926257 /* MonthsEnum.swift */; };
 		3BD271C421B7737E00926257 /* Month+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD271C321B7737D00926257 /* Month+Convenience.swift */; };
 		3BD271C621B8B87B00926257 /* BilllFrequencyEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD271C521B8B87B00926257 /* BilllFrequencyEnum.swift */; };
+		3BDAFC4A21E58CA20021FB8F /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDAFC4921E58CA20021FB8F /* NotificationController.swift */; };
+		3BFB802D21E29589002683AB /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFB802C21E29589002683AB /* RoundedView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +48,7 @@
 		3B1FA43A21ACED6900B2A84B /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		3B1FA43E21ACEF4A00B2A84B /* BillsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsController.swift; sourceTree = "<group>"; };
 		3B1FA44021ACF97C00B2A84B /* BillsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsTableViewController.swift; sourceTree = "<group>"; };
+		3B5E9C6421EECEB900E31BBA /* DayDelay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDelay.swift; sourceTree = "<group>"; };
 		3B63561D21D0F35900186EBD /* MonthCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthCollectionViewCell.swift; sourceTree = "<group>"; };
 		3B63561F21D0F3BA00186EBD /* MonthVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthVC.swift; sourceTree = "<group>"; };
 		3B63562321D0FEA800186EBD /* BillTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillTableViewCell.swift; sourceTree = "<group>"; };
@@ -56,6 +60,8 @@
 		3BD271C121B76B2900926257 /* MonthsEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthsEnum.swift; sourceTree = "<group>"; };
 		3BD271C321B7737D00926257 /* Month+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Month+Convenience.swift"; sourceTree = "<group>"; };
 		3BD271C521B8B87B00926257 /* BilllFrequencyEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BilllFrequencyEnum.swift; sourceTree = "<group>"; };
+		3BDAFC4921E58CA20021FB8F /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		3BFB802C21E29589002683AB /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				3B1FA42321A64A4B00B2A84B /* Billy.xcdatamodeld */,
+				3B5E9C6421EECEB900E31BBA /* DayDelay.swift */,
 				3B1FA43821ACED0200B2A84B /* Bill+Convinience.swift */,
 				3BD271C321B7737D00926257 /* Month+Convenience.swift */,
 				3B1FA43A21ACED6900B2A84B /* CoreDataStack.swift */,
@@ -145,6 +152,7 @@
 			children = (
 				3B1FA43E21ACEF4A00B2A84B /* BillsController.swift */,
 				3BD271BF21B76AB600926257 /* MonthController.swift */,
+				3BDAFC4921E58CA20021FB8F /* NotificationController.swift */,
 			);
 			path = "Model Controller";
 			sourceTree = "<group>";
@@ -167,6 +175,7 @@
 				3BD271C121B76B2900926257 /* MonthsEnum.swift */,
 				3BD271C521B8B87B00926257 /* BilllFrequencyEnum.swift */,
 				3B02767E21DAA95B000E51C1 /* BillStateEnum.swift */,
+				3BFB802C21E29589002683AB /* RoundedView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -245,12 +254,14 @@
 				3B1FA43B21ACED6900B2A84B /* CoreDataStack.swift in Sources */,
 				3B1FA44121ACF97C00B2A84B /* BillsTableViewController.swift in Sources */,
 				3B63562421D0FEA800186EBD /* BillTableViewCell.swift in Sources */,
+				3BDAFC4A21E58CA20021FB8F /* NotificationController.swift in Sources */,
 				3B1FA43921ACED0200B2A84B /* Bill+Convinience.swift in Sources */,
 				3B63561E21D0F35900186EBD /* MonthCollectionViewCell.swift in Sources */,
 				3BD271C021B76AB600926257 /* MonthController.swift in Sources */,
 				3BD271C421B7737E00926257 /* Month+Convenience.swift in Sources */,
 				3B63562021D0F3BA00186EBD /* MonthVC.swift in Sources */,
 				3B1FA42521A64A4B00B2A84B /* Billy.xcdatamodeld in Sources */,
+				3BFB802D21E29589002683AB /* RoundedView.swift in Sources */,
 				3B9FCC5121AF82A50092ADBA /* BillCustomCell.swift in Sources */,
 				3B1FA41D21A64A4B00B2A84B /* AppDelegate.swift in Sources */,
 				3B02767F21DAA95B000E51C1 /* BillStateEnum.swift in Sources */,
@@ -258,6 +269,7 @@
 				3B02768121DAC0E4000E51C1 /* MainViewTableViewCell.swift in Sources */,
 				3B63562621D5CE0500186EBD /* MainVC.swift in Sources */,
 				3B9FCC5421B0C4F40092ADBA /* DateFormater.swift in Sources */,
+				3B5E9C6521EECEB900E31BBA /* DayDelay.swift in Sources */,
 				3BD271C221B76B2900926257 /* MonthsEnum.swift in Sources */,
 				3B1FA43F21ACEF4A00B2A84B /* BillsController.swift in Sources */,
 				3B9FCC4F21AF7A910092ADBA /* AddBillVC.swift in Sources */,

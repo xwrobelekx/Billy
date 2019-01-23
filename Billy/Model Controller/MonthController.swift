@@ -34,14 +34,4 @@ class MonthController {
         return [january, february, march, april, may, june, july, august, september, october, november, december]
         
     }()
-    
-    //need to initalize 12 months with names, and empty array if bills
-    
-    //[.january, .february, .march, .april, .may, .june, .july, .august, .september, .october, .november, .december]
-    
-    //each month needs to hold array of bills
-    
-    
-
-    
 }

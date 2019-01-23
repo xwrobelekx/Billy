@@ -7,13 +7,19 @@
 //
 
 import UIKit
+import UserNotifications
 
 class BillsTableViewController: UITableViewController, BillCustomCellDelegate {
     
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let backgroundImage = #imageLiteral(resourceName: "Billy background")
+        let imageView = UIImageView(image: backgroundImage)
+        self.tableView.backgroundView = imageView
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -24,6 +30,12 @@ class BillsTableViewController: UITableViewController, BillCustomCellDelegate {
     
 
     // MARK: - Table view data source
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = .clear
+        return view
+    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         #warning("extra case for testing")
