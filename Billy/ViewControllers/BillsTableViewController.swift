@@ -9,6 +9,8 @@
 import UIKit
 import UserNotifications
 
+//TEMPORARY TABLE VIEW TO SEE ALL THE BILLS
+
 class BillsTableViewController: UITableViewController, BillCustomCellDelegate {
     
     
@@ -115,7 +117,7 @@ class BillsTableViewController: UITableViewController, BillCustomCellDelegate {
         case 5:
             cell.bill = BillsController.shared.filterBills(by: .otherBills)[indexPath.row]
         default:
-            cell.bill = Bill(title: "Not a Bill", payementAmount: 0.00, dueDate: Date(), notes: "nothing")
+            cell.bill = NewBill(title: "Not a Bill", dueDate: Date(), paymentAmount: 0.00, notificationIdentyfier: "no identyfier", notes: "nothing")
         }
         return cell
     }
@@ -134,7 +136,7 @@ class BillsTableViewController: UITableViewController, BillCustomCellDelegate {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            var bill : Bill?
+            var bill : NewBill?
             
             switch indexPath.section {
             case 0:
@@ -153,8 +155,9 @@ class BillsTableViewController: UITableViewController, BillCustomCellDelegate {
                 bill = nil
             }
             guard let billToDelete = bill else {return}
-            BillsController.shared.delete(bill: billToDelete)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            #warning("call the delete method")
+           // BillsController.shared.delete(bill: billToDelete)
+            //tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
  
@@ -165,7 +168,8 @@ class BillsTableViewController: UITableViewController, BillCustomCellDelegate {
         guard let bill = cell.bill else {return}
         guard let indexOfBill = BillsController.shared.bills.index(of: bill) else {return}
         BillsController.shared.bills[indexOfBill].isPaid.toggle()
-        BillsController.shared.saveToPersistentStore()
+        #warning("see if i need to call the save method after togling the setting")
+      //  BillsController.shared.saveToPersistentStore()
        // tableView.reloadRows(at: [IndexPath], with: .automatic)
         tableView.reloadData()
     }

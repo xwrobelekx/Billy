@@ -6,43 +6,59 @@
 //  Copyright © 2018 Kamil Wrobel. All rights reserved.
 //
 
-import Foundation
-import CoreData
+import UIKit
+import UserNotifications
 
 
 class BillsController {
     
+    
     static let shared = BillsController()
     private init() {}
-    let moc = CoreDataStack.context
     
     //MARK: - Source of Truth
-    var bills: [Bill] {
-        let fetchRequest: NSFetchRequest<Bill> = Bill.fetchRequest()
-        return (try?  moc.fetch(fetchRequest)) ?? []
-    }
+    var bills = [NewBill]()
     
     
     //MARK: - Create
-    func create(bill: Bill, frequency: BillFrequency){
-        guard let dueDate = bill.dueDate else {return}
+    func create(bill: NewBill, frequency: BillFrequency?){
+        
+        // first im adding the initial bill, then checking if there ifs more to add by switching over the frequency
+        NotificationController.shared.setupCustomNotificationWith(title: "\(bill.title) is due in \(SettingController.shared.setting.dayDelay) days.", message: "Payment of $\(bill.paymentAmount) is due on \(bill.dueDate.asString()).", billDueDate: bill.dueDate, customIdentyfier: bill.notificationIdentyfier, daysDelay: SettingController.shared.setting.dayDelay, atHour: SettingController.shared.setting.hour, atMinute: SettingController.shared.setting.minute)
+        
+        bills.append(bill)
+        
+        
+        print("🍀 when creating the bill this is the notificvation hour: \(SettingController.shared.setting.hour), minute:  \(SettingController.shared.setting.minute), day delay \(SettingController.shared.setting.dayDelay)")
+        
+        guard let frequency = frequency else {return}
+        let dueDate = bill.dueDate
         let calendar = Calendar.current
         switch frequency {
         case .anual:
             print("anual")
+            //bill will be aded one time at the begining of the method
+            
         case .semiAnual:
             guard let newDueDate = calendar.date(byAdding: DateComponents(month: 6), to: dueDate, wrappingComponents: false) else {return}
-            let _ = Bill(title: bill.title ?? "No Title", payementAmount: bill.payementAmount, dueDate: newDueDate, notes: bill.notes)
-            saveToPersistentStore()
+            let customIdentyfier = UUID().uuidString
+            
+            let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: customIdentyfier, notes: bill.notes)
+            bills.append(newBill)
+            
+            NotificationController.shared.setupCustomNotificationWith(title: "\(bill.title) is due in \(SettingController.shared.setting.dayDelay) days.", message: "Payment of $\(bill.paymentAmount) is due on \(newDueDate.asString()).", billDueDate: newDueDate, customIdentyfier: customIdentyfier, daysDelay: SettingController.shared.setting.dayDelay, atHour: SettingController.shared.setting.hour, atMinute: SettingController.shared.setting.minute)
             
         case .quarterly:
             var monthsAmountToAdd = 3
             for _ in 0..<3{
                 print(monthsAmountToAdd)
                 guard let newDueDate = calendar.date(byAdding: DateComponents(month: monthsAmountToAdd), to: dueDate, wrappingComponents: false) else {return}
-                let _ = Bill(title: bill.title ?? "No Title", payementAmount: bill.payementAmount, dueDate: newDueDate, notes: bill.notes)
-                //  allTheBills.append(newBill)
-                saveToPersistentStore()
+                let customIdentyfier = UUID().uuidString
+                let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: customIdentyfier, notes: bill.notes)
+                bills.append(newBill)
+                
+                NotificationController.shared.setupCustomNotificationWith(title: "\(bill.title) is due in \(SettingController.shared.setting.dayDelay) days.", message: "Payment of $\(bill.paymentAmount) is due on \(newDueDate.asString()).", billDueDate: newDueDate, customIdentyfier: customIdentyfier, daysDelay: SettingController.shared.setting.dayDelay, atHour: SettingController.shared.setting.hour, atMinute: SettingController.shared.setting.minute)
+                
                 monthsAmountToAdd += 3
             }
             
@@ -51,108 +67,156 @@ class BillsController {
             for _ in 0..<11{
                 print(monthsAmountToAdd)
                 guard let newDueDate = calendar.date(byAdding: DateComponents(month: monthsAmountToAdd), to: dueDate, wrappingComponents: false) else {return}
-                let _ = Bill(title: bill.title ?? "No Title", payementAmount: bill.payementAmount, dueDate: newDueDate, notes: bill.notes)
-                saveToPersistentStore()
+                let customIdentyfier = UUID().uuidString
+                let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: customIdentyfier, notes: bill.notes)
+                bills.append(newBill)
+                
+                NotificationController.shared.setupCustomNotificationWith(title: "\(bill.title) is due in \(SettingController.shared.setting.dayDelay) days.", message: "Payment of $\(bill.paymentAmount) is due on \(newDueDate.asString()).", billDueDate: newDueDate, customIdentyfier: customIdentyfier, daysDelay: SettingController.shared.setting.dayDelay, atHour: SettingController.shared.setting.hour, atMinute: SettingController.shared.setting.minute)
+                
                 monthsAmountToAdd += 1
             }
         case .biweekly:
             var daysToAdd = 14
             for _ in 0..<26{
                 guard let newDueDate = calendar.date(byAdding: DateComponents(day: daysToAdd), to: dueDate, wrappingComponents: false) else {return}
-                let _ = Bill(title: bill.title ?? "No Title", payementAmount: bill.payementAmount, dueDate: newDueDate, notes: bill.notes)
-                saveToPersistentStore()
+                let customIdentyfier = UUID().uuidString
+                let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: customIdentyfier, notes: bill.notes)
+                bills.append(newBill)
+                
+                NotificationController.shared.setupCustomNotificationWith(title: "\(bill.title) is due in \(SettingController.shared.setting.dayDelay) days.", message: "Payment of $\(bill.paymentAmount) is due on \(newDueDate.asString()).", billDueDate: newDueDate, customIdentyfier: customIdentyfier, daysDelay: SettingController.shared.setting.dayDelay, atHour: SettingController.shared.setting.hour, atMinute: SettingController.shared.setting.minute)
+                
                 daysToAdd += 14
             }
         case .weekly:
             var daysToAdd = 7
             for _ in 0..<52{
                 guard let newDueDate = calendar.date(byAdding: DateComponents(day: daysToAdd), to: dueDate, wrappingComponents: false) else {return}
-                let _ = Bill(title: bill.title ?? "No Title", payementAmount: bill.payementAmount, dueDate: newDueDate, notes: bill.notes)
-                saveToPersistentStore()
+                let customIdentyfier = UUID().uuidString
+                let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: customIdentyfier, notes: bill.notes)
+                bills.append(newBill)
+                
+                NotificationController.shared.setupCustomNotificationWith(title: "\(bill.title) is due in \(SettingController.shared.setting.dayDelay) days.", message: "Payment of $\(bill.paymentAmount) is due on \(newDueDate.asString()).", billDueDate: newDueDate, customIdentyfier: customIdentyfier, daysDelay: SettingController.shared.setting.dayDelay, atHour: SettingController.shared.setting.hour, atMinute: SettingController.shared.setting.minute)
+                
                 daysToAdd += 7
             }
         case .none:
             print("none")
+            //bill will be added one time at the beginign of this method
         }
-        saveToPersistentStore()
+        
     }
     
     
     //MARK: - Delete
-    func delete(bill: Bill){
-        moc.delete(bill)
-        saveToPersistentStore()
-    }
-    
-    
-    //MARK: - Save
-    func saveToPersistentStore() {
-        do {
-            try moc.save()
-        } catch {
-            print("Error saving to persisten store. \(error.localizedDescription)")
+    func delete(bill: NewBill){
+        guard let index = bills.index(of: bill) else {
+            print("❌no index found of bill to delete")
+            return
         }
+        let center = UNUserNotificationCenter.current()
+        center.removePendingNotificationRequests(withIdentifiers: [bill.notificationIdentyfier])
+        center.removeDeliveredNotifications(withIdentifiers: [bill.notificationIdentyfier])
+        bills.remove(at: index)
+        print("⛔️sucesfully deleted bill and its notifications: bill title: \(bill.title), bill due date \(bill.dueDate.asStringLonger()), bill payment amount\(bill.paymentAmount)")
     }
     
-    
+
     
     //MARK: - Filter methods
-    func filterBills(by billState : BillState) -> [Bill]{
+    func filterBills(by billState : BillState) -> [NewBill]{
         let curnetDate = Date()
-        var currentBills = [Bill]()
+        var currentBills = [NewBill]()
         
         switch billState {
         case .isPaid:
             currentBills = bills.filter{ $0.isPaid }
         case .isPastDue:
-            currentBills = bills.filter { $0.dueDate! < curnetDate && $0.isPaid == false}
+            currentBills = bills.filter { $0.dueDate < curnetDate && $0.isPaid == false}
         case .isDueNextWeek:
             // 86400 - is one day in seconds - im adding 7 to current date to filter out bills for that week
-            currentBills = bills.filter { $0.dueDate! >= curnetDate && $0.dueDate! <= curnetDate + (TimeInterval(7 * 86400))  && $0.isPaid == false }
+            currentBills = bills.filter { $0.dueDate >= curnetDate && $0.dueDate <= (curnetDate + (TimeInterval(7 * 86400)))  && $0.isPaid == false }
+            for bill in currentBills {
+                print("\(bill.title)")
+            }
         case .isDueInTwoWeeks:
-            currentBills = bills.filter { $0.dueDate! >= (curnetDate + (TimeInterval( 7 * 86400))) && $0.dueDate! <= curnetDate + (TimeInterval(14 * 86400)) && $0.isPaid == false  }
+            currentBills = bills.filter { $0.dueDate >= (curnetDate + (TimeInterval( 7 * 86400))) && $0.dueDate <= curnetDate + (TimeInterval(14 * 86400)) && $0.isPaid == false  }
         case .isDueThisMonth:
-            currentBills = bills.filter { $0.dueDate! >= (curnetDate + (TimeInterval( 14 * 86400))) && $0.dueDate! <= curnetDate + (TimeInterval(31 * 86400)) && $0.isPaid == false  }
+             currentBills = bills.filter { $0.dueDate >= (curnetDate ) && $0.dueDate <= curnetDate + (TimeInterval(31 * 86400)) && $0.isPaid == false  }
         case .otherBills:
-            currentBills = bills.filter { $0.dueDate! > (curnetDate + (TimeInterval( 31 * 86400))) }
+            currentBills = bills.filter { $0.dueDate > (curnetDate + (TimeInterval( 31 * 86400))) }
         }
         return currentBills
     }
     
     
     
-    func filterBills(by month: Year ) -> [Bill]{
+    func filterBills(by month: String ) -> [NewBill]{
         switch month {
-        case .january:
-            return bills.filter { $0.dueDate!.monthAsString() == "01" }
-        case .february:
-            return bills.filter { $0.dueDate!.monthAsString() == "02" }
-        case .march:
-            return bills.filter { $0.dueDate!.monthAsString() == "03" }
-        case .april:
-            return bills.filter { $0.dueDate!.monthAsString() == "04" }
-        case .may:
-            return bills.filter { $0.dueDate!.monthAsString() == "05" }
-        case .june:
-            return bills.filter { $0.dueDate!.monthAsString() == "06" }
-        case .july:
-            return bills.filter { $0.dueDate!.monthAsString() == "07" }
-        case .august:
-            return bills.filter { $0.dueDate!.monthAsString() == "08" }
-        case .september:
-            return bills.filter { $0.dueDate!.monthAsString() == "09" }
-        case .october:
-            return bills.filter { $0.dueDate!.monthAsString() == "10" }
-        case .november:
-            return bills.filter { $0.dueDate!.monthAsString() == "11" }
-        case .december:
-            return bills.filter { $0.dueDate!.monthAsString() == "12" }
+        case "January":
+            return bills.filter { $0.dueDate.monthAsString() == "01" }
+        case "February":
+            return bills.filter { $0.dueDate.monthAsString() == "02" }
+        case "March":
+            return bills.filter { $0.dueDate.monthAsString() == "03" }
+        case "April":
+            return bills.filter { $0.dueDate.monthAsString() == "04" }
+        case "May":
+            return bills.filter { $0.dueDate.monthAsString() == "05" }
+        case "June":
+            return bills.filter { $0.dueDate.monthAsString() == "06" }
+        case "July":
+            return bills.filter { $0.dueDate.monthAsString() == "07" }
+        case "August":
+            return bills.filter { $0.dueDate.monthAsString() == "08" }
+        case "September":
+            return bills.filter { $0.dueDate.monthAsString() == "09" }
+        case "October":
+            return bills.filter { $0.dueDate.monthAsString() == "10" }
+        case "November":
+            return bills.filter { $0.dueDate.monthAsString() == "11" }
+        case "December":
+            return bills.filter { $0.dueDate.monthAsString() == "12" }
+        default :
+            return [NewBill]()
         }
+        
     }
     
     
     
+    //MARK: - Save method
+    func saveBills(){
+        let jasonEncoder = PropertyListEncoder()
+        do {
+            let data = try jasonEncoder.encode(self.bills)
+            try data.write(to: fileURL())
+        }catch let error {
+            print("Error encoding data: \(error)")
+        }
+    }
     
     
+    func loadBills(){
+        let jasonDecoder = PropertyListDecoder()
+        
+        do{
+            let data = try Data(contentsOf: fileURL())
+            let loadedBills = try jasonDecoder.decode([NewBill].self, from: data)
+            bills = loadedBills
+        } catch let error {
+            print("Error decoding data: \(error)")
+        }
+    }
     
+    
+    func fileURL() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentDirectory = paths[0]
+        let fileName = "billy JSON"
+        let fullURL = documentDirectory.appendingPathComponent(fileName)
+        return fullURL
+        
+    }
+
 }
+

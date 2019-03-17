@@ -8,6 +8,18 @@
 
 import Foundation
 
+/* Notes
+ 
+ - create mechanis to re-ad the bill after the year
+ - be able to view full bill - even from month view - and able to update it - maybe even to change the notification
+ - app icon
+ - push to test flight
+ 
+ 
+ 
+ 
+ */
+
 
 extension Date {
     

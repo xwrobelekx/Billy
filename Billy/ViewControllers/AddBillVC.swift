@@ -17,20 +17,10 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     
     //MARK: - Properties
     var date: Date?
-    //    var pickers = [UIPickerView]()
     let frequencyPicker = UIPickerView()
-    let timePicker = UIPickerView()
-    let daysDelayPicker = UIPickerView()
-    var timeSelected: (hour: Int, minute: Int) = (8, 30){
-        didSet {
-            notificationTimeTextField.text = "\(timeSelected.hour):\(timeSelected.minute)"
-        }
-    }
-    var daysDelay: Int = 0 {
-        didSet{
-            notificationDayDelayTextField.text = "\(daysDelay)"
-        }
-    }
+    var timeSelected: (hour: Int, minute: Int) = (8, 30)
+    var daysDelay: Int = 0
+     let datePicker = UIDatePicker()
     
     
     //MARK: - Outlets
@@ -39,8 +29,8 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     @IBOutlet weak var dueDateTextField: UITextField!
     @IBOutlet weak var paymentFrequency: UITextField!
     @IBOutlet weak var notesTextField: UITextField!
-    @IBOutlet weak var notificationDayDelayTextField: UITextField!
-    @IBOutlet weak var notificationTimeTextField: UITextField!
+    @IBOutlet weak var infoLabel: UILabel!
+    
     
     
     
@@ -58,24 +48,15 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
         frequencyPicker.dataSource = self
         paymentFrequency.inputView = frequencyPicker
         
+        frequencyPicker.backgroundColor = #colorLiteral(red: 0.3590022922, green: 0.3760095537, blue: 0.3968008757, alpha: 0.5)
         
-        let datePicker = UIDatePicker()
+       
+        datePicker.backgroundColor = #colorLiteral(red: 0.454691112, green: 0.4762320518, blue: 0.5025654435, alpha: 0.5)
         datePicker.datePickerMode = .date
-        datePicker.backgroundColor = .green //not doing anything the first time is being used
         datePicker.addTarget(self, action: #selector(datePickerValueChanged), for: UIControl.Event.valueChanged)
         dueDateTextField.inputView = datePicker
-        
-        
-        timePicker.delegate = self
-        timePicker.dataSource = self
-        notificationTimeTextField.inputView = timePicker
-        
-        
-        daysDelayPicker.delegate = self
-        daysDelayPicker.dataSource = self
-        notificationDayDelayTextField.inputView = daysDelayPicker
-        
     }
+    
     
     
     //MARK: - TextField Delegate Method
@@ -95,25 +76,17 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
             let dueDate = date else {return}
         
         guard let payment = Double(paymentAmout) else {return}
-        let bill = Bill(title: title, payementAmount: payment, dueDate: dueDate, notes: notesTextField.text)
-        print("🚀\(paymentFrequency.text!)") //confirms selected frequancy in debugger when saving the bill
-        
-        //need to take the string and get the case value for the raw value
-        guard let frequancy : BillFrequency = BillFrequency(rawValue: paymentFrequency.text ?? "None") else {return}
-        
-        BillsController.shared.create(bill: bill, frequency: frequancy)
-        
-        
-        NotificationController.shared.setupCustomNotificationWith(title: "\(title) is due in \(daysDelay) days.", message: "Payment of $\(paymentAmout) is due on \(dueDate.asString()).", billDueDate: dueDate, daysDelay: daysDelay, atHour: timeSelected.hour, atMinute: timeSelected.minute)
-        
-        
-        confirmattionPopUpWith(title: "Bill Saved", message: "Your bill named: \(title) with amount of $\(paymentAmout) was succesfully crerated with \(frequancy) frequency. You will be notified \(daysDelay) days before due date, at \(timeSelected.hour):\(timeSelected.minute)")
-        
-        clearTextFields()
-        
-        //   tabBarController?.present(MainVC(), animated: true, completion: nil)
-        
+        let bill = NewBill(title: title, dueDate: dueDate, paymentAmount: payment, notificationIdentyfier: UUID().uuidString, notes: notesTextField.text)
+        let frequency : BillFrequency? = BillFrequency(rawValue: paymentFrequency.text ?? "None")
+        BillsController.shared.create(bill: bill, frequency: frequency)
+        dismiss(animated: true, completion: nil)
     }
+    
+    
+    @IBAction func cancelButonPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     
     
     
@@ -123,6 +96,15 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
         formatter.timeStyle = .none
         dueDateTextField.text = formatter.string(from: sender.date)
         date = sender.date
+        
+        let curentDate = Calendar.current
+        guard let  notificationDate =  curentDate.date(byAdding: .day, value: SettingController.shared.setting.dayDelay, to: Date()) else {return}
+        
+        if notificationDate < sender.date && notificationDate > Date(){
+            infoLabel.isHidden = true
+        } else {
+            infoLabel.isHidden = false
+        }
     }
     
     
@@ -136,10 +118,6 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         if pickerView == frequencyPicker {
             return 1
-        } else if pickerView == timePicker {
-            return 2
-        } else if pickerView == daysDelayPicker {
-            return 1
         } else {
             return 0
         }
@@ -148,17 +126,6 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView == frequencyPicker {
             return BillFrequency.allCases.count
-        } else if pickerView == timePicker {
-            switch component {
-            case 0:
-                return DayAndTimeDelay.shared.hour.count
-            case 1:
-                return DayAndTimeDelay.shared.minute.count
-            default:
-                return 0
-            }
-        } else if pickerView == daysDelayPicker {
-            return DayAndTimeDelay.shared.dayDelay.count
         } else {
             return 0
         }
@@ -169,17 +136,6 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
         
         if pickerView == frequencyPicker {
             return BillFrequency.allCases[row].rawValue
-        } else if pickerView == timePicker {
-            switch component {
-            case 0:
-                return "\(DayAndTimeDelay.shared.hour[row])"
-            case 1:
-                return "\(DayAndTimeDelay.shared.minute[row])"
-            default:
-                return "0"
-            }
-        } else if pickerView == daysDelayPicker {
-            return "\(DayAndTimeDelay.shared.dayDelay[row])"
         } else {
             return "0"
         }
@@ -190,25 +146,10 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
         if pickerView == frequencyPicker {
             let selectedOption = BillFrequency.allCases[row]
             paymentFrequency.text = selectedOption.rawValue
-        } else if pickerView == timePicker {
-            switch component {
-            case 0:
-                timeSelected.hour = DayAndTimeDelay.shared.hour[row]
-            case 1:
-                timeSelected.minute = DayAndTimeDelay.shared.minute[row]
-            default:
-                print("no value")
-            }
-            //  notificationTimeTextField.text = "\(timeSelected.hour):\(timeSelected.minute)"
-            
-        } else if pickerView == daysDelayPicker {
-            daysDelay = DayAndTimeDelay.shared.dayDelay[row]
-            //   notificationDayDelayTextField.text = "\(daysDelay)"
         } else {
             print("no picker found")
         }
     }
-    
     
     
     func clearTextFields(){
@@ -217,8 +158,6 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
         dueDateTextField.text = ""
         paymentFrequency.text = ""
         notesTextField.text = ""
-        daysDelay = 5
-        timeSelected = (8, 30)
     }
     
     
@@ -232,7 +171,7 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     func confirmattionPopUpWith(title: String, message: String){
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (_) in
-            
+            self.dismiss(animated: true, completion: nil)
         }))
         
         present(alert, animated: true)

@@ -9,29 +9,30 @@
 import UIKit
 
 class MonthCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSource {
- 
     
+    //MARK: - Outlets
     @IBOutlet weak var billTableView: UITableView!
     @IBOutlet weak var monthNameLabel: UILabel!
     
     
     
-    //create outlet to the tablw view which this cell holds - then implement same methods as in my other table view
-    
-    //each month has bills
-    var currentMonth : Month? {
+    //MARK: - Properties
+    var currentMonth: String? {
         didSet {
-            //is this gone work?
-      //  bills = currentMonth?.bills
-            monthNameLabel.text = currentMonth?.name
-            print("🀄️🇵🇱🇵🇱🇵🇱🇵🇱")
+            monthNameLabel.text = currentMonth
             billTableView.reloadData()
         }
     }
     
-   // var bills : Bills?
+    
+    var bills : [NewBill]? {
+        didSet {
+            billTableView.reloadData()
+        }
+    }
     
     
+    //MARK: - LifeCycle Methods
     override func awakeFromNib() {
         super.awakeFromNib()
         billTableView.delegate = self
@@ -40,86 +41,56 @@ class MonthCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITabl
     
     override func prepareForReuse() {
         super.prepareForReuse()
-       // currentMonth = nil
-        print("🔳 preparing for reuse month: \(currentMonth?.name)")
-      //  billTableView.reloadData()
-        
     }
     
     
     
     
     // MARK: - Table view data source
-    
-     func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1 // switch back to 5 later
-    }
-    
-     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Bills for this month:"
-
-    }
-    
-     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        //        return BillsController.shared.bills.count
-        
-
-        guard let month = currentMonth else {
-            print("🔴 Returning zero")
-            return 0}
-        #warning("Lots of bangs - keep an eye on them")
-        
-    
-        
-        
-        
-        print("🔵 count: \(BillsController.shared.filterBills(by: Year(rawValue: month.name!)!).count)")
-        return BillsController.shared.filterBills(by: Year(rawValue: month.name!)!).count
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = CustomViewWithRoundedCorners()
+        view.backgroundColor = .clear
+        let label = UILabel()
+        label.textColor = .white
+        label.text = "Bills for this month:"
+        label.frame = CGRect(x: 15, y: 5, width: 200, height: 20)
+        view.addSubview(label)
+        return view
     }
     
     
-     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let bills = bills else {return 0}
+        return bills.count
+    }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as? BillTableViewCell else {return UITableViewCell()}
-        guard let month = currentMonth else {
-            print("🔴 No Cell")
+        guard let bills = bills else {
             return cell}
-        
-     //   print("🌈 \(month.name)")
-      //  print("☀️\(indexPath.row)")
-        
-        let bill = BillsController.shared.filterBills(by: Year(rawValue: month.name!)!)[indexPath.row]
-   //     print("🇦🇸 \(bill.title)")
+        let bill = bills[indexPath.row]
         cell.billName.text = bill.title
-        cell.billAmountLabel.text = "\(bill.payementAmount)"
-        cell.dueDateLabel.text = bill.dueDate?.asString()
-        
-        
+        cell.billAmountLabel.text = "\(bill.paymentAmount)"
+        cell.dueDateLabel.text = bill.dueDate.asString()
         return cell
     }
     
     
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
     
     
     // Override to support editing the table view.
-     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
             let bill = BillsController.shared.bills[indexPath.row]
-            BillsController.shared.delete(bill: bill)
+            #warning("implement delete method")
             tableView.reloadData()
-            //this crashes
-            // tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
-    
-    
 }
