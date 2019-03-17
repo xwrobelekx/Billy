@@ -49,6 +49,7 @@
 		3B203C6622389ABC00196995 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		3B203C682239E49A00196995 /* SettingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingController.swift; sourceTree = "<group>"; };
 		3B203C6A223D14D800196995 /* TemporaryNotificationTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TemporaryNotificationTVC.swift; path = Billy/ViewControllers/TemporaryNotificationTVC.swift; sourceTree = SOURCE_ROOT; };
+		3B203C6E223ED55000196995 /* Billy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Billy.entitlements; sourceTree = "<group>"; };
 		3B48998A2234A90D00C3DBC7 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = Billy/ViewControllers/SettingsViewController.swift; sourceTree = SOURCE_ROOT; };
 		3B48998E2235B42800C3DBC7 /* CustomViewWithRoundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewWithRoundedCorners.swift; sourceTree = "<group>"; };
 		3B5E9C6421EECEB900E31BBA /* DayDelay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDelay.swift; sourceTree = "<group>"; };
@@ -94,6 +95,7 @@
 		3B1FA41B21A64A4B00B2A84B /* Billy */ = {
 			isa = PBXGroup;
 			children = (
+				3B203C6E223ED55000196995 /* Billy.entitlements */,
 				3B9FCC5221B0C4C70092ADBA /* Extensions */,
 				3B1FA43621A64AD100B2A84B /* Views */,
 				3B1FA43521A64AC800B2A84B /* Model Controller */,
@@ -212,6 +214,11 @@
 				TargetAttributes = {
 					3B1FA41821A64A4B00B2A84B = {
 						CreatedOnToolsVersion = 10.0;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -418,6 +425,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Billy/Billy.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5EAUJPVR66;
 				INFOPLIST_FILE = "$(SRCROOT)/Billy/Resources/Info.plist";
@@ -436,6 +444,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Billy/Billy.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5EAUJPVR66;
 				INFOPLIST_FILE = "$(SRCROOT)/Billy/Resources/Info.plist";
