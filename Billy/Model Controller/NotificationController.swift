@@ -57,4 +57,11 @@ class NotificationController {
             }
         }
     }
+    
+    
+    func removeNotification(for identyfier: String){
+        let center = UNUserNotificationCenter.current()
+        center.removePendingNotificationRequests(withIdentifiers: [identyfier])
+        print("❌ removed notification")
+    }
 }

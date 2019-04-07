@@ -15,14 +15,18 @@ class NewBill : Codable, Equatable{
     var paymentAmount: Double
     var isPaid: Bool = false
     var notificationIdentyfier: String
+    var billUniqueIdentyfier: String
+    var billFrequency: BillFrequency
     var notes: String?
     
-    init(title: String, dueDate: Date, paymentAmount: Double, isPaid: Bool = false, notificationIdentyfier: String, notes: String?){
+    init(title: String, dueDate: Date, paymentAmount: Double, isPaid: Bool = false, notificationIdentyfier: String, billUniqueIdentyfier: String, billFrequency: BillFrequency,  notes: String?){
         self.title = title
         self.dueDate = dueDate
         self.paymentAmount = paymentAmount
         self.isPaid = isPaid
         self.notificationIdentyfier = notificationIdentyfier
+        self.billUniqueIdentyfier = billUniqueIdentyfier
+        self.billFrequency = billFrequency
         self.notes = notes
     }
     

@@ -117,7 +117,7 @@ class BillsTableViewController: UITableViewController, BillCustomCellDelegate {
         case 5:
             cell.bill = BillsController.shared.filterBills(by: .otherBills)[indexPath.row]
         default:
-            cell.bill = NewBill(title: "Not a Bill", dueDate: Date(), paymentAmount: 0.00, notificationIdentyfier: "no identyfier", notes: "nothing")
+            cell.bill = NewBill(title: "Not a Bill", dueDate: Date(), paymentAmount: 0.00, notificationIdentyfier: "no identyfier", billUniqueIdentyfier: "noIdentyfier", billFrequency: BillFrequency.none, notes: "nothing")
         }
         return cell
     }

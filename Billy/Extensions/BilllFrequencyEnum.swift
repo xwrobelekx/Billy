@@ -9,7 +9,7 @@
 import Foundation
 
 
-enum BillFrequency: String, CaseIterable {
+enum BillFrequency: String, CaseIterable, Codable{
     case none = "None"
     case weekly = "Weekly"
     case biweekly = "Biweekly"
@@ -18,3 +18,5 @@ enum BillFrequency: String, CaseIterable {
     case semiAnual = "Semi Anual"
     case anual = "Anual"
 }
+
+

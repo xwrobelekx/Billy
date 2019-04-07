@@ -19,6 +19,7 @@
 		3B203C6722389ABC00196995 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B203C6622389ABC00196995 /* Setting.swift */; };
 		3B203C692239E49A00196995 /* SettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B203C682239E49A00196995 /* SettingController.swift */; };
 		3B203C6B223D14D800196995 /* TemporaryNotificationTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B203C6A223D14D800196995 /* TemporaryNotificationTVC.swift */; };
+		3B203C70223F016B00196995 /* DetailViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B203C6F223F016B00196995 /* DetailViewVC.swift */; };
 		3B48998B2234A90D00C3DBC7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B48998A2234A90D00C3DBC7 /* SettingsViewController.swift */; };
 		3B48998F2235B42800C3DBC7 /* CustomViewWithRoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B48998E2235B42800C3DBC7 /* CustomViewWithRoundedCorners.swift */; };
 		3B5E9C6521EECEB900E31BBA /* DayDelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5E9C6421EECEB900E31BBA /* DayDelay.swift */; };
@@ -50,6 +51,7 @@
 		3B203C682239E49A00196995 /* SettingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingController.swift; sourceTree = "<group>"; };
 		3B203C6A223D14D800196995 /* TemporaryNotificationTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TemporaryNotificationTVC.swift; path = Billy/ViewControllers/TemporaryNotificationTVC.swift; sourceTree = SOURCE_ROOT; };
 		3B203C6E223ED55000196995 /* Billy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Billy.entitlements; sourceTree = "<group>"; };
+		3B203C6F223F016B00196995 /* DetailViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewVC.swift; sourceTree = "<group>"; };
 		3B48998A2234A90D00C3DBC7 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = Billy/ViewControllers/SettingsViewController.swift; sourceTree = SOURCE_ROOT; };
 		3B48998E2235B42800C3DBC7 /* CustomViewWithRoundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewWithRoundedCorners.swift; sourceTree = "<group>"; };
 		3B5E9C6421EECEB900E31BBA /* DayDelay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDelay.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				3B203C6A223D14D800196995 /* TemporaryNotificationTVC.swift */,
 				3B63562521D5CE0500186EBD /* MainVC.swift */,
 				3B48998A2234A90D00C3DBC7 /* SettingsViewController.swift */,
+				3B203C6F223F016B00196995 /* DetailViewVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 				3B203C692239E49A00196995 /* SettingController.swift in Sources */,
 				3B02767F21DAA95B000E51C1 /* BillStateEnum.swift in Sources */,
 				3B203C6722389ABC00196995 /* Setting.swift in Sources */,
+				3B203C70223F016B00196995 /* DetailViewVC.swift in Sources */,
 				3BD271C621B8B87B00926257 /* BilllFrequencyEnum.swift in Sources */,
 				3B48998B2234A90D00C3DBC7 /* SettingsViewController.swift in Sources */,
 				3B02768121DAC0E4000E51C1 /* MainViewTableViewCell.swift in Sources */,
@@ -429,6 +433,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5EAUJPVR66;
 				INFOPLIST_FILE = "$(SRCROOT)/Billy/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -448,6 +453,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5EAUJPVR66;
 				INFOPLIST_FILE = "$(SRCROOT)/Billy/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

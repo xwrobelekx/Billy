@@ -19,4 +19,14 @@ class RoundedView: UIView {
     }
 }
 
+class RoundedTextView: UITextView {
+    
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        self.layer.masksToBounds = true
+        self.layer.cornerRadius = 5
+        
+    }
+}
+
 

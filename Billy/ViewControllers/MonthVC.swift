@@ -8,7 +8,15 @@
 
 import UIKit
 
+
+
 class MonthVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+   
+   
+    
+   
+    
+
 
     
     //this VC will hold a collection view which will hold each month - using the date it will open on current month
@@ -16,7 +24,8 @@ class MonthVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     //MARK: - Outlets
     @IBOutlet weak var monthCollectionView: UICollectionView!
     
-     // var cellScaling : CGFloat = 0.95
+
+    //MARK: - Properties
     
     
     //MARK: - LifeCycle Methods
@@ -24,20 +33,7 @@ class MonthVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         super.viewDidLoad()
         monthCollectionView.delegate = self
         monthCollectionView.dataSource = self
-       // monthCollectionView.collectionViewLayout
-        //collectionViewLayout.minimumLineSpacing = 0
-//        monthCollectionView.isPagingEnabled = true
-//        
-//        let screenSize = UIScreen.main.bounds.size
-//        let cellWidth = floor(screenSize.width * cellScaling)
-//        let cellHeight = floor(screenSize.height * cellScaling)
-//        
-//        let insetX = (view.bounds.width - cellWidth) / 2.0
-//        let insetY = (view.bounds.height - cellHeight) / 2.0
-//        
-//        let layout = monthCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
-//        layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
-//        monthCollectionView.contentInset = UIEdgeInsets(top: insetY, left: insetX, bottom: insetY, right: insetX)
+        navigationController?.isNavigationBarHidden = true
      
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -56,25 +52,37 @@ class MonthVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = monthCollectionView.dequeueReusableCell(withReuseIdentifier: "monthCell", for: indexPath) as? MonthCollectionViewCell else { return UICollectionViewCell() }
-        //let month = MonthController.shared.months[indexPath.row]
+        var totalToPay = 0.0
         let date = Calendar.current
-        let month = date.monthSymbols
-        let currentMoth = month[indexPath.row]
+        let months = date.monthSymbols
+        let currentMoth = months[indexPath.row]
         let bills = BillsController.shared.filterBills(by: currentMoth)
-        print("\(bills.count)")
+        for bill in bills {
+            totalToPay += bill.paymentAmount
+        }
+        cell.totalBillAmout = totalToPay
         cell.bills = bills
         cell.currentMonth = currentMoth
         return cell
     }
     
     
-//    public func collectionView(_ collectionView: UICollectionView, layout
-//        collectionViewLayout: UICollectionViewLayout,
-//                               minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return 0
-//    }
     
+//    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+//        let date = Calendar.current
+//        let months = date.monthSymbols
+//        let currentMoth = months[indexPath.row]
+//        guard let indexOfCurrentMonth = months.index(of: currentMoth) else {return}
+//        let newIndexPath = IndexPath(row: indexOfCurrentMonth, section: indexPath.row)
+//        self.monthCollectionView.scrollToItem(at: newIndexPath, at: .left, animated: false)
+//
+//    }
  
+   
+//    func presentDetailView(with bill: NewBill) {
+//        //show the detail view with curent bill
+//    
+//    }
 
 
 }

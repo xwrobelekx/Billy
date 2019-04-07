@@ -16,8 +16,11 @@ class SettingController {
     
     //turn this into system based clock
     var setting = Setting(hour: 8, minute: 30, dayDelay: 5)
+
     
     
+    var hour = Calendar.current.component(.hour, from: Date())
+    var minute = Calendar.current.component(.minute, from: Date())
     
     //MARK: - Save settings method
     func saveSettings(){

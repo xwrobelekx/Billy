@@ -12,23 +12,23 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     
     //MARK: - Properties
-    let timePicker = UIPickerView()
     let daysDelayPicker = UIPickerView()
     
     
     //MARK: - Outlets
     @IBOutlet weak var notificationDaysDelayTextField: UITextField!
     @IBOutlet weak var notificationTimeTextField: UITextField!
-    
+    @IBOutlet var timeAndDatePicker: UIDatePicker!
     
     
     //MARK: - LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        timePicker.delegate = self
-        timePicker.dataSource = self
-        notificationTimeTextField.inputView = timePicker
+        timeAndDatePicker.datePickerMode = .time
+        
+        
+        notificationTimeTextField.inputView = timeAndDatePicker
         
         daysDelayPicker.delegate = self
         daysDelayPicker.dataSource = self
@@ -65,51 +65,20 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     //MARK: - UIPicker Delegate methods
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if pickerView == timePicker {
-            switch component {
-            case 0:
-                return DayAndTimeDelay.shared.hour.count
-            case 1:
-                return DayAndTimeDelay.shared.minute.count
-            default:
-                return 0
-            }
-        } else if pickerView == daysDelayPicker {
             return DayAndTimeDelay.shared.dayDelay.count
-        } else {
-            return 0
-        }
+ 
         
     }
     
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        if pickerView == timePicker {
-            return 2
-        } else if pickerView == daysDelayPicker {
             return 1
-        }
-        else {
-            return 0
-        }
+
     }
     
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if pickerView == timePicker {
-            switch component {
-            case 0:
-                return "\(DayAndTimeDelay.shared.hour[row])"
-            case 1:
-                return "\(DayAndTimeDelay.shared.minute[row])"
-            default:
-                return "0"
-            }
-        } else if pickerView == daysDelayPicker {
             return "\(DayAndTimeDelay.shared.dayDelay[row])"
-        } else {
-            return "0"
-        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -120,30 +89,26 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if pickerView == timePicker {
-            switch component {
-            case 0:
-                SettingController.shared.setting.hour = DayAndTimeDelay.shared.hour[row]
-            case 1:
-                SettingController.shared.setting.minute = DayAndTimeDelay.shared.minute[row]
-            default:
-                print("no value")
-            }
-            notificationTimeTextField.text = "\(SettingController.shared.setting.hour):\(String(format: "%02d", SettingController.shared.setting.minute))"
-            
-        } else if pickerView == daysDelayPicker {
+        print("🔵 im here 2")
             SettingController.shared.setting.dayDelay = DayAndTimeDelay.shared.dayDelay[row]
             notificationDaysDelayTextField.text = "\(SettingController.shared.setting.dayDelay)"
-        } else {
-            print("no picker found")
-        }
+
     }
+    
+    
     
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
     
+    
+    @IBAction func timePickerValueChabged(_ sender: UIDatePicker){
+        SettingController.shared.setting.hour = timeAndDatePicker.date.hour()
+        SettingController.shared.setting.minute = timeAndDatePicker.date.minute()
+        print("🍀\(timeAndDatePicker.date.timeAsString())")
+             notificationTimeTextField.text = "\(timeAndDatePicker.date.timeAsString())"
+    }
     
     
 }
