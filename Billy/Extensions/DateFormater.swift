@@ -65,6 +65,37 @@ extension Date {
         #warning("Another bang")
         return Int(formatter.string(from: self))!
     }
+    
+    func timeAsString() -> String{
+        let customFormat = "HH:mm"
+        let locale = Locale(identifier: "en_US")
+        let format = DateFormatter.dateFormat(fromTemplate: customFormat, options: 0, locale: locale)
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        return formatter.string(from: self)
+    }
+    
+    func hour() -> (hour: Int, min: Int){
+        let pickedTime = self.timeAsString()
+        let time = pickedTime.split(separator: ":")
+        let hour = Int(time[0])!
+        let min = Int(time[1])!
+        return (hour, min)
+        
+    }
+    
+    func timeAsStringWithAMSymbol() -> String {
+        let customFormat = "h:mm a"
+        let locale = Locale(identifier: "en_US_POSIX")
+        let format = DateFormatter.dateFormat(fromTemplate: customFormat, options: 0, locale: locale)
+        let formatter = DateFormatter()
+        formatter.amSymbol = "AM"
+        formatter.pmSymbol = "PM"
+        formatter.dateFormat = format
+        return formatter.string(from: self)
+        //Prints 12:00 AM or 1:05 PM
+    }
+    
 }
 
 

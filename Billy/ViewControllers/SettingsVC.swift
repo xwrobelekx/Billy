@@ -8,11 +8,13 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+class SettingsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
     
     //MARK: - Properties
-    let timePicker = UIPickerView()
+ //   let timePicker = UIPickerView()
+    let timePicker = UIDatePicker()
+
     let daysDelayPicker = UIPickerView()
     
     
@@ -25,13 +27,16 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     //MARK: - LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        timePicker.delegate = self
-        timePicker.dataSource = self
+
+        timePicker.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+        timePicker.datePickerMode = .time
+        timePicker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
+
         notificationTimeTextField.inputView = timePicker
         
         daysDelayPicker.delegate = self
         daysDelayPicker.dataSource = self
+        daysDelayPicker.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
         notificationDaysDelayTextField.inputView = daysDelayPicker
         
         notificationDaysDelayTextField.text = "\(SettingController.shared.setting.dayDelay)"
@@ -63,53 +68,23 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     
     
+    
     //MARK: - UIPicker Delegate methods
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if pickerView == timePicker {
-            switch component {
-            case 0:
-                return DayAndTimeDelay.shared.hour.count
-            case 1:
-                return DayAndTimeDelay.shared.minute.count
-            default:
-                return 0
-            }
-        } else if pickerView == daysDelayPicker {
             return DayAndTimeDelay.shared.dayDelay.count
-        } else {
-            return 0
-        }
-        
     }
     
     
+
+    
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        if pickerView == timePicker {
-            return 2
-        } else if pickerView == daysDelayPicker {
             return 1
-        }
-        else {
-            return 0
-        }
     }
     
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if pickerView == timePicker {
-            switch component {
-            case 0:
-                return "\(DayAndTimeDelay.shared.hour[row])"
-            case 1:
-                return "\(DayAndTimeDelay.shared.minute[row])"
-            default:
-                return "0"
-            }
-        } else if pickerView == daysDelayPicker {
             return "\(DayAndTimeDelay.shared.dayDelay[row])"
-        } else {
-            return "0"
-        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -120,18 +95,8 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if pickerView == timePicker {
-            switch component {
-            case 0:
-                SettingController.shared.setting.hour = DayAndTimeDelay.shared.hour[row]
-            case 1:
-                SettingController.shared.setting.minute = DayAndTimeDelay.shared.minute[row]
-            default:
-                print("no value")
-            }
-            notificationTimeTextField.text = "\(SettingController.shared.setting.hour):\(String(format: "%02d", SettingController.shared.setting.minute))"
-            
-        } else if pickerView == daysDelayPicker {
+
+        if pickerView == daysDelayPicker {
             SettingController.shared.setting.dayDelay = DayAndTimeDelay.shared.dayDelay[row]
             notificationDaysDelayTextField.text = "\(SettingController.shared.setting.dayDelay)"
         } else {
@@ -139,11 +104,22 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         }
     }
     
+    @objc func datePickerValueChanged() {
+        
+        SettingController.shared.notificationTime = timePicker.date
+        
+        notificationTimeTextField.text = "\(timePicker.date.timeAsStringWithAMSymbol())"
+        print("🥕 \(SettingController.shared.notificationTime?.timeAsString())")
+       
+    }
+    
+ 
+    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
     
-    
+  //  print("\(SettingController.shared.notificationTime.description)")
     
 }

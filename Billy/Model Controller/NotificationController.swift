@@ -22,7 +22,7 @@ class NotificationController {
     private init() {}
     
     
-    func setupCustomNotificationWith(title: String, message: String, billDueDate: Date, customIdentyfier: String, daysDelay: Int?, atHour: Int?, atMinute: Int?){
+    func setupCustomNotificationWith(title: String, message: String, billDueDate: Date, customIdentyfier: String, daysDelay: Int?, timeDelay: Date?){
         let center = UNUserNotificationCenter.current()
         center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
             if granted {
@@ -37,8 +37,8 @@ class NotificationController {
         
         var dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: billDueDate)
         dateComponents.day! -= daysDelay ?? 5
-        dateComponents.hour = atHour ?? 8
-        dateComponents.minute = atMinute ?? 30
+        dateComponents.hour = timeDelay?.hour().hour ?? 8
+        dateComponents.minute = timeDelay?.hour().min ?? 30
         
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
         

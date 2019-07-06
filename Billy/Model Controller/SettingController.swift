@@ -15,8 +15,9 @@ class SettingController {
     private init(){}
     
     //turn this into system based clock
-    var setting = Setting(hour: 8, minute: 30, dayDelay: 5)
-    
+    var setting = Setting(hour: 8, minute: 30, dayDelay: 5, date: Date())
+    var notificationTime : Date?
+
     
     
     //MARK: - Save settings method
