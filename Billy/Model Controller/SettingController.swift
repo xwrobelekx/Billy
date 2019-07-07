@@ -12,11 +12,12 @@ import Foundation
 class SettingController {
     
     static var shared = SettingController()
+ //   var notificationTime : Date?
     private init(){}
     
     //turn this into system based clock
-    var setting = Setting(hour: 8, minute: 30, dayDelay: 5, date: Date())
-    var notificationTime : Date?
+    var setting = Setting(dayDelay: 5, notificationTime: Date())
+    
 
     
     

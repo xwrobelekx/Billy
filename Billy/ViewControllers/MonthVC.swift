@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MonthVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class MonthVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate {
 
     
     //this VC will hold a collection view which will hold each month - using the date it will open on current month
@@ -16,7 +16,7 @@ class MonthVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     //MARK: - Outlets
     @IBOutlet weak var monthCollectionView: UICollectionView!
     
-     // var cellScaling : CGFloat = 0.95
+    var firstAppear = true
     
     
     //MARK: - LifeCycle Methods
@@ -24,20 +24,16 @@ class MonthVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         super.viewDidLoad()
         monthCollectionView.delegate = self
         monthCollectionView.dataSource = self
-       // monthCollectionView.collectionViewLayout
-        //collectionViewLayout.minimumLineSpacing = 0
-//        monthCollectionView.isPagingEnabled = true
-//        
-//        let screenSize = UIScreen.main.bounds.size
-//        let cellWidth = floor(screenSize.width * cellScaling)
-//        let cellHeight = floor(screenSize.height * cellScaling)
-//        
-//        let insetX = (view.bounds.width - cellWidth) / 2.0
-//        let insetY = (view.bounds.height - cellHeight) / 2.0
-//        
-//        let layout = monthCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
-//        layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
-//        monthCollectionView.contentInset = UIEdgeInsets(top: insetY, left: insetX, bottom: insetY, right: insetX)
+
+        
+        let screenSize = UIScreen.main.bounds.size
+        let cellWidth = screenSize.width
+        let cellHeight = screenSize.height
+        let insetX = CGFloat(0)
+        let insetY = CGFloat(0)
+        let layout = monthCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
+     //   monthCollectionView.contentInset = UIEdgeInsets(top: CGFloat(20), left: insetX, bottom: CGFloat(50), right: insetX)
      
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -56,7 +52,6 @@ class MonthVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = monthCollectionView.dequeueReusableCell(withReuseIdentifier: "monthCell", for: indexPath) as? MonthCollectionViewCell else { return UICollectionViewCell() }
-        //let month = MonthController.shared.months[indexPath.row]
         let date = Calendar.current
         let month = date.monthSymbols
         let currentMoth = month[indexPath.row]
@@ -68,16 +63,23 @@ class MonthVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     }
     
     
-//    public func collectionView(_ collectionView: UICollectionView, layout
-//        collectionViewLayout: UICollectionViewLayout,
-//                               minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return 0
-//    }
+
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if firstAppear == true {
+            let currentMonthIndex = Date().monthAsInt()
+            let indexToScroll = IndexPath(item: currentMonthIndex, section: 0)
+            monthCollectionView.scrollToItem(at: indexToScroll, at: .left, animated: true)
+            firstAppear = false
+        }
+    }
     
     
     
     
- 
+    
+    
+    
 
 
 }

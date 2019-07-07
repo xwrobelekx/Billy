@@ -40,7 +40,8 @@ class SettingsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         notificationDaysDelayTextField.inputView = daysDelayPicker
         
         notificationDaysDelayTextField.text = "\(SettingController.shared.setting.dayDelay)"
-        notificationTimeTextField.text = "\(SettingController.shared.setting.hour):\(String(format: "%02d", SettingController.shared.setting.minute))"
+        notificationTimeTextField.text = "\(SettingController.shared.setting.notificationTime?.timeAsStringWithAMSymbol() ?? "8:30 AM")"
+        print("🍌 \(SettingController.shared.setting.notificationTime?.timeAsStringWithAMSymbol())")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -51,6 +52,7 @@ class SettingsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         SettingController.shared.loadSettings()
+        print("Ⓜ️ \(SettingController.shared.setting.notificationTime?.timeAsStringWithAMSymbol())")
     }
     
     
@@ -58,11 +60,9 @@ class SettingsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     
     @IBAction func resetButtonPressed(_ sender: Any) {
         
-        SettingController.shared.setting.hour = 8
-        SettingController.shared.setting.minute = 30
         SettingController.shared.setting.dayDelay = 5
         
-        notificationTimeTextField.text = "\(SettingController.shared.setting.hour):\(SettingController.shared.setting.minute)"
+        notificationTimeTextField.text = "\(SettingController.shared.setting.notificationTime)"
         notificationDaysDelayTextField.text = "\(SettingController.shared.setting.dayDelay)"
     }
     
@@ -106,10 +106,10 @@ class SettingsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     
     @objc func datePickerValueChanged() {
         
-        SettingController.shared.notificationTime = timePicker.date
+        SettingController.shared.setting.notificationTime = timePicker.date
         
         notificationTimeTextField.text = "\(timePicker.date.timeAsStringWithAMSymbol())"
-        print("🥕 \(SettingController.shared.notificationTime?.timeAsString())")
+        print("🥕 \(SettingController.shared.setting.notificationTime?.timeAsStringWithAMSymbol())")
        
     }
     

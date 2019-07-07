@@ -13,7 +13,7 @@ class MonthCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITabl
     //MARK: - Outlets
     @IBOutlet weak var billTableView: UITableView!
     @IBOutlet weak var monthNameLabel: UILabel!
-    
+    @IBOutlet weak var totalLabel: UILabel!
     
     
     //MARK: - Properties
@@ -28,6 +28,7 @@ class MonthCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITabl
     var bills : [NewBill]? {
         didSet {
             billTableView.reloadData()
+            updateTotalLabel()
         }
     }
     
@@ -92,5 +93,18 @@ class MonthCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITabl
             #warning("implement delete method")
             tableView.reloadData()
         }
+    }
+    
+    
+    func updateTotalLabel(){
+        
+        var totalToPay : Double = 0
+        guard let bills = bills else {return}
+        for bill in bills {
+            totalToPay += bill.paymentAmount
+        }
+        
+        totalLabel.text = "Total due this month: $\(totalToPay)"
+        
     }
 }
