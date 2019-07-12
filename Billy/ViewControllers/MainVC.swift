@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MainBillCustomCellDelegate {
     
@@ -32,10 +33,23 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        pastDueBills = BillsController.shared.filterBills(by: .isPastDue)
-        dueThisMonth = BillsController.shared.filterBills(by: .isDueThisMonth)
-        paidBills = BillsController.shared.filterBills(by: .isPaid)
+        pastDueBills = BillsController.shared.filterBills(by: .isPastDue).sorted(by: { (first, second) -> Bool in
+            first.dueDate < second.dueDate
+        })
+        dueThisMonth = BillsController.shared.filterBills(by: .isDueThisMonth).sorted(by: { (first, second) -> Bool in
+            first.dueDate < second.dueDate
+        })
+//        paidBills = BillsController.shared.filterBills(by: .isPaid)
         mainTableView.reloadData()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        
+        let center = UNUserNotificationCenter.current()
+        center.removePendingNotificationRequests(withIdentifiers: NotificationController.shared.conitifcationIdentyfiers)
+        center.removeDeliveredNotifications(withIdentifiers: NotificationController.shared.conitifcationIdentyfiers)
+        NotificationController.shared.conitifcationIdentyfiers.removeAll()
     }
     
     
@@ -47,7 +61,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = CustomViewWithRoundedCorners()
-        view.backgroundColor = .clear
+        view.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         let label = UILabel()
         label.textColor = .white
         switch section {
@@ -124,11 +138,50 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
     }
     
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 0:
+            let bill = pastDueBills[indexPath.row]
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            guard let detailVC = storyboard.instantiateViewController(withIdentifier: "detailVC") as? BillDetailVC else {return}
+            detailVC.bill = bill
+            present(detailVC, animated: true)
+            
+        case 1:
+            let bill = dueThisMonth[indexPath.row]
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            guard let detailVC = storyboard.instantiateViewController(withIdentifier: "detailVC") as? BillDetailVC else {return}
+            detailVC.bill = bill
+            present(detailVC, animated: true)
+            
+        default : print("Error")
+        }
+    }
+    
+    
     //MARK: - Custom cell protocol conformance
     func billIsPaidToggle(cell: MainViewTableViewCell) {
         guard let bill = cell.bill else {return}
         guard let indexOfBill = BillsController.shared.bills.index(of: bill) else {return}
         BillsController.shared.bills[indexOfBill].isPaid.toggle()
+        
+        if bill.isPaid == true {
+            NotificationController.shared.conitifcationIdentyfiers.append(bill.notificationIdentyfier)
+            print("‼️ notification identyfiers count after toggl add: \(NotificationController.shared.conitifcationIdentyfiers.count)")
+
+        } else {
+
+            for billID in NotificationController.shared.conitifcationIdentyfiers {
+                if billID == bill.notificationIdentyfier {
+                    if let indexOfNotificationID = NotificationController.shared.conitifcationIdentyfiers.index(of: billID) {
+                        NotificationController.shared.conitifcationIdentyfiers.remove(at: indexOfNotificationID)
+                    }
+                    print("❎ notification identyfiers count after toggle remove: \(NotificationController.shared.conitifcationIdentyfiers.count)")
+                }
+            }
+            
+        }
+        
     }
     
     

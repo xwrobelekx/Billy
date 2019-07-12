@@ -32,6 +32,8 @@ class MonthCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITabl
         }
     }
     
+
+    
     
     //MARK: - LifeCycle Methods
     override func awakeFromNib() {
@@ -78,8 +80,13 @@ class MonthCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITabl
             return cell}
         let bill = bills[indexPath.row]
         cell.billName.text = bill.title
-        cell.billAmountLabel.text = "\(bill.paymentAmount)"
+        cell.billAmountLabel.text = "\(bill.paymentAmount.roundToDecimal(2))"
         cell.dueDateLabel.text = bill.dueDate.asString()
+        if bill.isPaid {
+            cell.dotLabel.textColor = .green
+        } else {
+            cell.dotLabel.textColor = .red
+        }
         return cell
     }
     
@@ -87,13 +94,13 @@ class MonthCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITabl
     
     
     // Override to support editing the table view.
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            let bill = BillsController.shared.bills[indexPath.row]
-            #warning("implement delete method")
-            tableView.reloadData()
-        }
-    }
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//            let bill = BillsController.shared.bills[indexPath.row]
+//            #warning("implement delete method")
+//            tableView.reloadData()
+//        }
+//    }
     
     
     func updateTotalLabel(){
@@ -104,7 +111,7 @@ class MonthCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITabl
             totalToPay += bill.paymentAmount
         }
         
-        totalLabel.text = "Total due this month: $\(totalToPay)"
+        totalLabel.text = "Total due this month: $\(totalToPay.roundToDecimal(2))"
         
     }
 }

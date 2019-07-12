@@ -56,6 +56,15 @@ extension Date {
         return formatter.string(from: self)
     }
     
+    func yearAsInt() -> Int {
+        let customFormat = "YYYY"
+        let locale = Locale(identifier: "en_US")
+        let format = DateFormatter.dateFormat(fromTemplate: customFormat, options: 0, locale: locale)
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        return Int(formatter.string(from: self))!
+    }
+    
     func monthAsInt() -> Int {
         let customFormat = "MM"
         let locale = Locale(identifier: "en_US")

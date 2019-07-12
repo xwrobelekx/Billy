@@ -28,7 +28,7 @@ class SettingsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        timePicker.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+        timePicker.backgroundColor = #colorLiteral(red: 0.454691112, green: 0.4762320518, blue: 0.5025654435, alpha: 0.5)
         timePicker.datePickerMode = .time
         timePicker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
 
@@ -36,7 +36,7 @@ class SettingsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         
         daysDelayPicker.delegate = self
         daysDelayPicker.dataSource = self
-        daysDelayPicker.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+        daysDelayPicker.backgroundColor = #colorLiteral(red: 0.454691112, green: 0.4762320518, blue: 0.5025654435, alpha: 0.5)
         notificationDaysDelayTextField.inputView = daysDelayPicker
         
         notificationDaysDelayTextField.text = "\(SettingController.shared.setting.dayDelay)"

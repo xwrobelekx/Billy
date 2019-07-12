@@ -20,8 +20,10 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     let frequencyPicker = UIPickerView()
     var timeSelected: (hour: Int, minute: Int) = (8, 30)
     var daysDelay: Int = 0
-     let datePicker = UIDatePicker()
-    
+    let datePicker = UIDatePicker()
+    let yearsPicker = UIPickerView()
+    let yearsToPickFrom = [0, 1, 2, 3]
+    var yearPicked = 0
     
     //MARK: - Outlets
     @IBOutlet weak var titleTextField: UITextField!
@@ -30,7 +32,7 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     @IBOutlet weak var paymentFrequency: UITextField!
     @IBOutlet weak var notesTextField: UITextField!
     @IBOutlet weak var infoLabel: UILabel!
-    
+    @IBOutlet weak var yearsTextField: UITextField!
     
     
     
@@ -47,14 +49,19 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
         frequencyPicker.delegate = self
         frequencyPicker.dataSource = self
         paymentFrequency.inputView = frequencyPicker
-        
-        frequencyPicker.backgroundColor = #colorLiteral(red: 0.3590022922, green: 0.3760095537, blue: 0.3968008757, alpha: 0.5)
+        frequencyPicker.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
         
        
-        datePicker.backgroundColor = #colorLiteral(red: 0.454691112, green: 0.4762320518, blue: 0.5025654435, alpha: 0.5)
+        datePicker.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
         datePicker.datePickerMode = .date
         datePicker.addTarget(self, action: #selector(datePickerValueChanged), for: UIControl.Event.valueChanged)
         dueDateTextField.inputView = datePicker
+        
+        
+        yearsPicker.delegate = self
+        yearsPicker.dataSource = self
+        yearsTextField.inputView = yearsPicker
+        yearsPicker.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
     }
     
     
@@ -74,12 +81,16 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     @IBAction func saveButtonTapped(_ sender: Any) {
         guard let title = titleTextField.text, title != "",
             let paymentAmout = payemntAmoutTextField.text, paymentAmout != "",
-            let dueDate = date else {return}
+            let dueDate = date else {return} 
+        
+        let yearsToContinue = Int(yearsTextField.text ?? "0") ?? 0
         
         guard let payment = Double(paymentAmout) else {return}
         let bill = NewBill(title: title, dueDate: dueDate, paymentAmount: payment, notificationIdentyfier: UUID().uuidString, notes: notesTextField.text)
         let frequency : BillFrequency? = BillFrequency(rawValue: paymentFrequency.text ?? "None")
-        BillsController.shared.create(bill: bill, frequency: frequency)
+       // BillsController.shared.create(bill: bill, frequency: frequency)
+        print("✔️🔹 Picked Years: \(yearPicked)")
+        BillsController.shared.createBill2(bill: bill, frequency: frequency, howLongToContinue: yearPicked)
         dismiss(animated: true, completion: nil)
     }
     
@@ -119,6 +130,8 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         if pickerView == frequencyPicker {
             return 1
+        } else if pickerView == yearsPicker {
+            return 1
         } else {
             return 0
         }
@@ -127,6 +140,8 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView == frequencyPicker {
             return BillFrequency.allCases.count
+        } else if pickerView == yearsPicker {
+            return yearsToPickFrom.count
         } else {
             return 0
         }
@@ -137,6 +152,8 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
         
         if pickerView == frequencyPicker {
             return BillFrequency.allCases[row].rawValue
+        } else if pickerView == yearsPicker {
+            return "\(yearsToPickFrom[row])"
         } else {
             return "0"
         }
@@ -147,6 +164,13 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
         if pickerView == frequencyPicker {
             let selectedOption = BillFrequency.allCases[row]
             paymentFrequency.text = selectedOption.rawValue
+        } else if pickerView == yearsPicker {
+            yearPicked = yearsToPickFrom[row]
+            if yearPicked == 1 {
+                yearsTextField.text = "Continue for \(yearPicked) year."
+            } else {
+                yearsTextField.text = "Continue for \(yearPicked) years."
+            }
         } else {
             print("no picker found")
         }

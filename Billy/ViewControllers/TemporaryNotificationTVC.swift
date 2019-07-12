@@ -86,7 +86,10 @@ class TemporaryNotificationTVC: UITableViewController {
         
         switch indexPath.section {
         case 0: cell.textLabel?.text = pendingNotifications[indexPath.row].content.title
-        cell.detailTextLabel?.text = pendingNotifications[indexPath.row].content.body
+        cell.detailTextLabel?.text = "\(pendingNotifications[indexPath.row].content.body), \(pendingNotifications[indexPath.row].trigger.debugDescription)"
+            
+            
+            
         case 1: cell.textLabel?.text = deliveredNotifications[indexPath.row].request.content.title
         cell.detailTextLabel?.text = deliveredNotifications[indexPath.row].request.content.body
         default: cell.textLabel?.text = "Error"

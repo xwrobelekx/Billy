@@ -22,6 +22,12 @@ class NotificationController {
     private init() {}
     
     
+    ///will hold the identyfiers so the notification can be easly deleted.
+    var conitifcationIdentyfiers: [String] = []
+    
+    
+    
+    
     func setupCustomNotificationWith(title: String, message: String, billDueDate: Date, customIdentyfier: String, daysDelay: Int?, timeDelay: Date?){
         let center = UNUserNotificationCenter.current()
         center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
