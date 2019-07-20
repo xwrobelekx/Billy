@@ -19,6 +19,7 @@
 		3B203C6722389ABC00196995 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B203C6622389ABC00196995 /* Setting.swift */; };
 		3B203C692239E49A00196995 /* SettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B203C682239E49A00196995 /* SettingController.swift */; };
 		3B203C6B223D14D800196995 /* TemporaryNotificationTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B203C6A223D14D800196995 /* TemporaryNotificationTVC.swift */; };
+		3B4129A622E315F300D39DB8 /* BillDetailTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4129A522E315F300D39DB8 /* BillDetailTVC.swift */; };
 		3B48998B2234A90D00C3DBC7 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B48998A2234A90D00C3DBC7 /* SettingsVC.swift */; };
 		3B48998F2235B42800C3DBC7 /* CustomViewWithRoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B48998E2235B42800C3DBC7 /* CustomViewWithRoundedCorners.swift */; };
 		3B5E9C6521EECEB900E31BBA /* DayDelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5E9C6421EECEB900E31BBA /* DayDelay.swift */; };
@@ -54,6 +55,7 @@
 		3B203C682239E49A00196995 /* SettingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingController.swift; sourceTree = "<group>"; };
 		3B203C6A223D14D800196995 /* TemporaryNotificationTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TemporaryNotificationTVC.swift; path = Billy/ViewControllers/TemporaryNotificationTVC.swift; sourceTree = SOURCE_ROOT; };
 		3B203C6E223ED55000196995 /* Billy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Billy.entitlements; sourceTree = "<group>"; };
+		3B4129A522E315F300D39DB8 /* BillDetailTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillDetailTVC.swift; sourceTree = "<group>"; };
 		3B48998A2234A90D00C3DBC7 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsVC.swift; path = Billy/ViewControllers/SettingsVC.swift; sourceTree = SOURCE_ROOT; };
 		3B48998E2235B42800C3DBC7 /* CustomViewWithRoundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewWithRoundedCorners.swift; sourceTree = "<group>"; };
 		3B5E9C6421EECEB900E31BBA /* DayDelay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDelay.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				3B63561D21D0F35900186EBD /* MonthCollectionViewCell.swift */,
 				3B02768021DAC0E4000E51C1 /* MainViewTableViewCell.swift */,
 				3B9FCC5021AF82A50092ADBA /* BillCustomCell.swift */,
+				3B4129A522E315F300D39DB8 /* BillDetailTVC.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				3B48998F2235B42800C3DBC7 /* CustomViewWithRoundedCorners.swift in Sources */,
 				3B1FA41D21A64A4B00B2A84B /* AppDelegate.swift in Sources */,
 				3B203C692239E49A00196995 /* SettingController.swift in Sources */,
+				3B4129A622E315F300D39DB8 /* BillDetailTVC.swift in Sources */,
 				3B02767F21DAA95B000E51C1 /* BillStateEnum.swift in Sources */,
 				3BC5769A22D6D8810061F700 /* BillCreationLenght.swift in Sources */,
 				3BFB0FFC22D204300058D95D /* ToDo.swift in Sources */,

@@ -9,7 +9,9 @@
 import UIKit
 import UserNotifications
 
-class BillDetailVC: UIViewController {
+class BillDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
+    
     
     
     //MARK: - Outlets
@@ -19,6 +21,9 @@ class BillDetailVC: UIViewController {
     @IBOutlet weak var dueDateLabel: UILabel!
     @IBOutlet weak var paidLabel: UILabel!
     @IBOutlet weak var notificationLabel: UILabel!
+    @IBOutlet weak var billsTableView: UITableView!
+    
+    
     
     
     //MARK: - Preoperties
@@ -29,14 +34,19 @@ class BillDetailVC: UIViewController {
     }
     
     let center = UNUserNotificationCenter.current()
-    
+    var someBills = [NewBill]()
     
     //MARK: - LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         print("view loaded")
+        getBills()
         updateViews()
+        billsTableView.delegate = self
+        billsTableView.dataSource = self
         // Do any additional setup after loading the view.
+        
+
     }
     
 
@@ -94,6 +104,32 @@ class BillDetailVC: UIViewController {
        print("4 exit")
         
         
+    }
+    
+    
+    func getBills(){
+        guard let currentbill = bill else {return}
+        for bill in BillsController.shared.bills {
+            if bill.title == currentbill.title {
+                someBills.append(bill)
+            }
+        }
+        someBills = someBills.sorted(by: { (bill1, bill2) -> Bool in
+            bill1.dueDate < bill2.dueDate
+        })
+    }
+    
+    //MARK: - TableView Delegate Methods
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return someBills.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "detailCell") as? BillDetailTVC else {return UITableViewCell()}
+        let currentBill = someBills[indexPath.row]
+        cell.bill = currentBill
+        
+        return cell
     }
     
 }

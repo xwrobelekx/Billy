@@ -19,6 +19,7 @@ class MonthVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     
     //MARK: - Properties
     var firstAppear = true
+   
     
     
     //MARK: - LifeCycle Methods
@@ -83,6 +84,16 @@ class MonthVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     }
     
     
+ 
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toDetailView" {
+            let destinationVC = segue.destination as? BillDetailVC
+            
+            
+        }
+    }
     
     
     

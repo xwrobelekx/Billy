@@ -32,7 +32,7 @@ class MonthCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITabl
         }
     }
     
-
+    
     
     
     //MARK: - LifeCycle Methods
@@ -90,27 +90,35 @@ class MonthCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITabl
         return cell
     }
     
+    //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    //        guard let curentBills = bills else {return}
+    //        let bill = curentBills[indexPath.row]
+    //        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    //        guard let detailVC = storyboard.instantiateViewController(withIdentifier: "detailVC") as? BillDetailVC else {return}
+    //        detailVC.bill = bill
+    //wont work because table view is inside of a collection cell and it doesnt have "present"
+    //       // present(detailVC, animated: true)
+    //    }
+    
     
     
     
     // Override to support editing the table view.
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            let bill = BillsController.shared.bills[indexPath.row]
-//            #warning("implement delete method")
-//            tableView.reloadData()
-//        }
-//    }
+    //    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    //        if editingStyle == .delete {
+    //            let bill = BillsController.shared.bills[indexPath.row]
+    //            #warning("implement delete method")
+    //            tableView.reloadData()
+    //        }
+    //    }
     
     
     func updateTotalLabel(){
-        
         var totalToPay : Double = 0
         guard let bills = bills else {return}
         for bill in bills {
             totalToPay += bill.paymentAmount
         }
-        
         totalLabel.text = "Total due this month: $\(totalToPay.roundToDecimal(2))"
         
     }
