@@ -15,8 +15,17 @@ class SettingController {
  //   var notificationTime : Date?
     private init(){}
     
-    //turn this into system based clock
-    var setting = Setting(dayDelay: 5, notificationTime: Date())
+    
+    private let eightThirtyInSecondsForUTCTime : Double = 48640
+    func returnEightThirty() -> Date {
+        let d = Date(timeIntervalSince1970: eightThirtyInSecondsForUTCTime)
+       print("🍑 \(d.hour())")
+        print("🍑🍉 \(self.setting.notificationTime!)")
+
+        print("🍑🍌 \(self.setting.notificationTime!.hour())")
+        return d
+    }
+    var setting = Setting(dayDelay: 5, notificationTime: Date(timeIntervalSince1970: 48640))
     
 
     

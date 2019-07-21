@@ -33,7 +33,7 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     @IBOutlet weak var notesTextField: UITextField!
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var yearsTextField: UITextField!
-    
+    @IBOutlet weak var notificationInfoLabel: UILabel!
     
     
     //MARK: - LifeCycle Methods
@@ -51,8 +51,8 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
         paymentFrequency.inputView = frequencyPicker
         frequencyPicker.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
         
-       
-        datePicker.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
+        
+        datePicker.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
         datePicker.datePickerMode = .date
         datePicker.addTarget(self, action: #selector(datePickerValueChanged), for: UIControl.Event.valueChanged)
         dueDateTextField.inputView = datePicker
@@ -61,7 +61,16 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
         yearsPicker.delegate = self
         yearsPicker.dataSource = self
         yearsTextField.inputView = yearsPicker
-        yearsPicker.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        yearsPicker.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+        
+        
+        notificationInfoLabel.text = "You will get a notification \(SettingController.shared.setting.dayDelay) days before the due date, at \(SettingController.shared.setting.notificationTime!.timeAsStringWithAMSymbol())"
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
     }
     
     
@@ -75,7 +84,14 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     }
     
     
-
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        frequencyPicker.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+        datePicker.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+        yearsPicker.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+        
+    }
+    
+    
     
     //MARK: - Actions
     @IBAction func saveButtonTapped(_ sender: Any) {
@@ -88,7 +104,7 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
         guard let payment = Double(paymentAmout) else {return}
         let bill = NewBill(title: title, dueDate: dueDate, paymentAmount: payment, notificationIdentyfier: UUID().uuidString, notes: notesTextField.text)
         let frequency : BillFrequency? = BillFrequency(rawValue: paymentFrequency.text ?? "None")
-       // BillsController.shared.create(bill: bill, frequency: frequency)
+        // BillsController.shared.create(bill: bill, frequency: frequency)
         print("✔️🔹 Picked Years: \(yearPicked)")
         BillsController.shared.createBill2(bill: bill, frequency: frequency, howLongToContinue: yearPicked)
         dismiss(animated: true, completion: nil)
@@ -109,13 +125,21 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
         dueDateTextField.text = formatter.string(from: sender.date)
         date = sender.date
         
-        let curentDate = Calendar.current
-        guard let  notificationDate =  curentDate.date(byAdding: .day, value: SettingController.shared.setting.dayDelay, to: Date()) else {return}
-        
+        let calendar = Calendar.current
+        var dateComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: date!)
+        dateComponents.day! -= SettingController.shared.setting.dayDelay
+        dateComponents.hour = SettingController.shared.setting.notificationTime!.hour().hour
+        dateComponents.minute = SettingController.shared.setting.notificationTime!.hour().min
+        let notificationDate4 = calendar.date(from: dateComponents)
+        guard let notificationDate = notificationDate4 else {return}
         if notificationDate < sender.date && notificationDate > Date(){
             infoLabel.isHidden = true
+            //            print("is hidden")
+            //            print("🔶\(notificationDate.asString()) < \(sender.date.asString()) && \(notificationDate.asString()) > \(Date().asString())")
+            
         } else {
             infoLabel.isHidden = false
+            //            print(" not hidden ")
         }
     }
     

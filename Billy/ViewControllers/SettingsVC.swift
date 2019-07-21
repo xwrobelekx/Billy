@@ -61,8 +61,10 @@ class SettingsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     @IBAction func resetButtonPressed(_ sender: Any) {
         
         SettingController.shared.setting.dayDelay = 5
+        SettingController.shared.setting.notificationTime = Date(timeIntervalSince1970: 48640)
         
-        notificationTimeTextField.text = "\(SettingController.shared.setting.notificationTime)"
+        
+        notificationTimeTextField.text = "\(SettingController.shared.setting.notificationTime!.timeAsStringWithAMSymbol())"
         notificationDaysDelayTextField.text = "\(SettingController.shared.setting.dayDelay)"
     }
     

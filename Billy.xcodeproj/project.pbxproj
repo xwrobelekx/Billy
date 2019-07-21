@@ -32,6 +32,8 @@
 		3B9FCC5421B0C4F40092ADBA /* DateFormater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9FCC5321B0C4F40092ADBA /* DateFormater.swift */; };
 		3BC5769822D6CAE00061F700 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC5769722D6CADF0061F700 /* DoubleExtension.swift */; };
 		3BC5769A22D6D8810061F700 /* BillCreationLenght.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC5769922D6D8810061F700 /* BillCreationLenght.swift */; };
+		3BD0909022E31BBD0085ADAE /* SelfSizedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD0908F22E31BBD0085ADAE /* SelfSizedTableView.swift */; };
+		3BD0909222E34E960085ADAE /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD0909122E34E960085ADAE /* CustomButton.swift */; };
 		3BD271C621B8B87B00926257 /* BilllFrequencyEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD271C521B8B87B00926257 /* BilllFrequencyEnum.swift */; };
 		3BDAFC4A21E58CA20021FB8F /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDAFC4921E58CA20021FB8F /* NotificationController.swift */; };
 		3BFB0FFC22D204300058D95D /* ToDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFB0FFB22D204300058D95D /* ToDo.swift */; };
@@ -68,6 +70,8 @@
 		3B9FCC5321B0C4F40092ADBA /* DateFormater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormater.swift; sourceTree = "<group>"; };
 		3BC5769722D6CADF0061F700 /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 		3BC5769922D6D8810061F700 /* BillCreationLenght.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCreationLenght.swift; sourceTree = "<group>"; };
+		3BD0908F22E31BBD0085ADAE /* SelfSizedTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfSizedTableView.swift; sourceTree = "<group>"; };
+		3BD0909122E34E960085ADAE /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		3BD271C521B8B87B00926257 /* BilllFrequencyEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BilllFrequencyEnum.swift; sourceTree = "<group>"; };
 		3BDAFC4921E58CA20021FB8F /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		3BFB0FFB22D204300058D95D /* ToDo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDo.swift; sourceTree = "<group>"; };
@@ -193,6 +197,8 @@
 				3B48998E2235B42800C3DBC7 /* CustomViewWithRoundedCorners.swift */,
 				3BC5769722D6CADF0061F700 /* DoubleExtension.swift */,
 				3BFB0FFB22D204300058D95D /* ToDo.swift */,
+				3BD0908F22E31BBD0085ADAE /* SelfSizedTableView.swift */,
+				3BD0909122E34E960085ADAE /* CustomButton.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -277,6 +283,7 @@
 				3B63562421D0FEA800186EBD /* BillTableViewCell.swift in Sources */,
 				3BDAFC4A21E58CA20021FB8F /* NotificationController.swift in Sources */,
 				3B63561E21D0F35900186EBD /* MonthCollectionViewCell.swift in Sources */,
+				3BD0909222E34E960085ADAE /* CustomButton.swift in Sources */,
 				3BFB0FFE22D216350058D95D /* BillDetailVC.swift in Sources */,
 				3BC5769822D6CAE00061F700 /* DoubleExtension.swift in Sources */,
 				3B203C6B223D14D800196995 /* TemporaryNotificationTVC.swift in Sources */,
@@ -284,6 +291,7 @@
 				3BFB802D21E29589002683AB /* RoundedView.swift in Sources */,
 				3B9FCC5121AF82A50092ADBA /* BillCustomCell.swift in Sources */,
 				3B203C65223898EF00196995 /* Bill.swift in Sources */,
+				3BD0909022E31BBD0085ADAE /* SelfSizedTableView.swift in Sources */,
 				3B48998F2235B42800C3DBC7 /* CustomViewWithRoundedCorners.swift in Sources */,
 				3B1FA41D21A64A4B00B2A84B /* AppDelegate.swift in Sources */,
 				3B203C692239E49A00196995 /* SettingController.swift in Sources */,

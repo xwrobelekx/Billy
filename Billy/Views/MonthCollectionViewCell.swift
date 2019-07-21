@@ -28,9 +28,10 @@ class MonthCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITabl
     var bills : [NewBill]? {
         didSet {
             billTableView.reloadData()
-            updateTotalLabel()
+            updateTotalDue()
         }
     }
+    
     
     
     
@@ -52,14 +53,28 @@ class MonthCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITabl
     // MARK: - Table view data source
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = CustomViewWithRoundedCorners()
-        view.backgroundColor = .clear
+        view.backgroundColor = #colorLiteral(red: 0, green: 0.5690457821, blue: 0.5746168494, alpha: 1)
         let label = UILabel()
         label.textColor = .white
         label.text = "Bills for this month:"
+        label.font = UIFont(name: "Marker Felt", size: 17)
         label.frame = CGRect(x: 15, y: 5, width: 200, height: 20)
         view.addSubview(label)
         return view
     }
+    
+//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//        let view = CustomViewWithRoundedCorners()
+//        view.backgroundColor = #colorLiteral(red: 0.2274509804, green: 0.2392156863, blue: 0.2509803922, alpha: 1)
+//        let label = UILabel()
+//        label.textColor = .white
+//        label.textAlignment = .right
+//        label.text = "Total due this month: \(totalDue)"
+//        label.font = UIFont(name: "Marker Felt", size: 17)
+//        label.frame = CGRect(x: 15, y: 5, width: billTableView.bounds.width - 20, height: 20)
+//        view.addSubview(label)
+//        return view
+//    }
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -81,7 +96,7 @@ class MonthCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITabl
         let bill = bills[indexPath.row]
         cell.billName.text = bill.title
         cell.billAmountLabel.text = "\(bill.paymentAmount.roundToDecimal(2))"
-        cell.dueDateLabel.text = bill.dueDate.asString()
+        cell.dueDateLabel.text = bill.dueDate.dayAndMonthAsString()
         if bill.isPaid {
             cell.dotLabel.textColor = .green
         } else {
@@ -113,13 +128,12 @@ class MonthCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITabl
     //    }
     
     
-    func updateTotalLabel(){
+    func updateTotalDue(){
         var totalToPay : Double = 0
         guard let bills = bills else {return}
         for bill in bills {
             totalToPay += bill.paymentAmount
         }
-        totalLabel.text = "Total due this month: $\(totalToPay.roundToDecimal(2))"
-        
+        totalLabel.text = "Total due for this month: $\(totalToPay.roundToDecimal(2))"
     }
 }

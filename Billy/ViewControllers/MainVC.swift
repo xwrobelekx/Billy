@@ -61,22 +61,27 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = CustomViewWithRoundedCorners()
-        view.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0, green: 0.3285208941, blue: 0.5748849511, alpha: 1)
         let label = UILabel()
         label.textColor = .white
         switch section {
         case 0 :
             if pastDueBills.count == 0 && dueThisMonth.count == 0 {
+                label.font = UIFont(name: "Marker Felt", size: 17)
                 label.text = "No bill due this month."
             } else if pastDueBills.count >= 1 {
+                label.font = UIFont(name: "Marker Felt", size: 17)
+
                 label.text = "Past due bills:"
             } else {
                 label.text = ""
+                view.backgroundColor = .clear
             }
         case 1:
             if dueThisMonth.count == 0 {
                 label.text = ""
             } else {
+                label.font = UIFont(name: "Marker Felt", size: 17)
                 label.text = "Bills due within a month:"
             }
         default:
