@@ -20,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         BillsController.shared.loadBills()
         SettingController.shared.loadSettings()
         
-        SettingController.shared.returnEightThirty()
         return true
     }
 

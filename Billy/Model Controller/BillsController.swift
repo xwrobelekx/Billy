@@ -18,6 +18,9 @@ class BillsController {
     
     //MARK: - Source of Truth
     var bills = [NewBill]()
+
+    
+    
     
     
     //MARK: - Create
@@ -215,8 +218,9 @@ class BillsController {
         case .weekly:
             var daysToAdd = 7
             
+            while dateForWhileStatement.yearAsInt() < endYear {
                 guard let newDueDate = calendar.date(byAdding: DateComponents(day: daysToAdd), to: dueDate, wrappingComponents: false) else {return}
-            while newDueDate.yearAsInt() < endYear {
+                 dateForWhileStatement = newDueDate
                 let customIdentyfier = UUID().uuidString
                 let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: customIdentyfier, notes: bill.notes)
                 bills.append(newBill)
