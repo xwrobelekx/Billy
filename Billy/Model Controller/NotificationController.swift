@@ -46,7 +46,7 @@ class NotificationController {
         dateComponents.hour = timeDelay?.hour().hour ?? 8
         dateComponents.minute = timeDelay?.hour().min ?? 30
         
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         
         let request = UNNotificationRequest(identifier: customIdentyfier, content: content, trigger: trigger)
         
