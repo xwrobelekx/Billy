@@ -17,7 +17,7 @@ class SettingController {
     
     
     private let eightThirtyInSecondsForUTCTime : Double = 48640
-    var setting = Setting(dayDelay: 5, notificationTime: Date(timeIntervalSince1970: 48640))
+    var setting = Setting(dayDelay: 5, notificationTime: Date(timeIntervalSince1970: 48640), notifyTwoDaysBefore: true, notifyOnDay: true)
     
 
     

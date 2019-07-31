@@ -26,7 +26,7 @@ class LogVC: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         datePicker.datePickerMode = .date
-        datePicker.backgroundColor = #colorLiteral(red: 0, green: 0.3285208941, blue: 0.5748849511, alpha: 1)
+        datePicker.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
         dateTextField.inputView = datePicker
         amountTextField.delegate = self
         categoryTextField.delegate = self
@@ -35,15 +35,16 @@ class LogVC: UIViewController, UITextFieldDelegate {
       
     }
     
+    //MARK: - TextField Delegate Methods
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        datePicker.backgroundColor = #colorLiteral(red: 0, green: 0.3285208941, blue: 0.5748849511, alpha: 1)
+        datePicker.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
 
     }
     
     
     //MARK: - Actions
     @IBAction func doneButtonPRessed(sender: UIButton){
-        
+        // save the log
         dismiss(animated: true, completion: nil)
     }
     

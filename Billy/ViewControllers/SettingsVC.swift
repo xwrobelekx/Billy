@@ -14,13 +14,15 @@ class SettingsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     //MARK: - Properties
  //   let timePicker = UIPickerView()
     let timePicker = UIDatePicker()
-
     let daysDelayPicker = UIPickerView()
     
     
     //MARK: - Outlets
     @IBOutlet weak var notificationDaysDelayTextField: UITextField!
     @IBOutlet weak var notificationTimeTextField: UITextField!
+    @IBOutlet weak var notifyTwoDayesBeforeSwitch: UISwitch!
+    @IBOutlet weak var notifyOnDueDateSwitch: UISwitch!
+    
     
     
     
@@ -53,6 +55,8 @@ class SettingsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         super.viewWillAppear(true)
         SettingController.shared.loadSettings()
         print("Ⓜ️ \(SettingController.shared.setting.notificationTime?.timeAsStringWithAMSymbol())")
+        notifyTwoDayesBeforeSwitch.setOn(SettingController.shared.setting.notifyTwoDaysBefore, animated: true)
+        notifyOnDueDateSwitch.setOn(SettingController.shared.setting.notifyOnDay, animated: true)
     }
     
     
@@ -69,16 +73,21 @@ class SettingsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     }
     
     
+    @IBAction func notifyTwoDaysBeforeSwitchPressed(_ sender: UISwitch){
+        SettingController.shared.setting.notifyTwoDaysBefore = sender.isOn
+    }
+    
+    @IBAction func notifyOnDueDaySwitchPressed(_ sender: UISwitch){
+        SettingController.shared.setting.notifyOnDay = sender.isOn
+    }
+    
+    
     
     
     //MARK: - UIPicker Delegate methods
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
             return DayAndTimeDelay.shared.dayDelay.count
     }
-    
-    
-
-    
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
             return 1

@@ -159,8 +159,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I4V-VB-OJH" customClass="RoundedView" customModule="Billy" customModuleProvider="target">
                                 <rect key="frame" x="10" y="40" width="355" height="558"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="33" translatesAutoresizingMaskIntoConstraints="NO" id="IH7-5v-G9Z">
-                                        <rect key="frame" x="10" y="65" width="335" height="340"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="IH7-5v-G9Z">
+                                        <rect key="frame" x="10" y="65" width="335" height="390"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How many days before due date would you like to be notified?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EWL-4O-PvF">
                                                 <rect key="frame" x="6" y="0.0" width="323" height="37"/>
@@ -169,7 +169,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Press here to select" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ry0-c8-qvF">
-                                                <rect key="frame" x="67.5" y="70" width="200" height="30"/>
+                                                <rect key="frame" x="67.5" y="57" width="200" height="30"/>
                                                 <color key="tintColor" red="0.1078908177" green="0.99215686270000003" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="200" id="Jqb-FR-xYM"/>
@@ -179,13 +179,13 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="At what time would you like to recive notifications?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EZp-Rx-Zqh">
-                                                <rect key="frame" x="36" y="133" width="263" height="37"/>
+                                                <rect key="frame" x="36" y="107" width="263" height="37"/>
                                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Press here to select" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gTm-9s-vz0">
-                                                <rect key="frame" x="67.5" y="203" width="200" height="30"/>
+                                                <rect key="frame" x="67.5" y="164" width="200" height="30"/>
                                                 <color key="tintColor" red="0.1078908177" green="0.99215686270000003" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="200" id="DB1-tV-76u"/>
@@ -195,12 +195,49 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mic-2d-RFA">
-                                                <rect key="frame" x="0.0" y="266" width="335" height="74"/>
+                                                <rect key="frame" x="0.0" y="214" width="335" height="74"/>
                                                 <string key="text">Those settings are pre set to notify you 5 days before bill due date at 8:30 am. By changing those setting, only the newly added bills will be affected.</string>
                                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="atR-7y-zDU">
+                                                <rect key="frame" x="1" y="308" width="333.5" height="31"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notify me 2 days before due date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jJ0-aO-xwU">
+                                                        <rect key="frame" x="0.0" y="0.0" width="234.5" height="31"/>
+                                                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="17"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lkx-Zx-R6z">
+                                                        <rect key="frame" x="284.5" y="0.0" width="51" height="31"/>
+                                                        <color key="onTintColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="thumbTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <connections>
+                                                            <action selector="notifyTwoDaysBeforeSwitchPressed:" destination="PVT-AK-GGg" eventType="valueChanged" id="qng-LC-YN7"/>
+                                                        </connections>
+                                                    </switch>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="114" translatesAutoresizingMaskIntoConstraints="NO" id="Trd-8D-7oJ">
+                                                <rect key="frame" x="1" y="359" width="333" height="31"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notify me on a due date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NzA-i4-GH0">
+                                                        <rect key="frame" x="0.0" y="0.0" width="170" height="31"/>
+                                                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="17"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zxK-lg-woG">
+                                                        <rect key="frame" x="284" y="0.0" width="51" height="31"/>
+                                                        <color key="onTintColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <connections>
+                                                            <action selector="notifyOnDueDaySwitchPressed:" destination="PVT-AK-GGg" eventType="valueChanged" id="fFW-jZ-0MC"/>
+                                                        </connections>
+                                                    </switch>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3IY-AS-lzp">
@@ -249,6 +286,8 @@
                     <connections>
                         <outlet property="notificationDaysDelayTextField" destination="ry0-c8-qvF" id="xhp-OW-4ra"/>
                         <outlet property="notificationTimeTextField" destination="gTm-9s-vz0" id="wBF-7J-b8C"/>
+                        <outlet property="notifyOnDueDateSwitch" destination="zxK-lg-woG" id="YcR-A0-7wR"/>
+                        <outlet property="notifyTwoDayesBeforeSwitch" destination="Lkx-Zx-R6z" id="o2v-Im-3MB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p9a-mx-Y8l" userLabel="First Responder" sceneMemberID="firstResponder"/>
