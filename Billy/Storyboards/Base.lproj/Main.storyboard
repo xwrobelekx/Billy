@@ -766,7 +766,7 @@
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dG4-sC-Az7">
-                                <rect key="frame" x="20" y="530" width="335" height="80"/>
+                                <rect key="frame" x="20" y="570" width="335" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="G7w-sZ-giY"/>
                                 </constraints>
@@ -854,11 +854,12 @@
                                     </textField>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You will recive a notification 5 days befopre the due date, at 4:00 PM." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gik-Ki-qyk">
-                                <rect key="frame" x="30" y="470" width="315" height="40"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gik-Ki-qyk">
+                                <rect key="frame" x="30" y="470" width="315" height="80"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="d63-Y1-Spm"/>
+                                    <constraint firstAttribute="height" constant="80" id="d63-Y1-Spm"/>
                                 </constraints>
+                                <string key="text">You will recive a notification 5 days befopre the due date, at 4:00 PM. In adiditon you will be notified trwo days before due date, and on a due date</string>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>

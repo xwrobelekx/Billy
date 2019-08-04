@@ -45,7 +45,6 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
         dueDateTextField.delegate = self
         
         
-        
         frequencyPicker.delegate = self
         frequencyPicker.dataSource = self
         paymentFrequency.inputView = frequencyPicker
@@ -63,8 +62,23 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
         yearsTextField.inputView = yearsPicker
         yearsPicker.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
         
+        guard let notificationTime = SettingController.shared.setting.notificationTime else {return}
         
-        notificationInfoLabel.text = "You will get a notification \(SettingController.shared.setting.dayDelay) days before the due date, at \(SettingController.shared.setting.notificationTime!.timeAsStringWithAMSymbol())"
+        notificationInfoLabel.text = "You will get a notification \(SettingController.shared.setting.dayDelay) days before the due date, at \(notificationTime.timeAsStringWithAMSymbol() )"
+        if SettingController.shared.setting.notifyOnDay && SettingController.shared.setting.notifyTwoDaysBefore {
+            // on a day and two days before
+            notificationInfoLabel.text = "You will get a notification \(SettingController.shared.setting.dayDelay) days before the due date, at \(notificationTime.timeAsStringWithAMSymbol()),in adition you will be notified two days before due date, and on a due date."
+            
+        } else if SettingController.shared.setting.notifyOnDay == true{
+            // on a day
+            notificationInfoLabel.text = "You will get a notification \(SettingController.shared.setting.dayDelay) days before the due date, at \(notificationTime.timeAsStringWithAMSymbol()),in adition you will be notified on a due date."
+            
+            
+        } else if SettingController.shared.setting.notifyTwoDaysBefore == true {
+            // two days before
+            notificationInfoLabel.text = "You will get a notification \(SettingController.shared.setting.dayDelay) days before the due date, at \(notificationTime.timeAsStringWithAMSymbol()),in adition you will be notified two days before due date."
+            
+        }
         
     }
     
