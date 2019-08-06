@@ -33,6 +33,7 @@
 		3BA77B3722EFDCAF00D89230 /* LogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA77B3622EFDCAF00D89230 /* LogVC.swift */; };
 		3BA77B3922EFE12200D89230 /* LogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA77B3822EFE12200D89230 /* LogController.swift */; };
 		3BA77B3B22EFE28000D89230 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA77B3A22EFE28000D89230 /* Log.swift */; };
+		3BA77B3D22F9036700D89230 /* NotificationStateEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA77B3C22F9036700D89230 /* NotificationStateEnum.swift */; };
 		3BC5769822D6CAE00061F700 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC5769722D6CADF0061F700 /* DoubleExtension.swift */; };
 		3BC5769A22D6D8810061F700 /* BillCreationLenght.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC5769922D6D8810061F700 /* BillCreationLenght.swift */; };
 		3BD0909022E31BBD0085ADAE /* SelfSizedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD0908F22E31BBD0085ADAE /* SelfSizedTableView.swift */; };
@@ -74,6 +75,7 @@
 		3BA77B3622EFDCAF00D89230 /* LogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogVC.swift; sourceTree = "<group>"; };
 		3BA77B3822EFE12200D89230 /* LogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogController.swift; sourceTree = "<group>"; };
 		3BA77B3A22EFE28000D89230 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		3BA77B3C22F9036700D89230 /* NotificationStateEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationStateEnum.swift; sourceTree = "<group>"; };
 		3BC5769722D6CADF0061F700 /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 		3BC5769922D6D8810061F700 /* BillCreationLenght.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCreationLenght.swift; sourceTree = "<group>"; };
 		3BD0908F22E31BBD0085ADAE /* SelfSizedTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfSizedTableView.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				3BD271C521B8B87B00926257 /* BilllFrequencyEnum.swift */,
 				3BC5769922D6D8810061F700 /* BillCreationLenght.swift */,
 				3B02767E21DAA95B000E51C1 /* BillStateEnum.swift */,
+				3BA77B3C22F9036700D89230 /* NotificationStateEnum.swift */,
 				3BFB802C21E29589002683AB /* RoundedView.swift */,
 				3B48998E2235B42800C3DBC7 /* CustomViewWithRoundedCorners.swift */,
 				3BC5769722D6CADF0061F700 /* DoubleExtension.swift */,
@@ -304,6 +307,7 @@
 				3B203C65223898EF00196995 /* Bill.swift in Sources */,
 				3BD0909022E31BBD0085ADAE /* SelfSizedTableView.swift in Sources */,
 				3B48998F2235B42800C3DBC7 /* CustomViewWithRoundedCorners.swift in Sources */,
+				3BA77B3D22F9036700D89230 /* NotificationStateEnum.swift in Sources */,
 				3B1FA41D21A64A4B00B2A84B /* AppDelegate.swift in Sources */,
 				3B203C692239E49A00196995 /* SettingController.swift in Sources */,
 				3B4129A622E315F300D39DB8 /* BillDetailTVC.swift in Sources */,

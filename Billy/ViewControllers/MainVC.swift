@@ -171,18 +171,22 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
         BillsController.shared.bills[indexOfBill].isPaid.toggle()
         
         if bill.isPaid == true {
-            NotificationController.shared.conitifcationIdentyfiers.append(bill.notificationIdentyfier)
-            print("‼️ notification identyfiers count after toggl add: \(NotificationController.shared.conitifcationIdentyfiers.count)")
-
+            for identyfier in bill.notificationIdentyfier {
+                NotificationController.shared.conitifcationIdentyfiers.append(identyfier)
+                print("‼️ notification identyfiers count after toggl add: \(NotificationController.shared.conitifcationIdentyfiers.count)")
+            }
         } else {
-
+            
             for billID in NotificationController.shared.conitifcationIdentyfiers {
-                if billID == bill.notificationIdentyfier {
-                    if let indexOfNotificationID = NotificationController.shared.conitifcationIdentyfiers.index(of: billID) {
-                        NotificationController.shared.conitifcationIdentyfiers.remove(at: indexOfNotificationID)
+                for identyfier in bill.notificationIdentyfier {
+                    if billID == identyfier {
+                        if let indexOfNotificationID = NotificationController.shared.conitifcationIdentyfiers.index(of: billID) {
+                            NotificationController.shared.conitifcationIdentyfiers.remove(at: indexOfNotificationID)
+                        }
+                        print("❎ notification identyfiers count after toggle remove: \(NotificationController.shared.conitifcationIdentyfiers.count)")
                     }
-                    print("❎ notification identyfiers count after toggle remove: \(NotificationController.shared.conitifcationIdentyfiers.count)")
                 }
+                
             }
             
         }

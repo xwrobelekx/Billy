@@ -116,9 +116,8 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
         let yearsToContinue = Int(yearsTextField.text ?? "0") ?? 0
         
         guard let payment = Double(paymentAmout) else {return}
-        let bill = NewBill(title: title, dueDate: dueDate, paymentAmount: payment, notificationIdentyfier: UUID().uuidString, notes: notesTextField.text)
+        let bill = NewBill(title: title, dueDate: dueDate, paymentAmount: payment, notificationIdentyfier: [String](), notes: notesTextField.text)
         let frequency : BillFrequency? = BillFrequency(rawValue: paymentFrequency.text ?? "None")
-        // BillsController.shared.create(bill: bill, frequency: frequency)
         print("✔️🔹 Picked Years: \(yearPicked)")
         BillsController.shared.createBill2(bill: bill, frequency: frequency, howLongToContinue: yearPicked)
         dismiss(animated: true, completion: nil)

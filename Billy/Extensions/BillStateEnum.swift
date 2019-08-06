@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum BillState{
+enum BillState {
     case isPaid
     case isPastDue
     case isDueNextWeek

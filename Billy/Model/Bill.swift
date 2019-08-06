@@ -14,10 +14,10 @@ class NewBill : Codable, Equatable{
     var dueDate: Date
     var paymentAmount: Double
     var isPaid: Bool = false
-    var notificationIdentyfier: String
+    var notificationIdentyfier: [String]
     var notes: String?
     
-    init(title: String, dueDate: Date, paymentAmount: Double, isPaid: Bool = false, notificationIdentyfier: String, notes: String?){
+    init(title: String, dueDate: Date, paymentAmount: Double, isPaid: Bool = false, notificationIdentyfier: [String], notes: String?){
         self.title = title
         self.dueDate = dueDate
         self.paymentAmount = paymentAmount
