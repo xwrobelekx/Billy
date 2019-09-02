@@ -710,6 +710,11 @@
                                     <constraint firstItem="yEa-nr-hKh" firstAttribute="centerY" secondItem="y0w-DC-dNY" secondAttribute="centerY" id="sFm-Wl-B6O"/>
                                     <constraint firstItem="y0w-DC-dNY" firstAttribute="top" secondItem="v1L-ym-5ha" secondAttribute="top" constant="50" id="xzh-PD-ajo"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="yEa-nr-hKh"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.69606667698019797" green="0.15619588472045179" blue="0.54904045282195213" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

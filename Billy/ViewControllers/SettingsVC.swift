@@ -70,15 +70,18 @@ class SettingsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         
         notificationTimeTextField.text = "\(SettingController.shared.setting.notificationTime!.timeAsStringWithAMSymbol())"
         notificationDaysDelayTextField.text = "\(SettingController.shared.setting.dayDelay)"
+        #warning("reset switches")
     }
     
     
     @IBAction func notifyTwoDaysBeforeSwitchPressed(_ sender: UISwitch){
         SettingController.shared.setting.notifyTwoDaysBefore = sender.isOn
+        SettingController.shared.checkNotificationStates()
     }
     
     @IBAction func notifyOnDueDaySwitchPressed(_ sender: UISwitch){
         SettingController.shared.setting.notifyOnDay = sender.isOn
+        SettingController.shared.checkNotificationStates()
     }
     
     

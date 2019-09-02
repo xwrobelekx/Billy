@@ -29,6 +29,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
         curentDateLabel.text = Date().asStringLonger()
         mainTableView.delegate = self
         mainTableView.dataSource = self
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,15 +42,32 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
         })
 //        paidBills = BillsController.shared.filterBills(by: .isPaid)
         mainTableView.reloadData()
+        
+//        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+//
+//        if launchedBefore == true {
+//            print("launched  before !!!!!!!🚀")
+//            let alert = UIAlertController(title: "Launched Before", message: "", preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+//            alert.addAction(UIAlertAction(title: "Nice", style: .default, handler: nil))
+//            present(alert, animated: true)
+//        } else {
+//            print("initial launche !!!!!!!!!!!!!🚧")
+//    let alert = UIAlertController(title: "Initial Launch", message: "", preferredStyle: .alert)
+//    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+//    alert.addAction(UIAlertAction(title: "Oooo", style: .default, handler: nil))
+//            present(alert, animated: true)
+//            UserDefaults.standard.set(true, forKey: "launchedBefore")
+//        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         
         let center = UNUserNotificationCenter.current()
-        center.removePendingNotificationRequests(withIdentifiers: NotificationController.shared.conitifcationIdentyfiers)
-        center.removeDeliveredNotifications(withIdentifiers: NotificationController.shared.conitifcationIdentyfiers)
-        NotificationController.shared.conitifcationIdentyfiers.removeAll()
+        center.removePendingNotificationRequests(withIdentifiers: NotificationController.shared.nonitifcationIdentyfiers)
+        center.removeDeliveredNotifications(withIdentifiers: NotificationController.shared.nonitifcationIdentyfiers)
+        NotificationController.shared.nonitifcationIdentyfiers.removeAll()
     }
     
     
@@ -172,18 +190,18 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
         
         if bill.isPaid == true {
             for identyfier in bill.notificationIdentyfier {
-                NotificationController.shared.conitifcationIdentyfiers.append(identyfier)
-                print("‼️ notification identyfiers count after toggl add: \(NotificationController.shared.conitifcationIdentyfiers.count)")
+                NotificationController.shared.nonitifcationIdentyfiers.append(identyfier)
+                print("‼️ notification identyfiers count after toggl add: \(NotificationController.shared.nonitifcationIdentyfiers.count)")
             }
         } else {
             
-            for billID in NotificationController.shared.conitifcationIdentyfiers {
+            for billID in NotificationController.shared.nonitifcationIdentyfiers {
                 for identyfier in bill.notificationIdentyfier {
                     if billID == identyfier {
-                        if let indexOfNotificationID = NotificationController.shared.conitifcationIdentyfiers.index(of: billID) {
-                            NotificationController.shared.conitifcationIdentyfiers.remove(at: indexOfNotificationID)
+                        if let indexOfNotificationID = NotificationController.shared.nonitifcationIdentyfiers.index(of: billID) {
+                            NotificationController.shared.nonitifcationIdentyfiers.remove(at: indexOfNotificationID)
                         }
-                        print("❎ notification identyfiers count after toggle remove: \(NotificationController.shared.conitifcationIdentyfiers.count)")
+                        print("❎ notification identyfiers count after toggle remove: \(NotificationController.shared.nonitifcationIdentyfiers.count)")
                     }
                 }
                 

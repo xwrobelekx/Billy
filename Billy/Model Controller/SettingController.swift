@@ -14,11 +14,28 @@ class SettingController {
     static var shared = SettingController()
     private init(){}
     
+    var initialLaunch = true
+    
     
     private let eightThirtyInSecondsForUTCTime : Double = 48640
     var setting = Setting(dayDelay: 5, notificationTime: Date(timeIntervalSince1970: 48640), notifyTwoDaysBefore: true, notifyOnDay: true)
     
-    lazy var notificationState : [Notificationstate] = {
+    var notificationState : [Notificationstate] = []
+//        var notificationStates: [Notificationstate] = []
+//
+//        notificationStates.append(.custom)
+//
+//        if SettingController.shared.setting.notifyOnDay == true {
+//            notificationStates.append(.onADueDate)
+//        }
+//
+//        if SettingController.shared.setting.notifyTwoDaysBefore == true {
+//            notificationStates.append(.twoDaysBefore)
+//        }
+//        return notificationStates
+//    }()
+    
+    func checkNotificationStates(){
         var notificationStates: [Notificationstate] = []
         
         notificationStates.append(.custom)
@@ -30,8 +47,8 @@ class SettingController {
         if SettingController.shared.setting.notifyTwoDaysBefore == true {
             notificationStates.append(.twoDaysBefore)
         }
-        return notificationStates
-    }()
+        notificationState = notificationStates
+    }
     
     
     //MARK: - Save settings method

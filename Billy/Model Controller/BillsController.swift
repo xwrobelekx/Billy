@@ -18,119 +18,117 @@ class BillsController {
     
     //MARK: - Source of Truth
     var bills = [NewBill]()
-
-    
     
     
     
     //MARK: - Create
-//    func create(bill: NewBill, frequency: BillFrequency?){
-//        
-//        
-//        
-//        
-//        
-//        // first im adding the initial bill, then checking if there is more to add by switching over the frequency
-//        NotificationController.shared.setupCustomNotificationWith(title: "\(bill.title) is due in \(SettingController.shared.setting.dayDelay) days.", message: "Payment of $\(bill.paymentAmount) is due on \(bill.dueDate.asString()).", billDueDate: bill.dueDate, customIdentyfier: bill.notificationIdentyfier[0], daysDelay: SettingController.shared.setting.dayDelay, timeDelay: SettingController.shared.setting.notificationTime)
-//        
-//        bills.append(bill)
-//        
-//        
-//        print("🍀 when creating the bill this is the notificvation hour: \(SettingController.shared.setting.notificationTime?.timeAsStringWithAMSymbol()), day delay \(SettingController.shared.setting.dayDelay)")
-//        
-//        guard let frequency = frequency else {return}
-//        let dueDate = bill.dueDate
-//        let calendar = Calendar.current
-//        switch frequency {
-//        case .anual:
-//            print("anual")
-//            //bill will be aded one time at the begining of the method
-//            
-//        case .semiAnual:
-//            guard let newDueDate = calendar.date(byAdding: DateComponents(month: 6), to: dueDate, wrappingComponents: false) else {return}
-//            let customIdentyfier = UUID().uuidString
-//            
-//            let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: customIdentyfier, notes: bill.notes)
-//            bills.append(newBill)
-//            
-//            NotificationController.shared.setupCustomNotificationWith(title: "\(bill.title) is due in \(SettingController.shared.setting.dayDelay) days.", message: "Payment of $\(bill.paymentAmount) is due on \(newDueDate.asString()).", billDueDate: newDueDate, customIdentyfier: customIdentyfier, daysDelay: SettingController.shared.setting.dayDelay, timeDelay: SettingController.shared.setting.notificationTime)
-//            
-//        case .quarterly:
-//            var monthsAmountToAdd = 3
-//            for _ in 0..<3{
-//                print(monthsAmountToAdd)
-//                guard let newDueDate = calendar.date(byAdding: DateComponents(month: monthsAmountToAdd), to: dueDate, wrappingComponents: false) else {return}
-//                let customIdentyfier = UUID().uuidString
-//                let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: customIdentyfier, notes: bill.notes)
-//                bills.append(newBill)
-//                
-//                NotificationController.shared.setupCustomNotificationWith(title: "\(bill.title) is due in \(SettingController.shared.setting.dayDelay) days.", message: "Payment of $\(bill.paymentAmount) is due on \(newDueDate.asString()).", billDueDate: newDueDate, customIdentyfier: customIdentyfier, daysDelay: SettingController.shared.setting.dayDelay, timeDelay: SettingController.shared.setting.notificationTime)
-//                
-//                monthsAmountToAdd += 3
-//            }
-//            
-//        case .monthly:
-//            var monthsAmountToAdd = 1
-//            for _ in 0..<11{
-//                print(monthsAmountToAdd)
-//                guard let newDueDate = calendar.date(byAdding: DateComponents(month: monthsAmountToAdd), to: dueDate, wrappingComponents: false) else {return}
-//                let customIdentyfier = UUID().uuidString
-//                let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: customIdentyfier, notes: bill.notes)
-//                bills.append(newBill)
-//                
-//                NotificationController.shared.setupCustomNotificationWith(title: "\(bill.title) is due in \(SettingController.shared.setting.dayDelay) days.", message: "Payment of $\(bill.paymentAmount) is due on \(newDueDate.asString()).", billDueDate: newDueDate, customIdentyfier: customIdentyfier, daysDelay: SettingController.shared.setting.dayDelay, timeDelay: SettingController.shared.setting.notificationTime)
-//                
-//                monthsAmountToAdd += 1
-//            }
-//        case .biweekly:
-//            var daysToAdd = 14
-//            for _ in 0..<26{
-//                guard let newDueDate = calendar.date(byAdding: DateComponents(day: daysToAdd), to: dueDate, wrappingComponents: false) else {return}
-//                let customIdentyfier = UUID().uuidString
-//                let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: customIdentyfier, notes: bill.notes)
-//                bills.append(newBill)
-//                
-//                NotificationController.shared.setupCustomNotificationWith(title: "\(bill.title) is due in \(SettingController.shared.setting.dayDelay) days.", message: "Payment of $\(bill.paymentAmount) is due on \(newDueDate.asString()).", billDueDate: newDueDate, customIdentyfier: customIdentyfier, daysDelay: SettingController.shared.setting.dayDelay, timeDelay: SettingController.shared.setting.notificationTime)
-//                
-//                daysToAdd += 14
-//            }
-//        case .weekly:
-//            var daysToAdd = 7
-//            for _ in 0..<52{
-//                guard let newDueDate = calendar.date(byAdding: DateComponents(day: daysToAdd), to: dueDate, wrappingComponents: false) else {return}
-//                let customIdentyfier = UUID().uuidString
-//                let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: customIdentyfier, notes: bill.notes)
-//                bills.append(newBill)
-//                
-//                NotificationController.shared.setupCustomNotificationWith(title: "\(bill.title) is due in \(SettingController.shared.setting.dayDelay) days.", message: "Payment of $\(bill.paymentAmount) is due on \(newDueDate.asString()).", billDueDate: newDueDate, customIdentyfier: customIdentyfier, daysDelay: SettingController.shared.setting.dayDelay, timeDelay: SettingController.shared.setting.notificationTime)
-//                
-//                daysToAdd += 7
-//            }
-//        case .none:
-//            print("none")
-//            //bill will be added one time at the beginign of this method
-//        }
-//        
-//    }
+    //    func create(bill: NewBill, frequency: BillFrequency?){
+    //
+    //
+    //
+    //
+    //
+    //        // first im adding the initial bill, then checking if there is more to add by switching over the frequency
+    //        NotificationController.shared.setupCustomNotificationWith(title: "\(bill.title) is due in \(SettingController.shared.setting.dayDelay) days.", message: "Payment of $\(bill.paymentAmount) is due on \(bill.dueDate.asString()).", billDueDate: bill.dueDate, customIdentyfier: bill.notificationIdentyfier[0], daysDelay: SettingController.shared.setting.dayDelay, timeDelay: SettingController.shared.setting.notificationTime)
+    //
+    //        bills.append(bill)
+    //
+    //
+    //        print("🍀 when creating the bill this is the notificvation hour: \(SettingController.shared.setting.notificationTime?.timeAsStringWithAMSymbol()), day delay \(SettingController.shared.setting.dayDelay)")
+    //
+    //        guard let frequency = frequency else {return}
+    //        let dueDate = bill.dueDate
+    //        let calendar = Calendar.current
+    //        switch frequency {
+    //        case .anual:
+    //            print("anual")
+    //            //bill will be aded one time at the begining of the method
+    //
+    //        case .semiAnual:
+    //            guard let newDueDate = calendar.date(byAdding: DateComponents(month: 6), to: dueDate, wrappingComponents: false) else {return}
+    //            let customIdentyfier = UUID().uuidString
+    //
+    //            let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: customIdentyfier, notes: bill.notes)
+    //            bills.append(newBill)
+    //
+    //            NotificationController.shared.setupCustomNotificationWith(title: "\(bill.title) is due in \(SettingController.shared.setting.dayDelay) days.", message: "Payment of $\(bill.paymentAmount) is due on \(newDueDate.asString()).", billDueDate: newDueDate, customIdentyfier: customIdentyfier, daysDelay: SettingController.shared.setting.dayDelay, timeDelay: SettingController.shared.setting.notificationTime)
+    //
+    //        case .quarterly:
+    //            var monthsAmountToAdd = 3
+    //            for _ in 0..<3{
+    //                print(monthsAmountToAdd)
+    //                guard let newDueDate = calendar.date(byAdding: DateComponents(month: monthsAmountToAdd), to: dueDate, wrappingComponents: false) else {return}
+    //                let customIdentyfier = UUID().uuidString
+    //                let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: customIdentyfier, notes: bill.notes)
+    //                bills.append(newBill)
+    //
+    //                NotificationController.shared.setupCustomNotificationWith(title: "\(bill.title) is due in \(SettingController.shared.setting.dayDelay) days.", message: "Payment of $\(bill.paymentAmount) is due on \(newDueDate.asString()).", billDueDate: newDueDate, customIdentyfier: customIdentyfier, daysDelay: SettingController.shared.setting.dayDelay, timeDelay: SettingController.shared.setting.notificationTime)
+    //
+    //                monthsAmountToAdd += 3
+    //            }
+    //
+    //        case .monthly:
+    //            var monthsAmountToAdd = 1
+    //            for _ in 0..<11{
+    //                print(monthsAmountToAdd)
+    //                guard let newDueDate = calendar.date(byAdding: DateComponents(month: monthsAmountToAdd), to: dueDate, wrappingComponents: false) else {return}
+    //                let customIdentyfier = UUID().uuidString
+    //                let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: customIdentyfier, notes: bill.notes)
+    //                bills.append(newBill)
+    //
+    //                NotificationController.shared.setupCustomNotificationWith(title: "\(bill.title) is due in \(SettingController.shared.setting.dayDelay) days.", message: "Payment of $\(bill.paymentAmount) is due on \(newDueDate.asString()).", billDueDate: newDueDate, customIdentyfier: customIdentyfier, daysDelay: SettingController.shared.setting.dayDelay, timeDelay: SettingController.shared.setting.notificationTime)
+    //
+    //                monthsAmountToAdd += 1
+    //            }
+    //        case .biweekly:
+    //            var daysToAdd = 14
+    //            for _ in 0..<26{
+    //                guard let newDueDate = calendar.date(byAdding: DateComponents(day: daysToAdd), to: dueDate, wrappingComponents: false) else {return}
+    //                let customIdentyfier = UUID().uuidString
+    //                let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: customIdentyfier, notes: bill.notes)
+    //                bills.append(newBill)
+    //
+    //                NotificationController.shared.setupCustomNotificationWith(title: "\(bill.title) is due in \(SettingController.shared.setting.dayDelay) days.", message: "Payment of $\(bill.paymentAmount) is due on \(newDueDate.asString()).", billDueDate: newDueDate, customIdentyfier: customIdentyfier, daysDelay: SettingController.shared.setting.dayDelay, timeDelay: SettingController.shared.setting.notificationTime)
+    //
+    //                daysToAdd += 14
+    //            }
+    //        case .weekly:
+    //            var daysToAdd = 7
+    //            for _ in 0..<52{
+    //                guard let newDueDate = calendar.date(byAdding: DateComponents(day: daysToAdd), to: dueDate, wrappingComponents: false) else {return}
+    //                let customIdentyfier = UUID().uuidString
+    //                let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: customIdentyfier, notes: bill.notes)
+    //                bills.append(newBill)
+    //
+    //                NotificationController.shared.setupCustomNotificationWith(title: "\(bill.title) is due in \(SettingController.shared.setting.dayDelay) days.", message: "Payment of $\(bill.paymentAmount) is due on \(newDueDate.asString()).", billDueDate: newDueDate, customIdentyfier: customIdentyfier, daysDelay: SettingController.shared.setting.dayDelay, timeDelay: SettingController.shared.setting.notificationTime)
+    //
+    //                daysToAdd += 7
+    //            }
+    //        case .none:
+    //            print("none")
+    //            //bill will be added one time at the beginign of this method
+    //        }
+    //
+    //    }
     
     
     //MARK: - Create Bill 2
     func createBill2(bill: NewBill, frequency: BillFrequency?, howLongToContinue: Int){
-        
         
         let todaysYear = Date().yearAsInt()
         let endYear = todaysYear + howLongToContinue
         var dateForWhileStatement = Date()
         print("🧤 start: \(todaysYear) end: \(endYear)")
         
-        
-        
-        for _ in 0...SettingController.shared.notificationState.count{
+        for _ in 0...3{
             bill.notificationIdentyfier.append(UUID().uuidString)
         }
         
         // first im adding the initial bill, then checking if there is more to add by switching over the frequency
-        NotificationController.shared.setupCustomNotificationWith(title: "\(bill.title) is due in \(SettingController.shared.setting.dayDelay) days.", message: "Payment of $\(bill.paymentAmount) is due on \(bill.dueDate.asString()).", billDueDate: bill.dueDate, customIdentyfiers: bill.notificationIdentyfier, daysDelay: SettingController.shared.setting.dayDelay, timeDelay: SettingController.shared.setting.notificationTime)
+        //        NotificationController.shared.setupCustomNotificationWith(title: "\(bill.title)", message: "Payment of $\(bill.paymentAmount) is due on \(bill.dueDate.asString()).", billDueDate: bill.dueDate, customIdentyfiers: bill.notificationIdentyfier, daysDelay: SettingController.shared.setting.dayDelay, timeDelay: SettingController.shared.setting.notificationTime)
+        
+        NotificationController.shared.setupNotificationWith(bill: bill)
+        
         
         bills.append(bill)
         bill.notificationIdentyfier.removeAll()
@@ -145,17 +143,19 @@ class BillsController {
             //bill will be aded one time at the begining of the method
             var monthsAmountToAdd = 12
             while dateForWhileStatement.yearAsInt() < endYear {
-            guard let newDueDate = calendar.date(byAdding: DateComponents(month: monthsAmountToAdd), to: dueDate, wrappingComponents: false) else {return}
+                guard let newDueDate = calendar.date(byAdding: DateComponents(month: monthsAmountToAdd), to: dueDate, wrappingComponents: false) else {return}
                 dateForWhileStatement = newDueDate
-//                let customIdentyfier = UUID().uuidString
+                //                let customIdentyfier = UUID().uuidString
                 
-                for _ in 0...SettingController.shared.notificationState.count{
+                for _ in 0...3{
                     bill.notificationIdentyfier.append(UUID().uuidString)
                 }
                 let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: bill.notificationIdentyfier, notes: bill.notes)
                 bills.append(newBill)
                 
-                NotificationController.shared.setupCustomNotificationWith(title: "\(bill.title) is due in \(SettingController.shared.setting.dayDelay) days.", message: "Payment of $\(bill.paymentAmount) is due on \(newDueDate.asString()).", billDueDate: newDueDate, customIdentyfiers: bill.notificationIdentyfier, daysDelay: SettingController.shared.setting.dayDelay, timeDelay: SettingController.shared.setting.notificationTime)
+                //                NotificationController.shared.setupCustomNotificationWith(title: "\(bill.title)", message: "Payment of $\(bill.paymentAmount) is due on \(newDueDate.asString()).", billDueDate: newDueDate, customIdentyfiers: bill.notificationIdentyfier, daysDelay: SettingController.shared.setting.dayDelay, timeDelay: SettingController.shared.setting.notificationTime)
+                NotificationController.shared.setupNotificationWith(bill: newBill)
+                
                 monthsAmountToAdd += 12
                 bill.notificationIdentyfier.removeAll()
             }
@@ -165,16 +165,17 @@ class BillsController {
             while dateForWhileStatement.yearAsInt() < endYear {
                 guard let newDueDate = calendar.date(byAdding: DateComponents(month: monthsAmountToAdd), to: dueDate, wrappingComponents: false) else {return}
                 dateForWhileStatement = newDueDate
-//            let customIdentyfier = UUID().uuidString
-                for _ in 0...SettingController.shared.notificationState.count{
+                //            let customIdentyfier = UUID().uuidString
+                for _ in 0...3{
                     bill.notificationIdentyfier.append(UUID().uuidString)
                 }
-            
+                
                 let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: bill.notificationIdentyfier, notes: bill.notes)
                 
-            bills.append(newBill)
-            
-                NotificationController.shared.setupCustomNotificationWith(title: "\(bill.title) is due in \(SettingController.shared.setting.dayDelay) days.", message: "Payment of $\(bill.paymentAmount) is due on \(newDueDate.asString()).", billDueDate: newDueDate, customIdentyfiers: newBill.notificationIdentyfier, daysDelay: SettingController.shared.setting.dayDelay, timeDelay: SettingController.shared.setting.notificationTime)
+                bills.append(newBill)
+                
+                //                NotificationController.shared.setupCustomNotificationWith(title: "\(bill.title)", message: "Payment of $\(bill.paymentAmount) is due on \(newDueDate.asString()).", billDueDate: newDueDate, customIdentyfiers: newBill.notificationIdentyfier, daysDelay: SettingController.shared.setting.dayDelay, timeDelay: SettingController.shared.setting.notificationTime)
+                NotificationController.shared.setupNotificationWith(bill: newBill)
                 monthsAmountToAdd += 6
                 bill.notificationIdentyfier.removeAll()
             }
@@ -186,13 +187,14 @@ class BillsController {
                 guard let newDueDate = calendar.date(byAdding: DateComponents(month: monthsAmountToAdd), to: dueDate, wrappingComponents: false) else {return}
                 dateForWhileStatement = newDueDate
                 
-                for _ in 0...SettingController.shared.notificationState.count{
+                for _ in 0...3{
                     bill.notificationIdentyfier.append(UUID().uuidString)
                 }
                 let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: bill.notificationIdentyfier, notes: bill.notes)
                 bills.append(newBill)
                 
-                NotificationController.shared.setupCustomNotificationWith(title: "\(bill.title) is due in \(SettingController.shared.setting.dayDelay) days.", message: "Payment of $\(bill.paymentAmount) is due on \(newDueDate.asString()).", billDueDate: newDueDate, customIdentyfiers: newBill.notificationIdentyfier, daysDelay: SettingController.shared.setting.dayDelay, timeDelay: SettingController.shared.setting.notificationTime)
+                //                NotificationController.shared.setupCustomNotificationWith(title: "\(bill.title)", message: "Payment of $\(bill.paymentAmount) is due on \(newDueDate.asString()).", billDueDate: newDueDate, customIdentyfiers: newBill.notificationIdentyfier, daysDelay: SettingController.shared.setting.dayDelay, timeDelay: SettingController.shared.setting.notificationTime)
+                NotificationController.shared.setupNotificationWith(bill: newBill)
                 
                 monthsAmountToAdd += 3
                 bill.notificationIdentyfier.removeAll()
@@ -204,14 +206,17 @@ class BillsController {
             while dateForWhileStatement.yearAsInt() < endYear {
                 guard let newDueDate = calendar.date(byAdding: DateComponents(month: monthsAmountToAdd), to: dueDate, wrappingComponents: false) else {return}
                 dateForWhileStatement = newDueDate
-//                let customIdentyfier = UUID().uuidString
-                for _ in 0...SettingController.shared.notificationState.count{
+                //                let customIdentyfier = UUID().uuidString
+                for _ in 0...3{
                     bill.notificationIdentyfier.append(UUID().uuidString)
                 }
                 let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: bill.notificationIdentyfier, notes: bill.notes)
                 bills.append(newBill)
                 
-                NotificationController.shared.setupCustomNotificationWith(title: "\(bill.title) is due in \(SettingController.shared.setting.dayDelay) days.", message: "Payment of $\(bill.paymentAmount) is due on \(newDueDate.asString()).", billDueDate: newDueDate, customIdentyfiers: newBill.notificationIdentyfier, daysDelay: SettingController.shared.setting.dayDelay, timeDelay: SettingController.shared.setting.notificationTime)
+                //                NotificationController.shared.setupCustomNotificationWith(title: "\(bill.title)", message: "Payment of $\(bill.paymentAmount) is due on \(newDueDate.asString()).", billDueDate: newDueDate, customIdentyfiers: newBill.notificationIdentyfier, daysDelay: SettingController.shared.setting.dayDelay, timeDelay: SettingController.shared.setting.notificationTime)
+                
+                NotificationController.shared.setupNotificationWith(bill: newBill)
+                
                 
                 monthsAmountToAdd += 1
                 bill.notificationIdentyfier.removeAll()
@@ -222,14 +227,17 @@ class BillsController {
             while dateForWhileStatement.yearAsInt() < endYear {
                 guard let newDueDate = calendar.date(byAdding: DateComponents(day: daysToAdd), to: dueDate, wrappingComponents: false) else {return}
                 dateForWhileStatement = newDueDate
-//                let customIdentyfier = UUID().uuidString
-                for _ in 0...SettingController.shared.notificationState.count{
+                //                let customIdentyfier = UUID().uuidString
+                for _ in 0...3{
                     bill.notificationIdentyfier.append(UUID().uuidString)
                 }
                 let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: bill.notificationIdentyfier, notes: bill.notes)
                 bills.append(newBill)
                 
-                NotificationController.shared.setupCustomNotificationWith(title: "\(bill.title) is due in \(SettingController.shared.setting.dayDelay) days.", message: "Payment of $\(bill.paymentAmount) is due on \(newDueDate.asString()).", billDueDate: newDueDate, customIdentyfiers: newBill.notificationIdentyfier, daysDelay: SettingController.shared.setting.dayDelay, timeDelay: SettingController.shared.setting.notificationTime)
+                //                NotificationController.shared.setupCustomNotificationWith(title: "\(bill.title)", message: "Payment of $\(bill.paymentAmount) is due on \(newDueDate.asString()).", billDueDate: newDueDate, customIdentyfiers: newBill.notificationIdentyfier, daysDelay: SettingController.shared.setting.dayDelay, timeDelay: SettingController.shared.setting.notificationTime)
+                
+                NotificationController.shared.setupNotificationWith(bill: newBill)
+                
                 
                 daysToAdd += 14
                 bill.notificationIdentyfier.removeAll()
@@ -239,15 +247,18 @@ class BillsController {
             
             while dateForWhileStatement.yearAsInt() < endYear {
                 guard let newDueDate = calendar.date(byAdding: DateComponents(day: daysToAdd), to: dueDate, wrappingComponents: false) else {return}
-                 dateForWhileStatement = newDueDate
-//                let customIdentyfier = UUID().uuidString
-                for _ in 0...SettingController.shared.notificationState.count{
+                dateForWhileStatement = newDueDate
+                //                let customIdentyfier = UUID().uuidString
+                for _ in 0...3{
                     bill.notificationIdentyfier.append(UUID().uuidString)
                 }
                 let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: bill.notificationIdentyfier, notes: bill.notes)
                 bills.append(newBill)
                 
-                NotificationController.shared.setupCustomNotificationWith(title: "\(bill.title) is due in \(SettingController.shared.setting.dayDelay) days.", message: "Payment of $\(bill.paymentAmount) is due on \(newDueDate.asString()).", billDueDate: newDueDate, customIdentyfiers: newBill.notificationIdentyfier, daysDelay: SettingController.shared.setting.dayDelay, timeDelay: SettingController.shared.setting.notificationTime)
+                //                NotificationController.shared.setupCustomNotificationWith(title: "\(bill.title)", message: "Payment of $\(bill.paymentAmount) is due on \(newDueDate.asString()).", billDueDate: newDueDate, customIdentyfiers: newBill.notificationIdentyfier, daysDelay: SettingController.shared.setting.dayDelay, timeDelay: SettingController.shared.setting.notificationTime)
+                
+                NotificationController.shared.setupNotificationWith(bill: newBill)
+                
                 
                 daysToAdd += 7
                 bill.notificationIdentyfier.removeAll()
@@ -273,7 +284,7 @@ class BillsController {
         print("⛔️sucesfully deleted bill and its notifications: bill title: \(bill.title), bill due date \(bill.dueDate.asStringLonger()), bill payment amount\(bill.paymentAmount)")
     }
     
-
+    
     
     //MARK: - Filter methods
     func filterBills(by billState : BillState) -> [NewBill]{
@@ -285,6 +296,8 @@ class BillsController {
             currentBills = bills.filter{ $0.isPaid }
         case .isPastDue:
             currentBills = bills.filter { $0.dueDate < curnetDate && $0.isPaid == false}
+        case .isDueInFiveDays:
+            currentBills = bills.filter { $0.dueDate >= curnetDate && $0.dueDate <= (curnetDate + (TimeInterval(5 * 86400)))  && $0.isPaid == false }
         case .isDueNextWeek:
             // 86400 - is one day in seconds - im adding 7 to current date to filter out bills for that week
             currentBills = bills.filter { $0.dueDate >= curnetDate && $0.dueDate <= (curnetDate + (TimeInterval(7 * 86400)))  && $0.isPaid == false }
@@ -294,7 +307,7 @@ class BillsController {
         case .isDueInTwoWeeks:
             currentBills = bills.filter { $0.dueDate >= (curnetDate + (TimeInterval( 7 * 86400))) && $0.dueDate <= curnetDate + (TimeInterval(14 * 86400)) && $0.isPaid == false  }
         case .isDueThisMonth:
-             currentBills = bills.filter { $0.dueDate >= (curnetDate ) && $0.dueDate <= curnetDate + (TimeInterval(31 * 86400)) && $0.isPaid == false  }
+            currentBills = bills.filter { $0.dueDate >= (curnetDate ) && $0.dueDate <= curnetDate + (TimeInterval(31 * 86400)) && $0.isPaid == false  }
         case .otherBills:
             currentBills = bills.filter { $0.dueDate > (curnetDate + (TimeInterval( 31 * 86400))) }
         }
@@ -369,6 +382,6 @@ class BillsController {
         return fullURL
         
     }
-
+    
 }
 

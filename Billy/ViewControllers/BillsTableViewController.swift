@@ -76,9 +76,6 @@ class BillsTableViewController: UITableViewController, BillCustomCellDelegate {
     
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        //        return BillsController.shared.bills.count
-        
         switch section {
         case 0:
             return BillsController.shared.filterBills(by: .isPastDue).count
@@ -102,7 +99,6 @@ class BillsTableViewController: UITableViewController, BillCustomCellDelegate {
 
         cell.cellDelegate = self
        
-    
         switch indexPath.section {
         case 0:
            cell.bill = BillsController.shared.filterBills(by: .isPastDue)[indexPath.row]

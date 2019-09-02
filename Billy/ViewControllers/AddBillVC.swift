@@ -80,11 +80,46 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
             
         }
         
+        if NotificationController.shared.checkNotificationPermision() == true {
+            SettingController.shared.initialLaunch = false
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        //This checks if user has notifications enabled, if not it shows an alert and by pressing settings it takes them to iphone settings.
+        //       NotificationController.shared.checkNotificationPermision()
+        
+        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+        
+        
+        if  NotificationController.shared.permissionGranted == false && launchedBefore == true {
+            let alert = UIAlertController(title: "Please Enable Notifications.", message: "Its an essential feature of this app. This can be managed in settings.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "Settings", style: .default, handler: { (_) in
+                //Acces device setting for the app
+                let settingsURL = NSURL(string: UIApplication.openSettingsURLString)
+                if let settings = settingsURL {
+                    UIApplication.shared.openURL(settings as URL)
+                }
+                
+            }))
+            present(alert, animated: true)
+            
+        }
+        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+        UserDefaults.standard.set(true, forKey: "launchedBefore")
     }
     
     
@@ -109,18 +144,7 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     
     //MARK: - Actions
     @IBAction func saveButtonTapped(_ sender: Any) {
-        guard let title = titleTextField.text, title != "",
-            let paymentAmout = payemntAmoutTextField.text, paymentAmout != "",
-            let dueDate = date else {return} 
-        
-        let yearsToContinue = Int(yearsTextField.text ?? "0") ?? 0
-        
-        guard let payment = Double(paymentAmout) else {return}
-        let bill = NewBill(title: title, dueDate: dueDate, paymentAmount: payment, notificationIdentyfier: [String](), notes: notesTextField.text)
-        let frequency : BillFrequency? = BillFrequency(rawValue: paymentFrequency.text ?? "None")
-        print("✔️🔹 Picked Years: \(yearPicked)")
-        BillsController.shared.createBill2(bill: bill, frequency: frequency, howLongToContinue: yearPicked)
-        dismiss(animated: true, completion: nil)
+        createBill()
     }
     
     
@@ -130,7 +154,7 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     
     
     
-    
+    //MARK: - Selector Methods
     @objc func datePickerValueChanged(sender: UIDatePicker){
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
@@ -155,12 +179,6 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
             //            print(" not hidden ")
         }
     }
-    
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
-    }
-    
     
     
     //MARK: - Bill Frequancy Picker Data Source
@@ -214,6 +232,24 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     }
     
     
+    
+    //MARK: - Helper Methods
+    func createBill(){
+        guard let title = titleTextField.text, title != "",
+            let paymentAmout = payemntAmoutTextField.text, paymentAmout != "",
+            let dueDate = date else {return}
+        
+        let yearsToContinue = Int(yearsTextField.text ?? "0") ?? 0
+        
+        guard let payment = Double(paymentAmout) else {return}
+        let bill = NewBill(title: title, dueDate: dueDate, paymentAmount: payment, notificationIdentyfier: [String](), notes: notesTextField.text)
+        let frequency : BillFrequency? = BillFrequency(rawValue: paymentFrequency.text ?? "None")
+        print("✔️🔹 Picked Years: \(yearPicked)")
+        BillsController.shared.createBill2(bill: bill, frequency: frequency, howLongToContinue: yearPicked)
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
     func clearTextFields(){
         titleTextField.text = ""
         payemntAmoutTextField.text = ""
@@ -237,6 +273,11 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
         }))
         
         present(alert, animated: true)
+    }
+    
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
     
 }
