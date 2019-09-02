@@ -40,25 +40,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
         dueThisMonth = BillsController.shared.filterBills(by: .isDueThisMonth).sorted(by: { (first, second) -> Bool in
             first.dueDate < second.dueDate
         })
-//        paidBills = BillsController.shared.filterBills(by: .isPaid)
         mainTableView.reloadData()
-        
-//        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
-//
-//        if launchedBefore == true {
-//            print("launched  before !!!!!!!🚀")
-//            let alert = UIAlertController(title: "Launched Before", message: "", preferredStyle: .alert)
-//            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-//            alert.addAction(UIAlertAction(title: "Nice", style: .default, handler: nil))
-//            present(alert, animated: true)
-//        } else {
-//            print("initial launche !!!!!!!!!!!!!🚧")
-//    let alert = UIAlertController(title: "Initial Launch", message: "", preferredStyle: .alert)
-//    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-//    alert.addAction(UIAlertAction(title: "Oooo", style: .default, handler: nil))
-//            present(alert, animated: true)
-//            UserDefaults.standard.set(true, forKey: "launchedBefore")
-//        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -194,7 +176,6 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
                 print("‼️ notification identyfiers count after toggl add: \(NotificationController.shared.nonitifcationIdentyfiers.count)")
             }
         } else {
-            
             for billID in NotificationController.shared.nonitifcationIdentyfiers {
                 for identyfier in bill.notificationIdentyfier {
                     if billID == identyfier {
@@ -215,7 +196,5 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
     func modified(indexPath: IndexPath) -> Int {
         return (indexPath.section * 2) + (indexPath.row)
     }
-    
-    
-    
+
 }

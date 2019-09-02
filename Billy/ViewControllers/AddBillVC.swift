@@ -22,8 +22,12 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     var daysDelay: Int = 0
     let datePicker = UIDatePicker()
     let yearsPicker = UIPickerView()
-    let yearsToPickFrom = [0, 1, 2, 3]
-    var yearPicked = 0
+    
+    
+    
+    
+    var yearsToPickFrom = [Int]()
+    var yearPicked = Date().yearAsInt()
     
     //MARK: - Outlets
     @IBOutlet weak var titleTextField: UITextField!
@@ -39,6 +43,11 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     //MARK: - LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
+        yearsToPickFrom = years()
+        
         
         titleTextField.delegate = self
         payemntAmoutTextField.delegate = self
@@ -206,9 +215,9 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         if pickerView == frequencyPicker {
-            return BillFrequency.allCases[row].rawValue
+            return "\(BillFrequency.allCases[row].rawValue)"
         } else if pickerView == yearsPicker {
-            return "\(yearsToPickFrom[row])"
+            return "Continue till the end of \(yearsToPickFrom[row])."
         } else {
             return "0"
         }
@@ -221,11 +230,8 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
             paymentFrequency.text = selectedOption.rawValue
         } else if pickerView == yearsPicker {
             yearPicked = yearsToPickFrom[row]
-            if yearPicked == 1 {
-                yearsTextField.text = "Continue for \(yearPicked) year."
-            } else {
-                yearsTextField.text = "Continue for \(yearPicked) years."
-            }
+            yearsTextField.text = "Continue till the end of \(yearPicked)."
+           
         } else {
             print("no picker found")
         }
@@ -273,6 +279,17 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
         }))
         
         present(alert, animated: true)
+    }
+    
+    
+    func years() -> [Int] {
+        let yearOne = Date().yearAsInt()
+        var yearArray = [Int]()
+        yearArray.append(yearOne)
+        yearArray.append(yearOne + 1)
+        yearArray.append(yearOne + 2)
+        yearArray.append(yearOne + 3)
+        return yearArray
     }
     
     

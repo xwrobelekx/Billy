@@ -52,7 +52,7 @@ class NotificationController {
     
     func setupNotificationWith(bill: NewBill){
         var title = ""
-        var message = ""
+  
         
         let center = UNUserNotificationCenter.current()
         
@@ -76,14 +76,14 @@ class NotificationController {
                 dateComponents.hour = SettingController.shared.setting.notificationTime?.hour().hour ?? 8
                 dateComponents.minute = SettingController.shared.setting.notificationTime?.hour().min ?? 30
                 if SettingController.shared.setting.dayDelay == 1 {
-                    title =  "\(bill.title) is due in \(SettingController.shared.setting.dayDelay) day."
+                    title =  "\(bill.title) payment is due in \(SettingController.shared.setting.dayDelay) day."
                 } else {
-                    title =  "\(bill.title) is due in \(SettingController.shared.setting.dayDelay) days."
+                    title =  "\(bill.title) payment is due in \(SettingController.shared.setting.dayDelay) days."
                 }
                 
                 content.badge = 1
                 content.title = title
-                content.body = message
+                content.body = "A Payment of \(bill.paymentAmount) is due on \(bill.dueDate.asString())."
                 content.sound = .default
                 
                 let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
@@ -111,7 +111,7 @@ class NotificationController {
                 
                 dateComponents.hour = SettingController.shared.setting.notificationTime?.hour().hour ?? 8
                 dateComponents.minute =  SettingController.shared.setting.notificationTime?.hour().min ?? 30
-                title =  "\(bill.title) is due today!"
+                title =  "\(bill.title) payment is due today!"
                 
                 content.badge = 1
                 content.title = title
@@ -142,7 +142,7 @@ class NotificationController {
                 dateComponents.day! -= 2
                 dateComponents.hour = SettingController.shared.setting.notificationTime?.hour().hour ?? 8
                 dateComponents.minute = SettingController.shared.setting.notificationTime?.hour().min ?? 30
-                title =  "\(bill.title) is due in 2 days"
+                title =  "\(bill.title) payment is due in 2 days"
                 
                 content.badge = 1
                 content.title = title

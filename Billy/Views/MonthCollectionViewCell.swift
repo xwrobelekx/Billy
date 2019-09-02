@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol MonthCellCustomDelegate: class{
+    func presentDetailViewWith(bill: NewBill)
+}
+
+
 class MonthCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSource {
     
     //MARK: - Outlets
@@ -23,6 +28,8 @@ class MonthCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITabl
             billTableView.reloadData()
         }
     }
+    
+    var monthDelegate: MonthCellCustomDelegate?
     
     
     var bills : [NewBill]? {
@@ -114,6 +121,18 @@ class MonthCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITabl
     //wont work because table view is inside of a collection cell and it doesnt have "present"
     //       // present(detailVC, animated: true)
     //    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let bills = bills else {return}
+        let bill = bills[indexPath.row]
+
+        
+        monthDelegate?.presentDetailViewWith(bill: bill)
+   
+    
+   //     UINavigationController.present(detailVC)
+  //      present(detailVC, animated: true)
+    }
     
     
     

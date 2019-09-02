@@ -10,11 +10,11 @@ import Foundation
 
 
 enum BillFrequency: String, CaseIterable {
-    case none = "None"
-    case weekly = "Weekly"
-    case biweekly = "Biweekly"
-    case monthly = "Monthly"
-    case quarterly = "Quarterly"
-    case semiAnual = "Semi Anual"
-    case anual = "Anual"
+    case none = "One Time Payment"
+    case weekly = "Weekly Payment"
+    case biweekly = "Biweekly Payment"
+    case monthly = "Monthly Payment"
+    case quarterly = "Quarterly Payment"
+    case semiAnual = "Semi Anual Payment"
+    case anual = "Anual Payment"
 }

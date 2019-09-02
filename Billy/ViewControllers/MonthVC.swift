@@ -8,7 +8,9 @@
 
 import UIKit
 
-class MonthVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate {
+class MonthVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate, MonthCellCustomDelegate {
+ 
+    
 
     
     //this VC will hold a collection view which will hold each month - using the date it will open on current month
@@ -52,6 +54,7 @@ class MonthVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = monthCollectionView.dequeueReusableCell(withReuseIdentifier: "monthCell", for: indexPath) as? MonthCollectionViewCell else { return UICollectionViewCell() }
+        cell.monthDelegate = self
         let date = Calendar.current
         let month = date.monthSymbols
         var currentMonth = month[0]
@@ -96,6 +99,13 @@ class MonthVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     }
     
     
+    //MARK: - Custom Delegate Conformance Method
+    func presentDetailViewWith(bill: NewBill) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let detailVC = storyboard.instantiateViewController(withIdentifier: "detailVC") as? BillDetailVC else {return}
+        detailVC.bill = bill
+        present(detailVC, animated: true)
+    }
     
     
     

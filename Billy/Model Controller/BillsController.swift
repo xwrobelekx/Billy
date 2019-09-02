@@ -116,7 +116,7 @@ class BillsController {
     func createBill2(bill: NewBill, frequency: BillFrequency?, howLongToContinue: Int){
         
         let todaysYear = Date().yearAsInt()
-        let endYear = todaysYear + howLongToContinue
+        let endYear = howLongToContinue
         var dateForWhileStatement = Date()
         print("🧤 start: \(todaysYear) end: \(endYear)")
         
@@ -142,7 +142,7 @@ class BillsController {
             print("anual")
             //bill will be aded one time at the begining of the method
             var monthsAmountToAdd = 12
-            while dateForWhileStatement.yearAsInt() < endYear {
+            while dateForWhileStatement.yearAsInt() <= endYear {
                 guard let newDueDate = calendar.date(byAdding: DateComponents(month: monthsAmountToAdd), to: dueDate, wrappingComponents: false) else {return}
                 dateForWhileStatement = newDueDate
                 //                let customIdentyfier = UUID().uuidString
@@ -162,7 +162,7 @@ class BillsController {
             
         case .semiAnual:
             var monthsAmountToAdd = 6
-            while dateForWhileStatement.yearAsInt() < endYear {
+            while dateForWhileStatement.yearAsInt() <= endYear {
                 guard let newDueDate = calendar.date(byAdding: DateComponents(month: monthsAmountToAdd), to: dueDate, wrappingComponents: false) else {return}
                 dateForWhileStatement = newDueDate
                 //            let customIdentyfier = UUID().uuidString
@@ -183,7 +183,7 @@ class BillsController {
         case .quarterly:
             var monthsAmountToAdd = 3
             
-            while dateForWhileStatement.yearAsInt() < endYear {
+            while dateForWhileStatement.yearAsInt() <= endYear {
                 guard let newDueDate = calendar.date(byAdding: DateComponents(month: monthsAmountToAdd), to: dueDate, wrappingComponents: false) else {return}
                 dateForWhileStatement = newDueDate
                 
@@ -203,7 +203,7 @@ class BillsController {
         case .monthly:
             var monthsAmountToAdd = 1
             
-            while dateForWhileStatement.yearAsInt() < endYear {
+            while dateForWhileStatement.yearAsInt() <= endYear {
                 guard let newDueDate = calendar.date(byAdding: DateComponents(month: monthsAmountToAdd), to: dueDate, wrappingComponents: false) else {return}
                 dateForWhileStatement = newDueDate
                 //                let customIdentyfier = UUID().uuidString
@@ -224,7 +224,7 @@ class BillsController {
         case .biweekly:
             var daysToAdd = 14
             
-            while dateForWhileStatement.yearAsInt() < endYear {
+            while dateForWhileStatement.yearAsInt() <= endYear {
                 guard let newDueDate = calendar.date(byAdding: DateComponents(day: daysToAdd), to: dueDate, wrappingComponents: false) else {return}
                 dateForWhileStatement = newDueDate
                 //                let customIdentyfier = UUID().uuidString
@@ -245,7 +245,7 @@ class BillsController {
         case .weekly:
             var daysToAdd = 7
             
-            while dateForWhileStatement.yearAsInt() < endYear {
+            while dateForWhileStatement.yearAsInt() <= endYear {
                 guard let newDueDate = calendar.date(byAdding: DateComponents(day: daysToAdd), to: dueDate, wrappingComponents: false) else {return}
                 dateForWhileStatement = newDueDate
                 //                let customIdentyfier = UUID().uuidString
