@@ -45,7 +45,6 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-        
         let center = UNUserNotificationCenter.current()
         center.removePendingNotificationRequests(withIdentifiers: NotificationController.shared.nonitifcationIdentyfiers)
         center.removeDeliveredNotifications(withIdentifiers: NotificationController.shared.nonitifcationIdentyfiers)
@@ -68,7 +67,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
         case 0 :
             if pastDueBills.count == 0 && dueThisMonth.count == 0 {
                 label.font = UIFont(name: "Marker Felt", size: 17)
-                label.text = "No bill due this month."
+                label.text = "No bills due this month."
             } else if pastDueBills.count >= 1 {
                 label.font = UIFont(name: "Marker Felt", size: 17)
 
@@ -87,7 +86,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
         default:
             label.text = ""
         }
-        label.frame = CGRect(x: 15, y: 5, width: 200, height: 20)
+        label.frame = CGRect(x: 15, y: 5, width: 200, height: 25)
         view.addSubview(label)
         return view
     }
@@ -106,16 +105,14 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell55", for: indexPath) as? MainViewTableViewCell else {return UITableViewCell()}
-        
         cell.cellDelegate = self
-        
         switch indexPath.section {
         case 0:
             cell.bill = pastDueBills[indexPath.row]
         case 1:
             cell.bill = dueThisMonth[indexPath.row]
         default:
-            print("no bill in main view cell")
+            print("No bills in main view cell")
         }
         return cell
     }
@@ -124,7 +121,6 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
         guard editingStyle == .delete else {return}
         
         //it takes them froll al of the bill insted of "due next week"
-        
         switch indexPath.section {
         case 0:
             let bill = pastDueBills[indexPath.row]
