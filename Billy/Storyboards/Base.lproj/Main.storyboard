@@ -154,7 +154,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Billy background" translatesAutoresizingMaskIntoConstraints="NO" id="dqB-av-0cJ">
-                                <rect key="frame" x="-2" y="0.0" width="377" height="620"/>
+                                <rect key="frame" x="-2" y="0.0" width="377.00000000000006" height="620"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I4V-VB-OJH" customClass="RoundedView" customModule="Billy" customModuleProvider="target">
                                 <rect key="frame" x="10" y="40" width="355" height="558"/>
@@ -282,7 +282,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ApF-hY-aZf"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Settings" id="gae-JD-yJb"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="setting4" id="gae-JD-yJb"/>
                     <connections>
                         <outlet property="notificationDaysDelayTextField" destination="ry0-c8-qvF" id="xhp-OW-4ra"/>
                         <outlet property="notificationTimeTextField" destination="gTm-9s-vz0" id="wBF-7J-b8C"/>
@@ -303,7 +303,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Billy background" translatesAutoresizingMaskIntoConstraints="NO" id="N9c-hs-xVq">
-                                <rect key="frame" x="-4" y="-30" width="383" height="650"/>
+                                <rect key="frame" x="-4" y="-30" width="383.00000000000006" height="650"/>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GuA-DK-OAt">
                                 <rect key="frame" x="0.0" y="10" width="375" height="608"/>
@@ -484,7 +484,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ekK-P6-CYH"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Monthly" id="9HX-Yi-Jpa"/>
+                    <tabBarItem key="tabBarItem" title="Monthly" image="monthly4" id="9HX-Yi-Jpa">
+                        <color key="badgeColor" red="0.1078908177" green="0.99215686270000003" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" id="5gt-Wk-iAd"/>
                     <connections>
                         <outlet property="monthCollectionView" destination="GuA-DK-OAt" id="fD7-tr-fmc"/>
@@ -503,7 +505,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Billy background" translatesAutoresizingMaskIntoConstraints="NO" id="dSK-O4-qhX">
-                                <rect key="frame" x="-2" y="0.0" width="377" height="667"/>
+                                <rect key="frame" x="-2" y="0.0" width="377.00000000000006" height="667"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ddi-I8-DAl">
                                 <rect key="frame" x="159" y="602" width="57" height="45"/>
@@ -593,7 +595,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Billy background" translatesAutoresizingMaskIntoConstraints="NO" id="Ove-D2-Lhu">
-                                        <rect key="frame" x="-2" y="0.0" width="377" height="620"/>
+                                        <rect key="frame" x="-2" y="0.0" width="377.00000000000006" height="620"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Wednesday Jan. 7th 2019)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HO0-Hb-xXi">
                                         <rect key="frame" x="10" y="150" width="271" height="26.5"/>
@@ -722,7 +724,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ukq-Yz-Zu2"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" id="A1r-1e-Rnx"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="Home4" id="A1r-1e-Rnx"/>
                     <connections>
                         <outlet property="curentDateLabel" destination="HO0-Hb-xXi" id="I0F-JR-gCG"/>
                         <outlet property="mainTableView" destination="Kox-L4-lm4" id="H69-Cg-HcV"/>
@@ -741,7 +743,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Billy background" translatesAutoresizingMaskIntoConstraints="NO" id="VaZ-iv-JHK">
-                                <rect key="frame" x="-4" y="0.0" width="383" height="669"/>
+                                <rect key="frame" x="-4" y="0.0" width="383.00000000000006" height="669"/>
                                 <gestureRecognizers/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sxc-FM-ob4">
@@ -924,7 +926,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Billy background" translatesAutoresizingMaskIntoConstraints="NO" id="ozw-2b-oWM">
-                                <rect key="frame" x="-2" y="0.0" width="377" height="1202"/>
+                                <rect key="frame" x="-2" y="0.0" width="377.00000000000006" height="1202"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ls8-ar-V6S">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
@@ -1178,17 +1180,16 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="d5m-2C-6Lr" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TB2-Ge-EFp">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" red="0.16485271422533146" green="0.17091338376485432" blue="0.1797180311514599" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="barTintColor" red="0.2274509804" green="0.23921568630000001" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="Cdp-ab-tBm" kind="relationship" relationship="viewControllers" id="GPL-7H-UYb"/>
                         <segue destination="WJu-wq-NKh" kind="relationship" relationship="viewControllers" id="rVV-su-UJW"/>
                         <segue destination="PVT-AK-GGg" kind="relationship" relationship="viewControllers" id="N9x-sf-53J"/>
-                        <segue destination="9HA-bU-xpk" kind="relationship" relationship="viewControllers" id="FjN-JD-vb3"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EVz-ys-kLx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1198,8 +1199,11 @@
     </scenes>
     <resources>
         <image name="Billy background" width="374" height="812"/>
+        <image name="Home4" width="16" height="19"/>
         <image name="UnPaid" width="500" height="500"/>
         <image name="incomplete" width="512" height="512"/>
+        <image name="monthly4" width="20" height="20"/>
+        <image name="setting4" width="20" height="14"/>
     </resources>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>
