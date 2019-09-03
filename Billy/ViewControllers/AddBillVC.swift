@@ -10,10 +10,7 @@ import UIKit
 
 class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    
-    //MARK: - ask user if thay want to copy bill notes - or if they want to keep the notes in sync
-    
-    
+
     
     //MARK: - Properties
     var date: Date?
@@ -22,10 +19,6 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     var daysDelay: Int = 0
     let datePicker = UIDatePicker()
     let yearsPicker = UIPickerView()
-    
-    
-    
-    
     var yearsToPickFrom = [Int]()
     var yearPicked = Date().yearAsInt()
     
@@ -40,11 +33,14 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     @IBOutlet weak var notificationInfoLabel: UILabel!
     
     
+    
     //MARK: - LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        var swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(dismissView))
+        swipeDown.direction = .down
+        self.view.addGestureRecognizer(swipeDown)
         
         yearsToPickFrom = years()
         
@@ -121,9 +117,7 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
                 
             }))
             present(alert, animated: true)
-            
         }
-        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -157,10 +151,9 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     }
     
     
-    @IBAction func cancelButonPressed(_ sender: Any) {
+    @IBAction func cancelButonPressed(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
-    
     
     
     //MARK: - Selector Methods
@@ -189,6 +182,10 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
         }
     }
     
+    
+    @objc func dismissView() {
+        dismiss(animated: true, completion: nil)
+    }
     
     //MARK: - Bill Frequancy Picker Data Source
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

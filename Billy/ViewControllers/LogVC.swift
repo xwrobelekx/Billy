@@ -30,9 +30,6 @@ class LogVC: UIViewController, UITextFieldDelegate {
         dateTextField.inputView = datePicker
         amountTextField.delegate = self
         categoryTextField.delegate = self
-        
-
-      
     }
     
     //MARK: - TextField Delegate Methods

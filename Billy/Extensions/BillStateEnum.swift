@@ -16,5 +16,4 @@ enum BillState {
     case isDueInTwoWeeks
     case isDueThisMonth
     case otherBills
-    #warning("extra case for testing")
 }

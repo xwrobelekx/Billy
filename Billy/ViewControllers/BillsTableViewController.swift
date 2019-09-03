@@ -14,10 +14,9 @@ import UserNotifications
 class BillsTableViewController: UITableViewController, BillCustomCellDelegate {
     
     
-    
+    //MARK: - LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let backgroundImage = #imageLiteral(resourceName: "Billy background")
         let imageView = UIImageView(image: backgroundImage)
         self.tableView.backgroundView = imageView
@@ -32,10 +31,7 @@ class BillsTableViewController: UITableViewController, BillCustomCellDelegate {
     
 
     // MARK: - Table view data source
-    
-
     override func numberOfSections(in tableView: UITableView) -> Int {
-        #warning("extra case for testing")
         return 6
     }
     
@@ -150,12 +146,12 @@ class BillsTableViewController: UITableViewController, BillCustomCellDelegate {
             default:
                 bill = nil
             }
-            guard let billToDelete = bill else {return}
+//            guard let billToDelete = bill else {return}
             
             ///this adds the bill identyfier to array which will use to delete notification for that bill
 //            NotificationController.shared.conitifcationIdentyfiers.append(billToDelete.notificationIdentyfier)
 //             print("❎ notification identyfiers count after deletion of bill: \(NotificationController.shared.conitifcationIdentyfiers.count)")
-            #warning("call the delete method")
+//            #warning("call the delete method")
            // BillsController.shared.delete(bill: billToDelete)
             //tableView.deleteRows(at: [indexPath], with: .fade)
         }
@@ -168,11 +164,8 @@ class BillsTableViewController: UITableViewController, BillCustomCellDelegate {
         guard let bill = cell.bill else {return}
         guard let indexOfBill = BillsController.shared.bills.index(of: bill) else {return}
         BillsController.shared.bills[indexOfBill].isPaid.toggle()
-        
 
-        
-
-        #warning("see if i need to call the save method after togling the setting")
+//        #warning("see if i need to call the save method after togling the setting")
       //  BillsController.shared.saveToPersistentStore()
        // tableView.reloadRows(at: [IndexPath], with: .automatic)
         tableView.reloadData()

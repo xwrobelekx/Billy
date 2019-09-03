@@ -8,23 +8,8 @@
 
 import Foundation
 
-/* Notes
- 
- - create mechanis to re-ad the bill after the year
- - be able to view full bill - even from month view - and able to update it - maybe even to change the notification
- - app icon
- - push to test flight
- - start the monthy view on current month
- 
- 
- 
- 
- */
-
 
 extension Date {
- 
-    
     
     func asString() -> String{
         let formatter = DateFormatter()
@@ -73,7 +58,6 @@ extension Date {
         let format = DateFormatter.dateFormat(fromTemplate: customFormat, options: 0, locale: locale)
         let formatter = DateFormatter()
         formatter.dateFormat = format
-        #warning("Another bang")
         return Int(formatter.string(from: self))!
     }
     

@@ -14,6 +14,8 @@ protocol MainBillCustomCellDelegate: class{
 
 class MainViewTableViewCell: UITableViewCell {
     
+    
+    //MARK: - Properties
     var bill: NewBill? {
         didSet {
             updateViews()
@@ -21,28 +23,30 @@ class MainViewTableViewCell: UITableViewCell {
     }
     var cellDelegate: MainBillCustomCellDelegate?
     
-    
+    //MARK: - Outlets
     @IBOutlet weak var billTitle: UILabel!
     @IBOutlet weak var dueDateLabel: UILabel!
     @IBOutlet weak var isPaidButtonOutlet: UIButton!
     
     
+    //MARK: - LifeCycle Methods
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
     }
     
     
+    //MARK: - Actions
     @IBAction func isPaidButtonPressed(_ sender: Any) {
         cellDelegate?.billIsPaidToggle(cell: self)
         updateViews()
     }
     
     
+    //MARK: - Helper Methods
     func updateViews(){
         guard let bill = bill else {return}
         billTitle.text = bill.title

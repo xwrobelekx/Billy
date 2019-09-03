@@ -9,19 +9,14 @@
 import UIKit
 
 class MonthVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate, MonthCellCustomDelegate {
- 
     
-
     
-    //this VC will hold a collection view which will hold each month - using the date it will open on current month
-
     //MARK: - Outlets
     @IBOutlet weak var monthCollectionView: UICollectionView!
-
+    
     
     //MARK: - Properties
     var firstAppear = true
-   
     
     
     //MARK: - LifeCycle Methods
@@ -29,14 +24,12 @@ class MonthVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         super.viewDidLoad()
         monthCollectionView.delegate = self
         monthCollectionView.dataSource = self
-
-        
         let screenSize = UIScreen.main.bounds.size
         let cellWidth = screenSize.width
         let cellHeight = screenSize.height
         let layout = monthCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
-     
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -44,7 +37,6 @@ class MonthVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     }
     
     
-
     
     //MARK: - Collection View Data Source
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -74,9 +66,6 @@ class MonthVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         return cell
     }
     
-    
-
-    
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if firstAppear == true {
             let currentMonthIndex = Date().monthAsInt()
@@ -87,17 +76,6 @@ class MonthVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     }
     
     
- 
-    
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toDetailView" {
-            let destinationVC = segue.destination as? BillDetailVC
-            
-            
-        }
-    }
-    
     
     //MARK: - Custom Delegate Conformance Method
     func presentDetailViewWith(bill: NewBill) {
@@ -106,9 +84,4 @@ class MonthVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         detailVC.bill = bill
         present(detailVC, animated: true)
     }
-    
-    
-    
-
-
 }

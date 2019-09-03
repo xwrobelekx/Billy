@@ -12,7 +12,6 @@ import UserNotifications
 class BillDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
-    
     //MARK: - Outlets
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var amoutLabel: UILabel!
@@ -22,7 +21,6 @@ class BillDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     @IBOutlet weak var billsTableView: UITableView!
     @IBOutlet weak var markPAidButton: UIButton!
     @IBOutlet weak var notes: UILabel!
-    
     
     
     //MARK: - Preoperties
@@ -35,7 +33,6 @@ class BillDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     var someBills = [NewBill]()
     
     
-    
     //MARK: - LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,10 +41,12 @@ class BillDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         billsTableView.delegate = self
         billsTableView.dataSource = self
         
-
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(dismissView))
+        swipeDown.direction = .down
+        self.view.addGestureRecognizer(swipeDown)
     }
     
-
+    
     
     //MARK: - Actions
     @IBAction func markPaidButtonPressed(_ sender: UIButton){
@@ -64,10 +63,9 @@ class BillDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (_) in
             BillsController.shared.delete(bill: curentBill)
             self.dismiss(animated: true, completion: nil)
-
+            
         }))
         present(alert, animated: true)
-        
     }
     
     
@@ -92,24 +90,6 @@ class BillDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             markPAidButton.setTitle("Mark Paid", for: .normal)
         }
         notes.text = currentBill.notes
-        
-//        //get notificatin thru indentyfier
-//        print("1 start")
-//        center.getPendingNotificationRequests(completionHandler: { (pendingNot) in
-//            for notification in pendingNot {
-//                print("2 durnig")
-//                if notification.identifier == currentBill.notificationIdentyfier {
-//                    DispatchQueue.main.async {
-//
-//                        self.notificationLabel.text = "\(notification.content) \(notification.trigger.debugDescription)"
-//                    }
-//                }
-//            }
-//            print("3 done")
-//        })
-//       print("4 exit")
-        
-        
     }
     
     
@@ -146,11 +126,11 @@ class BillDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         BillsController.shared.delete(bill: bill)
         someBills.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .fade)
-        
-        
     }
     
-    
-    
+    //MARK: - Selectro Methods
+    @objc func dismissView() {
+        dismiss(animated: true, completion: nil)
+    }
     
 }

@@ -11,29 +11,33 @@ import UIKit
 class BillDetailTVC: UITableViewCell {
     
     
+    //MARK: - Outlets
     @IBOutlet weak var titleLAbel: UILabel!
     @IBOutlet weak var dueDateLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
     @IBOutlet weak var indicatorDot: UILabel!
     
+    
+    //MARK: - Properties
     var bill: NewBill? {
         didSet {
             updateViews()
         }
     }
-
+    
+    //MARK: - LifeCycle Methods
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     
-    
+    //MARK: - Update
     func updateViews(){
         guard let currentBill = bill else { return}
         titleLAbel.text = currentBill.title
@@ -44,9 +48,5 @@ class BillDetailTVC: UITableViewCell {
         } else {
             indicatorDot.textColor = #colorLiteral(red: 0.8713001609, green: 0.2077551484, blue: 0.2785714269, alpha: 1)
         }
-        
-        
-        
     }
-
 }
