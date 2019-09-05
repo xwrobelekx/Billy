@@ -8,6 +8,13 @@
 
 import UIKit
 
+
+/*
+ 
+ Version 2.0
+ 
+ */
+
 class LogVC: UIViewController, UITextFieldDelegate {
     
     //MARK: - Properties

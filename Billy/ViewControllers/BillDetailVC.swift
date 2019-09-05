@@ -21,7 +21,15 @@ class BillDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     @IBOutlet weak var billsTableView: UITableView!
     @IBOutlet weak var markPAidButton: UIButton!
     @IBOutlet weak var notes: UILabel!
+    @IBOutlet weak var detailView: UIView!
     
+    @IBOutlet weak var editView: UIView!
+    @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var editedTitle: UITextField!
+    @IBOutlet weak var editedPaidLabel: UILabel!
+    @IBOutlet weak var editedAmoutTextField : UITextField!
+    @IBOutlet weak var editedDueDate: UILabel!
+    @IBOutlet weak var editedNoted: UITextView!
     
     //MARK: - Preoperties
     var bill : NewBill? {
@@ -44,6 +52,7 @@ class BillDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(dismissView))
         swipeDown.direction = .down
         self.view.addGestureRecognizer(swipeDown)
+        editView.isHidden = true
     }
     
     
@@ -73,11 +82,43 @@ class BillDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func editButtonPressed(_ sender: UIButton){
+        guard let currentBill = bill else {return}
+        editedTitle.placeholder = currentBill.title
+        if currentBill.isPaid {
+        editedPaidLabel.text = "Paid"
+        }else {
+            editedPaidLabel.text = "Unpaid"
+        }
+        editedAmoutTextField.placeholder = "$\(currentBill.paymentAmount)"
+        editedNoted.text = currentBill.notes
+        animateViews()
+        editedDueDate.text = "Due on: \(currentBill.dueDate.asString())"
+    }
+    
+    @IBAction func saveButtonPressed(_ sender: UIButton){
+        guard let currentBill = bill else {return}
+        animateViews()
+        if let editedAmount = Double(editedAmoutTextField.text ?? String(
+        currentBill.paymentAmount)) {
+            if editedAmount != currentBill.paymentAmount {
+                currentBill.paymentAmount = editedAmount
+            }
+        }
+        if let editedTitle = editedTitle.text {
+            currentBill.title = editedTitle
+        }
+        
+        if let notes = editedNoted.text {
+            currentBill.notes = notes
+        }
+        updateViews()
+    }
+    
     
     
     //MARK: - Helper Methods
     func updateViews() {
-        
         guard let currentBill = bill else {return}
         titleLabel.text = currentBill.title
         amoutLabel.text = "\(currentBill.paymentAmount)"
@@ -90,6 +131,8 @@ class BillDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             markPAidButton.setTitle("Mark Paid", for: .normal)
         }
         notes.text = currentBill.notes
+        detailView.layer.opacity = 1
+        editView.layer.opacity = 1
     }
     
     
@@ -105,6 +148,37 @@ class BillDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         })
     }
     
+    
+    func animateViews(){
+        //if deatail view is visible
+        if detailView.isHidden == false {
+            self.editView.layer.opacity = 0
+            self.detailView.layer.opacity = 1
+            
+            UIView.animate(withDuration: 1) {
+                self.detailView.layer.opacity = 0
+                
+                self.editView.isHidden = !self.editView.isHidden
+                self.detailView.isHidden = !self.detailView.isHidden
+            }
+            UIView.animate(withDuration: 1) {
+                self.editView.layer.opacity = 1
+            }
+        } else {
+            //if edit view is visible
+            self.editView.layer.opacity = 1
+            self.detailView.layer.opacity = 0
+            
+            UIView.animate(withDuration: 1) {
+                self.editView.layer.opacity = 0
+            }
+            UIView.animate(withDuration: 1) {
+                self.editView.isHidden = !self.editView.isHidden
+                self.detailView.isHidden = !self.detailView.isHidden
+                self.detailView.layer.opacity = 1
+            }
+        }
+    }
     
     
     //MARK: - TableView Delegate Methods

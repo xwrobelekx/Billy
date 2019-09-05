@@ -34,6 +34,7 @@
 		3BA77B3922EFE12200D89230 /* LogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA77B3822EFE12200D89230 /* LogController.swift */; };
 		3BA77B3B22EFE28000D89230 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA77B3A22EFE28000D89230 /* Log.swift */; };
 		3BA77B3D22F9036700D89230 /* NotificationStateEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA77B3C22F9036700D89230 /* NotificationStateEnum.swift */; };
+		3BAEE67023208CD100A5ED08 /* RoundedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAEE66F23208CD100A5ED08 /* RoundedTextView.swift */; };
 		3BC5769822D6CAE00061F700 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC5769722D6CADF0061F700 /* DoubleExtension.swift */; };
 		3BC5769A22D6D8810061F700 /* BillCreationLenght.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC5769922D6D8810061F700 /* BillCreationLenght.swift */; };
 		3BD0909022E31BBD0085ADAE /* SelfSizedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD0908F22E31BBD0085ADAE /* SelfSizedTableView.swift */; };
@@ -76,6 +77,7 @@
 		3BA77B3822EFE12200D89230 /* LogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogController.swift; sourceTree = "<group>"; };
 		3BA77B3A22EFE28000D89230 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		3BA77B3C22F9036700D89230 /* NotificationStateEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationStateEnum.swift; sourceTree = "<group>"; };
+		3BAEE66F23208CD100A5ED08 /* RoundedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTextView.swift; sourceTree = "<group>"; };
 		3BC5769722D6CADF0061F700 /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 		3BC5769922D6D8810061F700 /* BillCreationLenght.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCreationLenght.swift; sourceTree = "<group>"; };
 		3BD0908F22E31BBD0085ADAE /* SelfSizedTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfSizedTableView.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				3BFB0FFB22D204300058D95D /* ToDo.swift */,
 				3BD0908F22E31BBD0085ADAE /* SelfSizedTableView.swift */,
 				3BD0909122E34E960085ADAE /* CustomButton.swift */,
+				3BAEE66F23208CD100A5ED08 /* RoundedTextView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B1FA44121ACF97C00B2A84B /* BillsTableViewController.swift in Sources */,
+				3BAEE67023208CD100A5ED08 /* RoundedTextView.swift in Sources */,
 				3B63562421D0FEA800186EBD /* BillTableViewCell.swift in Sources */,
 				3BDAFC4A21E58CA20021FB8F /* NotificationController.swift in Sources */,
 				3B63561E21D0F35900186EBD /* MonthCollectionViewCell.swift in Sources */,
@@ -477,7 +481,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.xwrobelekx.BillyTRACKBADGE;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xwrobelekx.Billy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -496,7 +500,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.xwrobelekx.BillyTRACKBADGE;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xwrobelekx.Billy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;

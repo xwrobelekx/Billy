@@ -9,6 +9,13 @@
 import Foundation
 
 
+/*
+ 
+ Version 2.0
+ 
+ 
+ */
+
 class LogController {
     
     
