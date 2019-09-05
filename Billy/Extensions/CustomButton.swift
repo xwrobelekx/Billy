@@ -18,4 +18,16 @@ class CustomButton: UIButton {
         self.setTitleShadowColor(.darkGray, for: .normal)
         self.setTitleColor(.white, for: .normal)
     }
+    
+    
+
+}
+
+
+extension UIButton {
+    func hapticFeedback(){
+        let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .light)
+        impactFeedbackgenerator.prepare()
+        impactFeedbackgenerator.impactOccurred()
+    }
 }

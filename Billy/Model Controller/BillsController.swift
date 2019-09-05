@@ -115,10 +115,7 @@ class BillsController {
 //                }
                 let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: generateThreeIdentyfiers(), notes: bill.notes)
                 bills.append(newBill)
-                
-                
                 NotificationController.shared.setupNotificationWith(bill: newBill)
-                
                 monthsAmountToAdd += 1
 //                bill.notificationIdentyfier.removeAll()
             }

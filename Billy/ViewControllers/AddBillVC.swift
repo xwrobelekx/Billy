@@ -31,7 +31,7 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var yearsTextField: UITextField!
     @IBOutlet weak var notificationInfoLabel: UILabel!
-    
+   
     
     
     //MARK: - LifeCycle Methods
@@ -147,11 +147,13 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     
     //MARK: - Actions
     @IBAction func saveButtonTapped(_ sender: Any) {
+        self.hapticFeedback()
         createBill()
     }
     
     
     @IBAction func cancelButonPressed(_ sender: UIButton) {
+        self.hapticFeedback()
         dismiss(animated: true, completion: nil)
     }
     
@@ -240,8 +242,10 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     func createBill(){
         guard let title = titleTextField.text, title != "",
             let paymentAmout = payemntAmoutTextField.text, paymentAmout != "",
-            let dueDate = date else {return}
-        
+            let dueDate = date else {
+                shake()
+                return}
+        hapticFeedback()
         let yearsToContinue = Int(yearsTextField.text ?? "0") ?? 0
         
         guard let payment = Double(paymentAmout) else {return}

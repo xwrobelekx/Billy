@@ -284,6 +284,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" image="setting4" id="gae-JD-yJb"/>
                     <connections>
+                        <outlet property="mainView" destination="I4V-VB-OJH" id="Awc-eR-ojk"/>
                         <outlet property="notificationDaysDelayTextField" destination="ry0-c8-qvF" id="xhp-OW-4ra"/>
                         <outlet property="notificationTimeTextField" destination="gTm-9s-vz0" id="wBF-7J-b8C"/>
                         <outlet property="notifyOnDueDateSwitch" destination="zxK-lg-woG" id="YcR-A0-7wR"/>
@@ -679,6 +680,7 @@
                                             <color key="titleShadowColor" red="0.2274509804" green="0.23921568630000001" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
+                                            <action selector="addButtonPressed:" destination="Cdp-ab-tBm" eventType="touchUpInside" id="YfJ-ZW-uh7"/>
                                             <segue destination="5mT-dZ-8PW" kind="presentation" id="fTO-fU-zfj"/>
                                         </connections>
                                     </button>
@@ -726,6 +728,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="Home4" id="A1r-1e-Rnx"/>
                     <connections>
+                        <outlet property="addButton" destination="y0w-DC-dNY" id="VxE-gK-4HR"/>
                         <outlet property="curentDateLabel" destination="HO0-Hb-xXi" id="I0F-JR-gCG"/>
                         <outlet property="mainTableView" destination="Kox-L4-lm4" id="H69-Cg-HcV"/>
                     </connections>
@@ -1295,7 +1298,6 @@
                         <segue destination="Cdp-ab-tBm" kind="relationship" relationship="viewControllers" id="GPL-7H-UYb"/>
                         <segue destination="WJu-wq-NKh" kind="relationship" relationship="viewControllers" id="rVV-su-UJW"/>
                         <segue destination="PVT-AK-GGg" kind="relationship" relationship="viewControllers" id="N9x-sf-53J"/>
-                        <segue destination="9HA-bU-xpk" kind="relationship" relationship="viewControllers" id="Lya-fp-YsF"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EVz-ys-kLx" userLabel="First Responder" sceneMemberID="firstResponder"/>

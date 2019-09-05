@@ -59,6 +59,7 @@ class BillDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     //MARK: - Actions
     @IBAction func markPaidButtonPressed(_ sender: UIButton){
+        hapticFeedback()
         guard let curentBill = bill else {return}
         curentBill.isPaid.toggle()
         updateViews()
@@ -66,6 +67,7 @@ class BillDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     
     @IBAction func deleteButtonPressed(_ sender: Any) {
+        hapticFeedback()
         guard let curentBill = bill else {return}
         let alert = UIAlertController(title: "Are you sure to delete this bill?", message: "This cannot be undone", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -79,10 +81,12 @@ class BillDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     
     @IBAction func backButtonPressed(_ sender: Any) {
+        hapticFeedback()
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func editButtonPressed(_ sender: UIButton){
+        hapticFeedback()
         guard let currentBill = bill else {return}
         editedTitle.placeholder = currentBill.title
         if currentBill.isPaid {
@@ -97,6 +101,7 @@ class BillDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     @IBAction func saveButtonPressed(_ sender: UIButton){
+        hapticFeedback()
         guard let currentBill = bill else {return}
         animateViews()
         if let editedAmount = Double(editedAmoutTextField.text ?? String(

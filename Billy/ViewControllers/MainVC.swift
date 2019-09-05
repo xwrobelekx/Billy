@@ -20,6 +20,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
     //MARK: - Outlets
     @IBOutlet weak var curentDateLabel: UILabel!
     @IBOutlet weak var mainTableView: UITableView!
+    @IBOutlet weak var addButton: UIButton!
     
     
     //MARK: - LifeCycle Methods
@@ -49,6 +50,11 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
         center.removePendingNotificationRequests(withIdentifiers: NotificationController.shared.nonitifcationIdentyfiers)
         center.removeDeliveredNotifications(withIdentifiers: NotificationController.shared.nonitifcationIdentyfiers)
         NotificationController.shared.nonitifcationIdentyfiers.removeAll()
+    }
+    
+    
+    @IBAction func addButtonPressed(_ sender: UIButton){
+        addButton.hapticFeedback()
     }
     
     

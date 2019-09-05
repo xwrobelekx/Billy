@@ -21,18 +21,18 @@ class SettingsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     @IBOutlet weak var notificationTimeTextField: UITextField!
     @IBOutlet weak var notifyTwoDayesBeforeSwitch: UISwitch!
     @IBOutlet weak var notifyOnDueDateSwitch: UISwitch!
-    
+    @IBOutlet weak var mainView: UIView!
     
     //MARK: - LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        timePicker.backgroundColor = #colorLiteral(red: 0.454691112, green: 0.4762320518, blue: 0.5025654435, alpha: 0.5)
+        timePicker.backgroundColor = #colorLiteral(red: 0, green: 0.9914394021, blue: 1, alpha: 0.5)
         timePicker.datePickerMode = .time
         timePicker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
         notificationTimeTextField.inputView = timePicker
         daysDelayPicker.delegate = self
         daysDelayPicker.dataSource = self
-        daysDelayPicker.backgroundColor = #colorLiteral(red: 0.454691112, green: 0.4762320518, blue: 0.5025654435, alpha: 0.5)
+        daysDelayPicker.backgroundColor = #colorLiteral(red: 0, green: 0.9914394021, blue: 1, alpha: 0.5)
         notificationDaysDelayTextField.inputView = daysDelayPicker
         notificationDaysDelayTextField.text = "\(SettingController.shared.setting.dayDelay)"
         notificationTimeTextField.text = "\(SettingController.shared.setting.notificationTime?.timeAsStringWithAMSymbol() ?? "8:30 AM")"
@@ -55,6 +55,7 @@ class SettingsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     
     //MARK: - Actions
     @IBAction func resetButtonPressed(_ sender: Any) {
+        hapticFeedback()
         SettingController.shared.setting.dayDelay = 5
         SettingController.shared.setting.notificationTime = Date(timeIntervalSince1970: 48640)
         notificationTimeTextField.text = "\(SettingController.shared.setting.notificationTime!.timeAsStringWithAMSymbol())"
@@ -63,6 +64,7 @@ class SettingsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         SettingController.shared.setting.notifyTwoDaysBefore = true
         notifyTwoDayesBeforeSwitch.setOn(SettingController.shared.setting.notifyTwoDaysBefore, animated: true)
         notifyOnDueDateSwitch.setOn(SettingController.shared.setting.notifyOnDay, animated: true)
+        
     }
     
     @IBAction func notifyTwoDaysBeforeSwitchPressed(_ sender: UISwitch){
