@@ -15,7 +15,7 @@ class RoundedTextField: UITextView {
         super.draw(rect)
         self.backgroundColor = .clear
         self.layer.cornerRadius = 9
-        self.layer.backgroundColor = #colorLiteral(red: 0.7254928946, green: 0.8948153853, blue: 0.9053140283, alpha: 1)
+        self.layer.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
     }
     
 }

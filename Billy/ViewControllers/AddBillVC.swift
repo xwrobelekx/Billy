@@ -137,23 +137,22 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        frequencyPicker.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-        datePicker.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-        yearsPicker.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-        
+        frequencyPicker.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
+        datePicker.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
+        yearsPicker.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
     }
     
     
     
     //MARK: - Actions
     @IBAction func saveButtonTapped(_ sender: Any) {
-        self.hapticFeedback()
+        hapticFeedback()
         createBill()
     }
     
     
     @IBAction func cancelButonPressed(_ sender: UIButton) {
-        self.hapticFeedback()
+        hapticFeedback()
         dismiss(animated: true, completion: nil)
     }
     

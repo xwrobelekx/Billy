@@ -140,7 +140,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
             
         default : print("Error")
         }
-        
+        hapticFeedback()
         tableView.deleteRows(at: [indexPath], with: .fade)
     }
     

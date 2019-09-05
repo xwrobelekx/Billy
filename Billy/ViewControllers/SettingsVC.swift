@@ -26,13 +26,13 @@ class SettingsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     //MARK: - LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        timePicker.backgroundColor = #colorLiteral(red: 0, green: 0.9914394021, blue: 1, alpha: 0.5)
+        timePicker.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
         timePicker.datePickerMode = .time
         timePicker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
         notificationTimeTextField.inputView = timePicker
         daysDelayPicker.delegate = self
         daysDelayPicker.dataSource = self
-        daysDelayPicker.backgroundColor = #colorLiteral(red: 0, green: 0.9914394021, blue: 1, alpha: 0.5)
+        daysDelayPicker.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
         notificationDaysDelayTextField.inputView = daysDelayPicker
         notificationDaysDelayTextField.text = "\(SettingController.shared.setting.dayDelay)"
         notificationTimeTextField.text = "\(SettingController.shared.setting.notificationTime?.timeAsStringWithAMSymbol() ?? "8:30 AM")"
