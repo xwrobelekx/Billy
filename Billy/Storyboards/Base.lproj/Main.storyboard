@@ -154,7 +154,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Billy background" translatesAutoresizingMaskIntoConstraints="NO" id="dqB-av-0cJ">
-                                <rect key="frame" x="-2" y="0.0" width="377" height="620"/>
+                                <rect key="frame" x="-2" y="0.0" width="377.00000000000006" height="620"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I4V-VB-OJH" customClass="RoundedView" customModule="Billy" customModuleProvider="target">
                                 <rect key="frame" x="10" y="40" width="355" height="558"/>
@@ -303,7 +303,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Billy background" translatesAutoresizingMaskIntoConstraints="NO" id="N9c-hs-xVq">
-                                <rect key="frame" x="-4" y="-30" width="383" height="650"/>
+                                <rect key="frame" x="-4" y="-30" width="383.00000000000006" height="650"/>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GuA-DK-OAt">
                                 <rect key="frame" x="0.0" y="10" width="375" height="608"/>
@@ -505,7 +505,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Billy background" translatesAutoresizingMaskIntoConstraints="NO" id="dSK-O4-qhX">
-                                <rect key="frame" x="-2" y="0.0" width="377" height="667"/>
+                                <rect key="frame" x="-2" y="0.0" width="377.00000000000006" height="667"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ddi-I8-DAl">
                                 <rect key="frame" x="159" y="602" width="57" height="45"/>
@@ -595,7 +595,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Billy background" translatesAutoresizingMaskIntoConstraints="NO" id="Ove-D2-Lhu">
-                                        <rect key="frame" x="-2" y="0.0" width="377" height="620"/>
+                                        <rect key="frame" x="-2" y="0.0" width="377.00000000000006" height="620"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Wednesday Jan. 7th 2019)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HO0-Hb-xXi">
                                         <rect key="frame" x="10" y="150" width="271" height="26.5"/>
@@ -743,7 +743,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Billy background" translatesAutoresizingMaskIntoConstraints="NO" id="VaZ-iv-JHK">
-                                <rect key="frame" x="-4" y="0.0" width="383" height="669"/>
+                                <rect key="frame" x="-4" y="0.0" width="383.00000000000006" height="669"/>
                                 <gestureRecognizers/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sxc-FM-ob4">
@@ -926,7 +926,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Billy background" translatesAutoresizingMaskIntoConstraints="NO" id="ozw-2b-oWM">
-                                <rect key="frame" x="-2" y="0.0" width="377" height="1202"/>
+                                <rect key="frame" x="-2" y="0.0" width="377.00000000000006" height="1202"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ls8-ar-V6S">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
@@ -961,6 +961,17 @@
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lq7-Vv-3sf">
+                                                        <rect key="frame" x="252" y="399" width="73" height="31"/>
+                                                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="17"/>
+                                                        <size key="titleShadowOffset" width="1" height="1"/>
+                                                        <state key="normal" title="Mark Paid">
+                                                            <color key="titleShadowColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="markPaidButtonPressed:" destination="LmC-B1-PIa" eventType="touchUpInside" id="32H-J1-bWA"/>
+                                                        </connections>
+                                                    </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GOJ-WF-mTN">
                                                         <rect key="frame" x="10" y="239.5" width="335" height="120"/>
                                                         <constraints>
@@ -971,34 +982,6 @@
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="99" translatesAutoresizingMaskIntoConstraints="NO" id="F1m-VV-MUS">
-                                                        <rect key="frame" x="70.5" y="389.5" width="214" height="31"/>
-                                                        <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J5p-gX-ZYi">
-                                                                <rect key="frame" x="0.0" y="0.0" width="42" height="31"/>
-                                                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="17"/>
-                                                                <size key="titleShadowOffset" width="1" height="1"/>
-                                                                <state key="normal" title="Delete">
-                                                                    <color key="titleColor" red="0.80260094260000003" green="0.26864579370000002" blue="0.29854392149999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                    <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                </state>
-                                                                <connections>
-                                                                    <action selector="deleteButtonPressed:" destination="LmC-B1-PIa" eventType="touchUpInside" id="Zvm-6A-AfM"/>
-                                                                </connections>
-                                                            </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lq7-Vv-3sf">
-                                                                <rect key="frame" x="141" y="0.0" width="73" height="31"/>
-                                                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="17"/>
-                                                                <size key="titleShadowOffset" width="1" height="1"/>
-                                                                <state key="normal" title="Mark Paid">
-                                                                    <color key="titleShadowColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                </state>
-                                                                <connections>
-                                                                    <action selector="markPaidButtonPressed:" destination="LmC-B1-PIa" eventType="touchUpInside" id="32H-J1-bWA"/>
-                                                                </connections>
-                                                            </button>
-                                                        </subviews>
-                                                    </stackView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="giq-Qo-apA" customClass="CustomButton" customModule="Billy" customModuleProvider="target">
                                                         <rect key="frame" x="317" y="8" width="30" height="31"/>
                                                         <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="17"/>
@@ -1010,25 +993,42 @@
                                                             <action selector="editButtonPressed:" destination="LmC-B1-PIa" eventType="touchUpInside" id="h86-6e-KYm"/>
                                                         </connections>
                                                     </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J5p-gX-ZYi">
+                                                        <rect key="frame" x="30" y="399" width="50" height="31"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="50" id="x7U-Nc-W0L"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="17"/>
+                                                        <size key="titleShadowOffset" width="1" height="1"/>
+                                                        <state key="normal" title="Delete">
+                                                            <color key="titleColor" red="0.80260094260000003" green="0.26864579370000002" blue="0.29854392149999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="deleteButtonPressed:" destination="LmC-B1-PIa" eventType="touchUpInside" id="Zvm-6A-AfM"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.0" green="0.99143940210000003" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="J5p-gX-ZYi" secondAttribute="bottom" constant="20" id="0Ub-V0-UPS"/>
                                                     <constraint firstItem="Sfp-CG-AyV" firstAttribute="top" secondItem="h55-Iv-Q3o" secondAttribute="bottom" constant="25" id="5p6-Fr-w95"/>
                                                     <constraint firstItem="MBD-gv-4k2" firstAttribute="centerX" secondItem="PLm-kM-YTX" secondAttribute="centerX" id="6g5-5B-4RD"/>
                                                     <constraint firstAttribute="trailing" secondItem="giq-Qo-apA" secondAttribute="trailing" constant="8" id="B0z-FF-3Wq"/>
                                                     <constraint firstItem="GOJ-WF-mTN" firstAttribute="top" secondItem="yY4-EQ-CVm" secondAttribute="bottom" constant="20" id="N9H-cD-nmr"/>
+                                                    <constraint firstItem="J5p-gX-ZYi" firstAttribute="leading" secondItem="PLm-kM-YTX" secondAttribute="leading" constant="30" id="OY9-7A-dIV"/>
                                                     <constraint firstAttribute="height" constant="450" id="Oyk-qr-9L7"/>
                                                     <constraint firstItem="Sfp-CG-AyV" firstAttribute="centerX" secondItem="PLm-kM-YTX" secondAttribute="centerX" id="Q4v-Zs-YIA"/>
-                                                    <constraint firstItem="F1m-VV-MUS" firstAttribute="top" secondItem="GOJ-WF-mTN" secondAttribute="bottom" constant="30" id="QB3-jp-l9p"/>
                                                     <constraint firstAttribute="trailing" secondItem="GOJ-WF-mTN" secondAttribute="trailing" constant="10" id="Vuu-gd-BwK"/>
                                                     <constraint firstItem="GOJ-WF-mTN" firstAttribute="leading" secondItem="PLm-kM-YTX" secondAttribute="leading" constant="10" id="Wim-AL-2Ef"/>
                                                     <constraint firstItem="GOJ-WF-mTN" firstAttribute="centerX" secondItem="PLm-kM-YTX" secondAttribute="centerX" id="Z37-yf-Hsb"/>
                                                     <constraint firstItem="yY4-EQ-CVm" firstAttribute="centerX" secondItem="PLm-kM-YTX" secondAttribute="centerX" id="ZOY-ZQ-lQK"/>
                                                     <constraint firstItem="h55-Iv-Q3o" firstAttribute="top" secondItem="PLm-kM-YTX" secondAttribute="top" constant="50" id="a5N-RR-Swd"/>
-                                                    <constraint firstItem="F1m-VV-MUS" firstAttribute="centerX" secondItem="PLm-kM-YTX" secondAttribute="centerX" id="dQd-Cs-2Fq"/>
+                                                    <constraint firstAttribute="trailing" secondItem="lq7-Vv-3sf" secondAttribute="trailing" constant="30" id="cff-0y-mWg"/>
                                                     <constraint firstItem="yY4-EQ-CVm" firstAttribute="top" secondItem="MBD-gv-4k2" secondAttribute="bottom" constant="20" id="ei2-lC-V9U"/>
                                                     <constraint firstItem="MBD-gv-4k2" firstAttribute="top" secondItem="Sfp-CG-AyV" secondAttribute="bottom" constant="20" id="hWy-rz-7AH"/>
                                                     <constraint firstItem="giq-Qo-apA" firstAttribute="top" secondItem="PLm-kM-YTX" secondAttribute="top" constant="8" id="pW1-Th-WkS"/>
+                                                    <constraint firstAttribute="bottom" secondItem="lq7-Vv-3sf" secondAttribute="bottom" constant="20" id="rEM-45-Vmy"/>
                                                     <constraint firstItem="h55-Iv-Q3o" firstAttribute="centerX" secondItem="PLm-kM-YTX" secondAttribute="centerX" id="vN9-QK-o5P"/>
                                                 </constraints>
                                             </view>
