@@ -28,15 +28,16 @@ class BillsController {
         var dateForWhileStatement = Date()
         print("🧤 start: \(todaysYear) end: \(endYear)")
         
-        for _ in 0...3{
-            bill.notificationIdentyfier.append(UUID().uuidString)
-        }
+//        for _ in 0...3{
+//            bill.notificationIdentyfier.append(UUID().uuidString)
+//        }
+        bill.notificationIdentyfier = generateThreeIdentyfiers()
         
         // first im adding the initial bill, then checking if there is more to add by switching over the frequency
         NotificationController.shared.setupNotificationWith(bill: bill)
         
         bills.append(bill)
-        bill.notificationIdentyfier.removeAll()
+//        bill.notificationIdentyfier.removeAll()
         //        print("🍀 when creating the bill this is the notificvation hour: \(SettingController.shared.setting.notificationTime?.timeAsStringWithAMSymbol()), day delay \(SettingController.shared.setting.dayDelay)")
         
         guard let frequency = frequency else {return}
@@ -52,16 +53,16 @@ class BillsController {
                 dateForWhileStatement = newDueDate
                 //                let customIdentyfier = UUID().uuidString
                 
-                for _ in 0...3{
-                    bill.notificationIdentyfier.append(UUID().uuidString)
-                }
-                let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: bill.notificationIdentyfier, notes: bill.notes)
+//                for _ in 0...3{
+//                    bill.notificationIdentyfier.append(UUID().uuidString)
+//                }
+                let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: generateThreeIdentyfiers() , notes: bill.notes)
                 bills.append(newBill)
                 
                 NotificationController.shared.setupNotificationWith(bill: newBill)
                 
                 monthsAmountToAdd += 12
-                bill.notificationIdentyfier.removeAll()
+//                bill.notificationIdentyfier.removeAll()
             }
             
         case .semiAnual:
@@ -69,18 +70,18 @@ class BillsController {
             while dateForWhileStatement.yearAsInt() <= endYear {
                 guard let newDueDate = calendar.date(byAdding: DateComponents(month: monthsAmountToAdd), to: dueDate, wrappingComponents: false) else {return}
                 dateForWhileStatement = newDueDate
-                //            let customIdentyfier = UUID().uuidString
-                for _ in 0...3{
-                    bill.notificationIdentyfier.append(UUID().uuidString)
-                }
+//                //            let customIdentyfier = UUID().uuidString
+//                for _ in 0...3{
+//                    bill.notificationIdentyfier.append(UUID().uuidString)
+//                }
                 
-                let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: bill.notificationIdentyfier, notes: bill.notes)
+                let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: generateThreeIdentyfiers(), notes: bill.notes)
                 
                 bills.append(newBill)
                 
                 NotificationController.shared.setupNotificationWith(bill: newBill)
                 monthsAmountToAdd += 6
-                bill.notificationIdentyfier.removeAll()
+//                bill.notificationIdentyfier.removeAll()
             }
             
         case .quarterly:
@@ -90,16 +91,16 @@ class BillsController {
                 guard let newDueDate = calendar.date(byAdding: DateComponents(month: monthsAmountToAdd), to: dueDate, wrappingComponents: false) else {return}
                 dateForWhileStatement = newDueDate
                 
-                for _ in 0...3{
-                    bill.notificationIdentyfier.append(UUID().uuidString)
-                }
-                let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: bill.notificationIdentyfier, notes: bill.notes)
+//                for _ in 0...3{
+//                    bill.notificationIdentyfier.append(UUID().uuidString)
+//                }
+                let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: generateThreeIdentyfiers(), notes: bill.notes)
                 bills.append(newBill)
                 
                 NotificationController.shared.setupNotificationWith(bill: newBill)
                 
                 monthsAmountToAdd += 3
-                bill.notificationIdentyfier.removeAll()
+//                bill.notificationIdentyfier.removeAll()
             }
             
         case .monthly:
@@ -109,17 +110,17 @@ class BillsController {
                 guard let newDueDate = calendar.date(byAdding: DateComponents(month: monthsAmountToAdd), to: dueDate, wrappingComponents: false) else {return}
                 dateForWhileStatement = newDueDate
                 //                let customIdentyfier = UUID().uuidString
-                for _ in 0...3{
-                    bill.notificationIdentyfier.append(UUID().uuidString)
-                }
-                let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: bill.notificationIdentyfier, notes: bill.notes)
+//                for _ in 0...3{
+//                    bill.notificationIdentyfier.append(UUID().uuidString)
+//                }
+                let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: generateThreeIdentyfiers(), notes: bill.notes)
                 bills.append(newBill)
                 
                 
                 NotificationController.shared.setupNotificationWith(bill: newBill)
                 
                 monthsAmountToAdd += 1
-                bill.notificationIdentyfier.removeAll()
+//                bill.notificationIdentyfier.removeAll()
             }
         case .biweekly:
             var daysToAdd = 14
@@ -128,16 +129,16 @@ class BillsController {
                 guard let newDueDate = calendar.date(byAdding: DateComponents(day: daysToAdd), to: dueDate, wrappingComponents: false) else {return}
                 dateForWhileStatement = newDueDate
                 //                let customIdentyfier = UUID().uuidString
-                for _ in 0...3{
-                    bill.notificationIdentyfier.append(UUID().uuidString)
-                }
-                let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: bill.notificationIdentyfier, notes: bill.notes)
+//                for _ in 0...3{
+//                    bill.notificationIdentyfier.append(UUID().uuidString)
+//                }
+                let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: generateThreeIdentyfiers(), notes: bill.notes)
                 bills.append(newBill)
                 
                 NotificationController.shared.setupNotificationWith(bill: newBill)
                 
                 daysToAdd += 14
-                bill.notificationIdentyfier.removeAll()
+//                bill.notificationIdentyfier.removeAll()
             }
         case .weekly:
             var daysToAdd = 7
@@ -145,18 +146,18 @@ class BillsController {
             while dateForWhileStatement.yearAsInt() <= endYear {
                 guard let newDueDate = calendar.date(byAdding: DateComponents(day: daysToAdd), to: dueDate, wrappingComponents: false) else {return}
                 dateForWhileStatement = newDueDate
-                //                let customIdentyfier = UUID().uuidString
-                for _ in 0...3{
-                    bill.notificationIdentyfier.append(UUID().uuidString)
-                }
-                let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: bill.notificationIdentyfier, notes: bill.notes)
+//                //                let customIdentyfier = UUID().uuidString
+//                for _ in 0...3{
+//                    bill.notificationIdentyfier.append(UUID().uuidString)
+//                }
+                let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: generateThreeIdentyfiers(), notes: bill.notes)
                 bills.append(newBill)
                 
                 NotificationController.shared.setupNotificationWith(bill: newBill)
                 
                 
                 daysToAdd += 7
-                bill.notificationIdentyfier.removeAll()
+//                bill.notificationIdentyfier.removeAll()
             }
         case .none:
             print("none")
@@ -172,11 +173,15 @@ class BillsController {
             print("❌no index found of bill to delete")
             return
         }
+//         print("📲📲📲\(bill.notificationIdentyfier)")
         let center = UNUserNotificationCenter.current()
+        center.getPendingNotificationRequests { (pendingNotifications) in
+//            print("💡 Pending notifications count: \(pendingNotifications.count)")
+        }
         center.removePendingNotificationRequests(withIdentifiers: bill.notificationIdentyfier)
         center.removeDeliveredNotifications(withIdentifiers: bill.notificationIdentyfier)
         bills.remove(at: index)
-        print("⛔️sucesfully deleted bill and its notifications: bill title: \(bill.title), bill due date \(bill.dueDate.asStringLonger()), bill payment amount\(bill.paymentAmount)")
+//        print("⛔️sucesfully deleted bill and its notifications: bill title: \(bill.title), bill due date \(bill.dueDate.asStringLonger()), bill payment amount\(bill.paymentAmount)")
     }
     
     
@@ -276,6 +281,15 @@ class BillsController {
         let fullURL = documentDirectory.appendingPathComponent(fileName)
         return fullURL
         
+    }
+    
+    //MARK: - Helper Methods
+    func generateThreeIdentyfiers() -> [String]{
+        var identyfiers : [String] = []
+        for _ in 0...2 {
+            identyfiers.append(UUID().uuidString)
+        }
+        return identyfiers
     }
     
 }

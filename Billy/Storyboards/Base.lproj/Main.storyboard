@@ -154,7 +154,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Billy background" translatesAutoresizingMaskIntoConstraints="NO" id="dqB-av-0cJ">
-                                <rect key="frame" x="-2" y="0.0" width="377.00000000000006" height="620"/>
+                                <rect key="frame" x="-2" y="0.0" width="377" height="620"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I4V-VB-OJH" customClass="RoundedView" customModule="Billy" customModuleProvider="target">
                                 <rect key="frame" x="10" y="40" width="355" height="558"/>
@@ -303,7 +303,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Billy background" translatesAutoresizingMaskIntoConstraints="NO" id="N9c-hs-xVq">
-                                <rect key="frame" x="-4" y="-30" width="383.00000000000006" height="650"/>
+                                <rect key="frame" x="-4" y="-30" width="383" height="650"/>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GuA-DK-OAt">
                                 <rect key="frame" x="0.0" y="10" width="375" height="608"/>
@@ -505,7 +505,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Billy background" translatesAutoresizingMaskIntoConstraints="NO" id="dSK-O4-qhX">
-                                <rect key="frame" x="-2" y="0.0" width="377.00000000000006" height="667"/>
+                                <rect key="frame" x="-2" y="0.0" width="377" height="667"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ddi-I8-DAl">
                                 <rect key="frame" x="159" y="602" width="57" height="45"/>
@@ -595,7 +595,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Billy background" translatesAutoresizingMaskIntoConstraints="NO" id="Ove-D2-Lhu">
-                                        <rect key="frame" x="-2" y="0.0" width="377.00000000000006" height="620"/>
+                                        <rect key="frame" x="-2" y="0.0" width="377" height="620"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Wednesday Jan. 7th 2019)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HO0-Hb-xXi">
                                         <rect key="frame" x="10" y="150" width="271" height="26.5"/>
@@ -743,7 +743,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Billy background" translatesAutoresizingMaskIntoConstraints="NO" id="VaZ-iv-JHK">
-                                <rect key="frame" x="-4" y="0.0" width="383.00000000000006" height="669"/>
+                                <rect key="frame" x="-4" y="0.0" width="383" height="669"/>
                                 <gestureRecognizers/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sxc-FM-ob4">
@@ -926,7 +926,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Billy background" translatesAutoresizingMaskIntoConstraints="NO" id="ozw-2b-oWM">
-                                <rect key="frame" x="-2" y="0.0" width="377.00000000000006" height="1202"/>
+                                <rect key="frame" x="-2" y="0.0" width="377" height="1202"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ls8-ar-V6S">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
@@ -1295,6 +1295,7 @@
                         <segue destination="Cdp-ab-tBm" kind="relationship" relationship="viewControllers" id="GPL-7H-UYb"/>
                         <segue destination="WJu-wq-NKh" kind="relationship" relationship="viewControllers" id="rVV-su-UJW"/>
                         <segue destination="PVT-AK-GGg" kind="relationship" relationship="viewControllers" id="N9x-sf-53J"/>
+                        <segue destination="9HA-bU-xpk" kind="relationship" relationship="viewControllers" id="Lya-fp-YsF"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EVz-ys-kLx" userLabel="First Responder" sceneMemberID="firstResponder"/>
