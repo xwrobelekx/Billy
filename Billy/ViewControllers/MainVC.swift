@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MainBillCustomCellDelegate {
     
@@ -19,6 +20,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
     //MARK: - Outlets
     @IBOutlet weak var curentDateLabel: UILabel!
     @IBOutlet weak var mainTableView: UITableView!
+    @IBOutlet weak var addButton: UIButton!
     
     
     //MARK: - LifeCycle Methods
@@ -28,15 +30,38 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
         curentDateLabel.text = Date().asStringLonger()
         mainTableView.delegate = self
         mainTableView.dataSource = self
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+<<<<<<< HEAD
         pastDueBills = BillsController.shared.filterBills(by: .isPastDue)
         dueThisMonth = BillsController.shared.filterBills(by: .isDueThisMonth)
      //   paidBills = BillsController.shared.filterBills(by: .isPaid)
         recentlyPaid = BillsController.shared.filterBills(by: .recentleyPaid)
+=======
+        pastDueBills = BillsController.shared.filterBills(by: .isPastDue).sorted(by: { (first, second) -> Bool in
+            first.dueDate < second.dueDate
+        })
+        dueThisMonth = BillsController.shared.filterBills(by: .isDueThisMonth).sorted(by: { (first, second) -> Bool in
+            first.dueDate < second.dueDate
+        })
+>>>>>>> develop
         mainTableView.reloadData()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        let center = UNUserNotificationCenter.current()
+        center.removePendingNotificationRequests(withIdentifiers: NotificationController.shared.nonitifcationIdentyfiers)
+        center.removeDeliveredNotifications(withIdentifiers: NotificationController.shared.nonitifcationIdentyfiers)
+        NotificationController.shared.nonitifcationIdentyfiers.removeAll()
+    }
+    
+    
+    @IBAction func addButtonPressed(_ sender: UIButton){
+        addButton.hapticFeedback()
     }
     
     
@@ -48,23 +73,31 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = CustomViewWithRoundedCorners()
-        view.backgroundColor = .clear
+        view.backgroundColor = #colorLiteral(red: 0, green: 0.3285208941, blue: 0.5748849511, alpha: 1)
         let label = UILabel()
         label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         switch section {
         case 0 :
             if pastDueBills.count == 0 && dueThisMonth.count == 0 {
+<<<<<<< HEAD
+=======
+                label.font = UIFont(name: "Marker Felt", size: 17)
+>>>>>>> develop
                 label.text = "No bills due this month."
             } else if pastDueBills.count >= 1 {
+                label.font = UIFont(name: "Marker Felt", size: 17)
+
                 label.text = "Past due bills:"
             } else {
                 label.text = ""
+                view.backgroundColor = .clear
             }
         case 1:
             if dueThisMonth.count == 0 {
                 label.text = ""
             } else {
+                label.font = UIFont(name: "Marker Felt", size: 17)
                 label.text = "Bills due within a month:"
             }
         case 2:
@@ -76,7 +109,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
         default:
             label.text = ""
         }
-        label.frame = CGRect(x: 15, y: 5, width: 200, height: 20)
+        label.frame = CGRect(x: 15, y: 5, width: 200, height: 25)
         view.addSubview(label)
         return view
     }
@@ -97,9 +130,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell55", for: indexPath) as? MainViewTableViewCell else {return UITableViewCell()}
-        
         cell.cellDelegate = self
-        
         switch indexPath.section {
         case 0:
             cell.bill = pastDueBills[indexPath.row]
@@ -108,7 +139,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
         case 2:
             cell.bill = recentlyPaid[indexPath.row]
         default:
-            print("no bill in main view cell")
+            print("No bills in main view cell")
         }
         return cell
     }
@@ -117,7 +148,6 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
         guard editingStyle == .delete else {return}
         
         //it takes them froll al of the bill insted of "due next week"
-        
         switch indexPath.section {
         case 0:
             let bill = pastDueBills[indexPath.row]
@@ -136,11 +166,12 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
             
         default : print("Error")
         }
-        
+        hapticFeedback()
         tableView.deleteRows(at: [indexPath], with: .fade)
     }
     
     
+<<<<<<< HEAD
 //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
       //  let bill =
 //        let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -153,6 +184,27 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
         
         
  //   }
+=======
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 0:
+            let bill = pastDueBills[indexPath.row]
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            guard let detailVC = storyboard.instantiateViewController(withIdentifier: "detailVC") as? BillDetailVC else {return}
+            detailVC.bill = bill
+            present(detailVC, animated: true)
+            
+        case 1:
+            let bill = dueThisMonth[indexPath.row]
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            guard let detailVC = storyboard.instantiateViewController(withIdentifier: "detailVC") as? BillDetailVC else {return}
+            detailVC.bill = bill
+            present(detailVC, animated: true)
+            
+        default : print("Error")
+        }
+    }
+>>>>>>> develop
     
     
     //MARK: - Custom cell protocol conformance
@@ -160,6 +212,29 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
         guard let bill = cell.bill else {return}
         guard let indexOfBill = BillsController.shared.bills.index(of: bill) else {return}
         BillsController.shared.bills[indexOfBill].isPaid.toggle()
+        BillsController.shared.markBillPaid(bill: bill)
+        
+        
+//        if bill.isPaid == true {
+//            for identyfier in bill.notificationIdentyfier {
+//                NotificationController.shared.nonitifcationIdentyfiers.append(identyfier)
+//                print("‼️ notification identyfiers count after toggl add: \(NotificationController.shared.nonitifcationIdentyfiers.count)")
+//            }
+//        } else {
+//            for billID in NotificationController.shared.nonitifcationIdentyfiers {
+//                for identyfier in bill.notificationIdentyfier {
+//                    if billID == identyfier {
+//                        if let indexOfNotificationID = NotificationController.shared.nonitifcationIdentyfiers.index(of: billID) {
+//                            NotificationController.shared.nonitifcationIdentyfiers.remove(at: indexOfNotificationID)
+//                        }
+//                        print("❎ notification identyfiers count after toggle remove: \(NotificationController.shared.nonitifcationIdentyfiers.count)")
+//                    }
+//                }
+//
+//            }
+//
+//        }
+        
     }
     
     
@@ -187,6 +262,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
             
         }
     }
+<<<<<<< HEAD
     
     
 
@@ -194,4 +270,13 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
     
     
     
+=======
+
+
+>>>>>>> develop
 }
+
+
+
+
+

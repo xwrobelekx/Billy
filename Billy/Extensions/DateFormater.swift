@@ -8,6 +8,7 @@
 
 import Foundation
 
+<<<<<<< HEAD
 /* Notes
  
  - create mechanis to re-ad the bill after the year
@@ -27,6 +28,8 @@ import Foundation
  
  */
 
+=======
+>>>>>>> develop
 
 extension Date {
     
@@ -62,13 +65,22 @@ extension Date {
         return formatter.string(from: self)
     }
     
+<<<<<<< HEAD
     func monthAndYearAsString() -> String {
         let customFormat = "MMYY"
+=======
+    func yearAsInt() -> Int {
+        let customFormat = "YYYY"
+>>>>>>> develop
         let locale = Locale(identifier: "en_US")
         let format = DateFormatter.dateFormat(fromTemplate: customFormat, options: 0, locale: locale)
         let formatter = DateFormatter()
         formatter.dateFormat = format
+<<<<<<< HEAD
         return formatter.string(from: self)
+=======
+        return Int(formatter.string(from: self))!
+>>>>>>> develop
     }
     
     func monthAsInt() -> Int {
@@ -77,16 +89,20 @@ extension Date {
         let format = DateFormatter.dateFormat(fromTemplate: customFormat, options: 0, locale: locale)
         let formatter = DateFormatter()
         formatter.dateFormat = format
-        #warning("Another bang")
         return Int(formatter.string(from: self))!
     }
     
+<<<<<<< HEAD
     func timeAsString() -> (String) {
+=======
+    func timeAsString() -> String{
+>>>>>>> develop
         let customFormat = "HH:mm"
         let locale = Locale(identifier: "en_US")
         let format = DateFormatter.dateFormat(fromTemplate: customFormat, options: 0, locale: locale)
         let formatter = DateFormatter()
         formatter.dateFormat = format
+<<<<<<< HEAD
         return (formatter.string(from: self))
     }
     
@@ -108,6 +124,32 @@ extension Date {
         formatter.dateFormat = format
         return Int(formatter.string(from: self))!
     }
+=======
+        return formatter.string(from: self)
+    }
+    
+    func hour() -> (hour: Int, min: Int){
+        let pickedTime = self.timeAsString()
+        let time = pickedTime.split(separator: ":")
+        let hour = Int(time[0])!
+        let min = Int(time[1])!
+        return (hour, min)
+        
+    }
+    
+    func timeAsStringWithAMSymbol() -> String {
+        let customFormat = "h:mm a"
+        let locale = Locale(identifier: "en_US_POSIX")
+        let format = DateFormatter.dateFormat(fromTemplate: customFormat, options: 0, locale: locale)
+        let formatter = DateFormatter()
+        formatter.amSymbol = "AM"
+        formatter.pmSymbol = "PM"
+        formatter.dateFormat = format
+        return formatter.string(from: self)
+        //Prints 12:00 AM or 1:05 PM
+    }
+    
+>>>>>>> develop
 }
 
 

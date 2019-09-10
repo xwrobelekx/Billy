@@ -8,6 +8,7 @@
 
 import UIKit
 
+<<<<<<< HEAD
 
 //protocol presentDetailViewDelegate: class{
 //    func presentDetailView(with bill: NewBill)
@@ -22,6 +23,20 @@ class MonthCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITabl
     @IBOutlet weak var billTableView: UITableView!
     @IBOutlet weak var monthNameLabel: UILabel!
     @IBOutlet weak var totalBillsAmountLabel: UILabel!
+=======
+protocol MonthCellCustomDelegate: class{
+    func presentDetailViewWith(bill: NewBill)
+}
+
+
+class MonthCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSource {
+    
+    
+    //MARK: - Outlets
+    @IBOutlet weak var billTableView: UITableView!
+    @IBOutlet weak var monthNameLabel: UILabel!
+    @IBOutlet weak var totalLabel: UILabel!
+>>>>>>> develop
     
     
     //MARK: - Properties
@@ -32,10 +47,11 @@ class MonthCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITabl
         }
     }
     
-    
+    var monthDelegate: MonthCellCustomDelegate?
     var bills : [NewBill]? {
         didSet {
             billTableView.reloadData()
+            updateTotalDue()
         }
     }
     
@@ -63,17 +79,20 @@ class MonthCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITabl
     }
     
     
-    
-    
     // MARK: - Table view data source
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = CustomViewWithRoundedCorners()
-        view.backgroundColor = .clear
+        view.backgroundColor = #colorLiteral(red: 0, green: 0.5690457821, blue: 0.5746168494, alpha: 1)
         let label = UILabel()
         label.text = "Bills for this month:"
+<<<<<<< HEAD
         label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         label.frame = CGRect(x: 0, y: 5, width: 200, height: 20)
+=======
+        label.font = UIFont(name: "Marker Felt", size: 17)
+        label.frame = CGRect(x: 15, y: 5, width: 200, height: 20)
+>>>>>>> develop
         view.addSubview(label)
         return view
     }
@@ -84,12 +103,10 @@ class MonthCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITabl
     }
     
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let bills = bills else {return 0}
         return bills.count
     }
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as? BillTableViewCell else {return UITableViewCell()}
@@ -97,16 +114,33 @@ class MonthCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITabl
         guard let bills = bills else {
             return cell}
         let bill = bills[indexPath.row]
+<<<<<<< HEAD
        // totalBillAmout += bill.paymentAmount
         cell.bill = bill
        // cell.billName.text = bill.title
       //  cell.billAmountLabel.text = "\(bill.paymentAmount)"
       //  cell.dueDateLabel.text = bill.dueDate.asString()
+=======
+        cell.billName.text = bill.title
+        cell.billAmountLabel.text = "\(bill.paymentAmount.roundToDecimal(2))"
+        cell.dueDateLabel.text = bill.dueDate.dayAndMonthAsString()
+        if bill.isPaid {
+            cell.dotLabel.textColor = .green
+        } else {
+            cell.dotLabel.textColor = .red
+        }
+>>>>>>> develop
         return cell
     }
     
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let bills = bills else {return}
+        let bill = bills[indexPath.row]
+        monthDelegate?.presentDetailViewWith(bill: bill)
+    }
     
+<<<<<<< HEAD
     
     // Override to support editing the table view.
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -115,7 +149,16 @@ class MonthCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITabl
             #warning("implement delete method")
           //  totalBillAmout -= bill.paymentAmount
             tableView.reloadData()
+=======
+    //MARK: - Helper Method
+    func updateTotalDue(){
+        var totalToPay : Double = 0
+        guard let bills = bills else {return}
+        for bill in bills {
+            totalToPay += bill.paymentAmount
+>>>>>>> develop
         }
+        totalLabel.text = "Total due for this month: $\(totalToPay.roundToDecimal(2))"
     }
     
     

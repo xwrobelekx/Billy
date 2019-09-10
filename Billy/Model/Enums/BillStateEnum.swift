@@ -8,13 +8,13 @@
 
 import Foundation
 
-enum BillState{
+enum BillState {
     case isPaid
     case recentleyPaid
     case isPastDue
+    case isDueInFiveDays
     case isDueNextWeek
     case isDueInTwoWeeks
     case isDueThisMonth
     case otherBills
-    #warning("extra case for testing")
 }

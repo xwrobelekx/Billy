@@ -18,6 +18,7 @@ class BillTableViewCell: UITableViewCell {
     @IBOutlet weak var billName: UILabel!
     @IBOutlet weak var billAmountLabel: UILabel!
     @IBOutlet weak var dueDateLabel: UILabel!
+<<<<<<< HEAD
     
     //MARK:  Properties
      var monthDelegate : MonthBillCustomCellDelegate?
@@ -26,6 +27,9 @@ class BillTableViewCell: UITableViewCell {
             updateViews()
         }
     }
+=======
+    @IBOutlet weak var dotLabel: UILabel!
+>>>>>>> develop
     
     
     //MARK: - LifeCycle Methods
