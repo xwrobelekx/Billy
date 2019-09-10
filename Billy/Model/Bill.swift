@@ -9,21 +9,23 @@
 import Foundation
 
 
-class NewBill : Codable, Equatable{
+class NewBill : Codable, Equatable, Hashable{
     var title: String
     var dueDate: Date
     var paymentAmount: Double
     var isPaid: Bool = false
     var notificationIdentyfier: [String]
     var notes: String?
+    var uid : String
     
-    init(title: String, dueDate: Date, paymentAmount: Double, isPaid: Bool = false, notificationIdentyfier: [String], notes: String?){
+    init(title: String, dueDate: Date, paymentAmount: Double, isPaid: Bool = false, notificationIdentyfier: [String], notes: String?, uid: String = UUID().uuidString){
         self.title = title
         self.dueDate = dueDate
         self.paymentAmount = paymentAmount
         self.isPaid = isPaid
         self.notificationIdentyfier = notificationIdentyfier
         self.notes = notes
+        self.uid = uid
     }
     
     
@@ -34,6 +36,10 @@ class NewBill : Codable, Equatable{
         if lhs.isPaid != rhs.isPaid {return false}
         if lhs.notificationIdentyfier != rhs.notificationIdentyfier {return false}
         return true
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(uid)
     }
 }
 

@@ -136,6 +136,7 @@
 		3B1FA43121A64A8B00B2A84B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3BFB0FFB22D204300058D95D /* ToDo.swift */,
 				3B1FA41C21A64A4B00B2A84B /* AppDelegate.swift */,
 				3B1FA42621A64A4C00B2A84B /* Assets.xcassets */,
 				3B1FA42821A64A4C00B2A84B /* LaunchScreen.storyboard */,
@@ -155,6 +156,7 @@
 		3B1FA43321A64AB500B2A84B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3BAEE6732320BB1E00A5ED08 /* Enums */,
 				3B5E9C6421EECEB900E31BBA /* DayDelay.swift */,
 				3B203C64223898EF00196995 /* Bill.swift */,
 				3B203C6622389ABC00196995 /* Setting.swift */,
@@ -205,20 +207,34 @@
 			isa = PBXGroup;
 			children = (
 				3B9FCC5321B0C4F40092ADBA /* DateFormater.swift */,
-				3BD271C521B8B87B00926257 /* BilllFrequencyEnum.swift */,
-				3BC5769922D6D8810061F700 /* BillCreationLenght.swift */,
-				3B02767E21DAA95B000E51C1 /* BillStateEnum.swift */,
-				3BA77B3C22F9036700D89230 /* NotificationStateEnum.swift */,
-				3BFB802C21E29589002683AB /* RoundedView.swift */,
-				3B48998E2235B42800C3DBC7 /* CustomViewWithRoundedCorners.swift */,
-				3BC5769722D6CADF0061F700 /* DoubleExtension.swift */,
-				3BFB0FFB22D204300058D95D /* ToDo.swift */,
-				3BD0908F22E31BBD0085ADAE /* SelfSizedTableView.swift */,
-				3BD0909122E34E960085ADAE /* CustomButton.swift */,
-				3BAEE66F23208CD100A5ED08 /* RoundedTextView.swift */,
 				3BAEE6712320ABFD00A5ED08 /* Animations.swift */,
+				3BC5769722D6CADF0061F700 /* DoubleExtension.swift */,
+				3BAEE6742320BB8A00A5ED08 /* Helpers */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		3BAEE6732320BB1E00A5ED08 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				3B02767E21DAA95B000E51C1 /* BillStateEnum.swift */,
+				3BC5769922D6D8810061F700 /* BillCreationLenght.swift */,
+				3BD271C521B8B87B00926257 /* BilllFrequencyEnum.swift */,
+				3BA77B3C22F9036700D89230 /* NotificationStateEnum.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		3BAEE6742320BB8A00A5ED08 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3BD0909122E34E960085ADAE /* CustomButton.swift */,
+				3BD0908F22E31BBD0085ADAE /* SelfSizedTableView.swift */,
+				3B48998E2235B42800C3DBC7 /* CustomViewWithRoundedCorners.swift */,
+				3BFB802C21E29589002683AB /* RoundedView.swift */,
+				3BAEE66F23208CD100A5ED08 /* RoundedTextView.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -171,26 +171,28 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
         guard let bill = cell.bill else {return}
         guard let indexOfBill = BillsController.shared.bills.index(of: bill) else {return}
         BillsController.shared.bills[indexOfBill].isPaid.toggle()
+        BillsController.shared.markBillPaid(bill: bill)
         
-        if bill.isPaid == true {
-            for identyfier in bill.notificationIdentyfier {
-                NotificationController.shared.nonitifcationIdentyfiers.append(identyfier)
-                print("‼️ notification identyfiers count after toggl add: \(NotificationController.shared.nonitifcationIdentyfiers.count)")
-            }
-        } else {
-            for billID in NotificationController.shared.nonitifcationIdentyfiers {
-                for identyfier in bill.notificationIdentyfier {
-                    if billID == identyfier {
-                        if let indexOfNotificationID = NotificationController.shared.nonitifcationIdentyfiers.index(of: billID) {
-                            NotificationController.shared.nonitifcationIdentyfiers.remove(at: indexOfNotificationID)
-                        }
-                        print("❎ notification identyfiers count after toggle remove: \(NotificationController.shared.nonitifcationIdentyfiers.count)")
-                    }
-                }
-                
-            }
-            
-        }
+        
+//        if bill.isPaid == true {
+//            for identyfier in bill.notificationIdentyfier {
+//                NotificationController.shared.nonitifcationIdentyfiers.append(identyfier)
+//                print("‼️ notification identyfiers count after toggl add: \(NotificationController.shared.nonitifcationIdentyfiers.count)")
+//            }
+//        } else {
+//            for billID in NotificationController.shared.nonitifcationIdentyfiers {
+//                for identyfier in bill.notificationIdentyfier {
+//                    if billID == identyfier {
+//                        if let indexOfNotificationID = NotificationController.shared.nonitifcationIdentyfiers.index(of: billID) {
+//                            NotificationController.shared.nonitifcationIdentyfiers.remove(at: indexOfNotificationID)
+//                        }
+//                        print("❎ notification identyfiers count after toggle remove: \(NotificationController.shared.nonitifcationIdentyfiers.count)")
+//                    }
+//                }
+//
+//            }
+//
+//        }
         
     }
     

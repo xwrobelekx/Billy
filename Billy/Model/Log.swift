@@ -8,6 +8,11 @@
 
 import Foundation
 
+/*
+ 
+ Version 2.0
+ 
+ */
 
 class Log {
     var category: String

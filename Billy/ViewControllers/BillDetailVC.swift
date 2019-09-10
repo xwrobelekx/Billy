@@ -9,7 +9,7 @@
 import UIKit
 import UserNotifications
 
-class BillDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class BillDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UITextViewDelegate {
     
     
     //MARK: - Outlets
@@ -17,10 +17,9 @@ class BillDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     @IBOutlet weak var amoutLabel: UILabel!
     @IBOutlet weak var dueDateLabel: UILabel!
     @IBOutlet weak var paidLabel: UILabel!
-    @IBOutlet weak var notificationLabel: UILabel!
     @IBOutlet weak var billsTableView: UITableView!
     @IBOutlet weak var markPAidButton: UIButton!
-    @IBOutlet weak var notes: UILabel!
+    @IBOutlet weak var notes: UITextView!
     @IBOutlet weak var detailView: UIView!
     
     @IBOutlet weak var editView: UIView!
@@ -32,11 +31,12 @@ class BillDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     @IBOutlet weak var editedNoted: UITextView!
     
     //MARK: - Preoperties
-    var bill : NewBill? {
-        didSet {
-            print("bill updated")
-        }
-    }
+    var bill : NewBill?
+//    {
+//        didSet {
+//            print("bill updated")
+//        }
+//    }
     let center = UNUserNotificationCenter.current()
     var someBills = [NewBill]()
     
@@ -53,6 +53,12 @@ class BillDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         swipeDown.direction = .down
         self.view.addGestureRecognizer(swipeDown)
         editView.isHidden = true
+        
+        editedTitle.delegate = self
+        editedAmoutTextField.delegate = self
+        editedNoted.delegate = self
+        notes.isUserInteractionEnabled = false
+        notes.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     }
     
     
@@ -62,6 +68,7 @@ class BillDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         hapticFeedback()
         guard let curentBill = bill else {return}
         curentBill.isPaid.toggle()
+        BillsController.shared.markBillPaid(bill: curentBill)
         updateViews()
     }
     
@@ -86,37 +93,55 @@ class BillDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     @IBAction func editButtonPressed(_ sender: UIButton){
+        
         hapticFeedback()
-        guard let currentBill = bill else {return}
-        editedTitle.placeholder = currentBill.title
-        if currentBill.isPaid {
-        editedPaidLabel.text = "Paid"
-        }else {
-            editedPaidLabel.text = "Unpaid"
+        if editButton.titleLabel?.text == "Edit Notes" {
+            editButton.setTitle("Save Notes", for: .normal)
+            notes.isUserInteractionEnabled = true
+            notes.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 0.8525455298, alpha: 1)
+            notes.becomeFirstResponder()
+        } else {
+            editButton.setTitle("Edit Notes", for: .normal)
+            notes.isUserInteractionEnabled = false
+            notes.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            notes.resignFirstResponder()
         }
-        editedAmoutTextField.placeholder = "$\(currentBill.paymentAmount)"
-        editedNoted.text = currentBill.notes
-        animateViews()
-        editedDueDate.text = "Due on: \(currentBill.dueDate.asString())"
+        
+        guard let currentBill = bill else {return}
+        currentBill.notes = notes.text
+//        resignKeyboard()
+//        editedTitle.placeholder = currentBill.title
+//        if currentBill.isPaid {
+//        editedPaidLabel.text = "Paid"
+//        }else {
+//            editedPaidLabel.text = "Unpaid"
+//        }
+//        editedAmoutTextField.placeholder = "$\(currentBill.paymentAmount)"
+//        editedNoted.text = currentBill.notes
+//        animateViews()
+//        editedDueDate.text = "Due on: \(currentBill.dueDate.asString())"
     }
     
     @IBAction func saveButtonPressed(_ sender: UIButton){
         hapticFeedback()
         guard let currentBill = bill else {return}
-        animateViews()
-        if let editedAmount = Double(editedAmoutTextField.text ?? String(
-        currentBill.paymentAmount)) {
-            if editedAmount != currentBill.paymentAmount {
-                currentBill.paymentAmount = editedAmount
-            }
-        }
-        if let editedTitle = editedTitle.text {
-            currentBill.title = editedTitle
-        }
+//        animateViews()
+//        if let editedAmount = Double(editedAmoutTextField.text ?? String(
+//        currentBill.paymentAmount)) {
+//            if editedAmount != currentBill.paymentAmount {
+//                currentBill.paymentAmount = editedAmount
+//            }
+//        }
+//        if let editedTitle = editedTitle.text {
+//            if editedTitle != "" {
+//            currentBill.title = editedTitle
+//            }
+//        }
         
         if let notes = editedNoted.text {
             currentBill.notes = notes
         }
+        resignKeyboard()
         updateViews()
     }
     
@@ -185,6 +210,12 @@ class BillDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         }
     }
     
+    func resignKeyboard() {
+        editedTitle.resignFirstResponder()
+        editedNoted.resignFirstResponder()
+        editedAmoutTextField.resignFirstResponder()
+    }
+    
     
     //MARK: - TableView Delegate Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -209,7 +240,27 @@ class BillDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     //MARK: - Selectro Methods
     @objc func dismissView() {
+        //dismiss view only when the edit view is hidden
+        if editView.isHidden {
         dismiss(animated: true, completion: nil)
+        }
     }
+    
+   // MARK: - TextFieldDelegate Methods
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        resignKeyboard()
+        return true
+    }
+    
+    
+    
+    
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+        editView.endEditing(true)
+        resignKeyboard()
+    }
+    
     
 }

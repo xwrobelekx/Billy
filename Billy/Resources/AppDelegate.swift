@@ -20,8 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         BillsController.shared.loadBills()
         SettingController.shared.loadSettings()
         
-
-
         
         return true
     }
@@ -34,8 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         BillsController.shared.saveBills()
         SettingController.shared.saveSettings()
-        
-       
+        NotificationController.shared.removePendingNotificationsfor(bills: BillsController.shared.paidBills)
         let pastdueBillsCount = BillsController.shared.filterBills(by: .isPastDue).count
         let billsDueInFiveDaysCount = BillsController.shared.filterBills(by: .isDueNextWeek).count
         let badgeCount = pastdueBillsCount + billsDueInFiveDaysCount
@@ -55,6 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
          BillsController.shared.saveBills()
+
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
     }

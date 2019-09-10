@@ -19,6 +19,9 @@ class BillsController {
     //MARK: - Source of Truth
     var bills = [NewBill]()
     
+    //MARK: - Temporary paid bills storage
+    var paidBills = Set<NewBill>()
+    
     
     //MARK: - Create Bill 2
     func createBill2(bill: NewBill, frequency: BillFrequency?, howLongToContinue: Int){
@@ -190,6 +193,19 @@ class BillsController {
             return bills.filter { $0.dueDate.monthAsString() == "12" && $0.dueDate.yearAsInt() == year }
         default :
             return [NewBill]()
+        }
+    }
+    
+    //MARK: - Track Paid Bills
+    //to remove pending notifications
+    
+    func markBillPaid(bill: NewBill){
+       let result = paidBills.insert(bill)
+        if result.inserted == false {
+            paidBills.remove(bill)
+        }
+        for bill in paidBills {
+            print("🔗 \(bill.title)")
         }
     }
     

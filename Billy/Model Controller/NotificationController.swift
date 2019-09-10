@@ -173,4 +173,11 @@ class NotificationController {
             }
         }
     }
+    
+    func removePendingNotificationsfor(bills: Set<NewBill>){
+        let center = UNUserNotificationCenter.current()
+        for bill in bills {
+            center.removePendingNotificationRequests(withIdentifiers: bill.notificationIdentyfier)
+        }
+    }
 }
