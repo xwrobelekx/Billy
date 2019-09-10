@@ -174,6 +174,8 @@ class NotificationController {
         }
     }
     
+    
+    //MARK: - Remove notifications for paid bills
     func removePendingNotificationsfor(bills: Set<NewBill>){
         let center = UNUserNotificationCenter.current()
         for bill in bills {

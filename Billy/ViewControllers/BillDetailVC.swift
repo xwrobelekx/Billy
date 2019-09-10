@@ -21,6 +21,7 @@ class BillDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     @IBOutlet weak var markPAidButton: UIButton!
     @IBOutlet weak var notes: UITextView!
     @IBOutlet weak var detailView: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var editView: UIView!
     @IBOutlet weak var editButton: UIButton!
@@ -59,6 +60,9 @@ class BillDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         editedNoted.delegate = self
         notes.isUserInteractionEnabled = false
         notes.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        
+        configureDoneButton()
+        notes.delegate = self
     }
     
     
@@ -100,6 +104,8 @@ class BillDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             notes.isUserInteractionEnabled = true
             notes.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 0.8525455298, alpha: 1)
             notes.becomeFirstResponder()
+            let notesMaxY = notes.bounds.maxY
+            scrollView.setContentOffset(CGPoint(x: 0, y: notesMaxY), animated: true)
         } else {
             editButton.setTitle("Edit Notes", for: .normal)
             notes.isUserInteractionEnabled = false
@@ -210,12 +216,18 @@ class BillDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         }
     }
     
-    func resignKeyboard() {
-        editedTitle.resignFirstResponder()
-        editedNoted.resignFirstResponder()
-        editedAmoutTextField.resignFirstResponder()
+    @objc func resignKeyboard() {
+        notes.resignFirstResponder()
+        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+        
     }
     
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        let notesMaxY = notes.bounds.maxY
+        scrollView.setContentOffset(CGPoint(x: 0, y: notesMaxY), animated: true)
+        
+    }
     
     //MARK: - TableView Delegate Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -247,19 +259,24 @@ class BillDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
    // MARK: - TextFieldDelegate Methods
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        resignKeyboard()
-        return true
-    }
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        resignKeyboard()
+//        return true
+//    }
     
-    
-    
-    
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
-        editView.endEditing(true)
-        resignKeyboard()
+
+    func configureDoneButton(){
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        toolBar.barTintColor = .black
+        toolBar.tintColor = .white
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(resignKeyboard))
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+
+        toolBar.setItems([flexSpace, doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
+        notes.inputAccessoryView = toolBar
+        
     }
     
     
