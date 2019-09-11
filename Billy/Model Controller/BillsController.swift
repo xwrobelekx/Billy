@@ -300,13 +300,15 @@ class BillsController {
     }
     
     //MARK: - Track Paid Bills
-    //keeps track of paid bills to remove pending notifications
+    //to remove pending notifications
     
     func markBillPaid(bill: NewBill){
        let result = paidBills.insert(bill)
         if result.inserted == false {
-            //if the bill wasnt inserted, because there was a duplicate, that means they marked the bill back to unpaid state, there fore we want to remove it from the set. 
             paidBills.remove(bill)
+        }
+        for bill in paidBills {
+            print("🔗 \(bill.title)")
         }
     }
     

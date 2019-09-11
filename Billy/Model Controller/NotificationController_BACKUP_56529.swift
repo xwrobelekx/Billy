@@ -174,10 +174,22 @@ class NotificationController {
         }
     }
     
+<<<<<<< HEAD
+=======
+    
+<<<<<<< HEAD
+    func removeNotification(for identyfier: String){
+        let center = UNUserNotificationCenter.current()
+        center.removePendingNotificationRequests(withIdentifiers: [identyfier])
+        print("❌ removed notification")
+=======
+    //MARK: - Remove notifications for paid bills
+>>>>>>> a650d93889e3976c3999ae00347928b6d06b602a
     func removePendingNotificationsfor(bills: Set<NewBill>){
         let center = UNUserNotificationCenter.current()
         for bill in bills {
             center.removePendingNotificationRequests(withIdentifiers: bill.notificationIdentyfier)
         }
+>>>>>>> develop
     }
 }
