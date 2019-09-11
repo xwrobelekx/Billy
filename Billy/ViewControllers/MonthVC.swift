@@ -138,5 +138,5 @@ class MonthVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         detailVC.bill = bill
         present(detailVC, animated: true)
     }
->>>>>>> develop
+>>>>>>> developgit
 }
