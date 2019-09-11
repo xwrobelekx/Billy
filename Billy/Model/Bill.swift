@@ -14,16 +14,28 @@ class NewBill : Codable, Equatable, Hashable{
     var dueDate: Date
     var paymentAmount: Double
     var isPaid: Bool = false
+<<<<<<< HEAD
+    var notificationIdentyfier: String
+    var billUniqueIdentyfier: String
+    var billFrequency: BillFrequency
+=======
     var notificationIdentyfier: [String]
+>>>>>>> develop
     var notes: String?
     var uid : String
     
+<<<<<<< HEAD
+    init(title: String, dueDate: Date, paymentAmount: Double, isPaid: Bool = false, notificationIdentyfier: String, billUniqueIdentyfier: String, billFrequency: BillFrequency,  notes: String?){
+=======
     init(title: String, dueDate: Date, paymentAmount: Double, isPaid: Bool = false, notificationIdentyfier: [String], notes: String?, uid: String = UUID().uuidString){
+>>>>>>> develop
         self.title = title
         self.dueDate = dueDate
         self.paymentAmount = paymentAmount
         self.isPaid = isPaid
         self.notificationIdentyfier = notificationIdentyfier
+        self.billUniqueIdentyfier = billUniqueIdentyfier
+        self.billFrequency = billFrequency
         self.notes = notes
         self.uid = uid
     }

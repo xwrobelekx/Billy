@@ -15,28 +15,45 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     //MARK: - Properties
     var date: Date?
     let frequencyPicker = UIPickerView()
+<<<<<<< HEAD
+    let datePicker = UIDatePicker()
+    var deviceWidth : Int!
+=======
     var timeSelected: (hour: Int, minute: Int) = (8, 30)
     var daysDelay: Int = 0
     let datePicker = UIDatePicker()
     let yearsPicker = UIPickerView()
     var yearsToPickFrom = [Int]()
     var yearPicked = Date().yearAsInt()
+>>>>>>> develop
     
     //MARK: - Outlets
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var payemntAmoutTextField: UITextField!
     @IBOutlet weak var dueDateTextField: UITextField!
     @IBOutlet weak var paymentFrequency: UITextField!
+<<<<<<< HEAD
+    @IBOutlet weak var notesTextView: UITextView!
+    
+    
+=======
     @IBOutlet weak var notesTextField: UITextField!
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var yearsTextField: UITextField!
     @IBOutlet weak var notificationInfoLabel: UILabel!
    
+>>>>>>> develop
     
     
     //MARK: - LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        deviceWidth = Int(self.view.frame.width)
+        datePicker.backgroundColor = #colorLiteral(red: 0.1338894367, green: 0.1373356879, blue: 0.4691907763, alpha: 1)
+        datePicker.setValue(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), forKey: "textColor")
+        datePicker.datePickerMode = .date
+        
+        updatePickers()
         
         var swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(dismissView))
         swipeDown.direction = .down
@@ -52,14 +69,28 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
         
         frequencyPicker.delegate = self
         frequencyPicker.dataSource = self
+<<<<<<< HEAD
+       
+
+      //  updatePickers()
+        
+        
+        datePicker.minimumDate = Date().addingTimeInterval(TimeInterval(SettingController.shared.setting.dayDelay * 86400))
+=======
         paymentFrequency.inputView = frequencyPicker
         frequencyPicker.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
         
         
         datePicker.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
         datePicker.datePickerMode = .date
+>>>>>>> develop
         datePicker.addTarget(self, action: #selector(datePickerValueChanged), for: UIControl.Event.valueChanged)
+        
         dueDateTextField.inputView = datePicker
+<<<<<<< HEAD
+        paymentFrequency.inputView = frequencyPicker
+         datePicker.backgroundColor = #colorLiteral(red: 0.1338894367, green: 0.1373356879, blue: 0.4691907763, alpha: 1)
+=======
         
         
         yearsPicker.delegate = self
@@ -88,11 +119,16 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
         if NotificationController.shared.checkNotificationPermision() == true {
             SettingController.shared.initialLaunch = false
         }
+>>>>>>> develop
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+<<<<<<< HEAD
+      //  updatePickers()
+
+=======
         
     }
     
@@ -123,6 +159,7 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
         UserDefaults.standard.set(true, forKey: "launchedBefore")
+>>>>>>> develop
     }
     
     
@@ -146,8 +183,21 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     
     //MARK: - Actions
     @IBAction func saveButtonTapped(_ sender: Any) {
+<<<<<<< HEAD
+        guard let title = titleTextField.text, title != "",
+            let paymentAmout = payemntAmoutTextField.text, paymentAmout != "",
+            let dueDate = date else {return}
+        
+        guard let payment = Double(paymentAmout) else {return}
+        #warning("adjust the bill frequancy here")
+        let frequency : BillFrequency? = BillFrequency(rawValue: paymentFrequency.text ?? "None")
+        let bill = NewBill(title: title, dueDate: dueDate, paymentAmount: payment, notificationIdentyfier: UUID().uuidString, billUniqueIdentyfier: UUID().uuidString, billFrequency: frequency ?? BillFrequency.none, notes: notesTextView.text)
+        BillsController.shared.create(bill: bill)
+        dismiss(animated: true, completion: nil)
+=======
         hapticFeedback()
         createBill()
+>>>>>>> develop
     }
     
     
@@ -155,9 +205,15 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
         hapticFeedback()
         dismiss(animated: true, completion: nil)
     }
+<<<<<<< HEAD
+
+    
+    
+=======
     
     
     //MARK: - Selector Methods
+>>>>>>> develop
     @objc func datePickerValueChanged(sender: UIDatePicker){
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
@@ -165,6 +221,8 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
         dueDateTextField.text = formatter.string(from: sender.date)
         date = sender.date
         
+<<<<<<< HEAD
+=======
         let calendar = Calendar.current
         var dateComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: date!)
         dateComponents.day! -= SettingController.shared.setting.dayDelay
@@ -181,6 +239,7 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
             infoLabel.isHidden = false
             //            print(" not hidden ")
         }
+>>>>>>> develop
     }
     
     
@@ -190,18 +249,27 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     
     //MARK: - Bill Frequancy Picker Data Source
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        if pickerView == frequencyPicker {
             return 1
+<<<<<<< HEAD
+      
+=======
         } else if pickerView == yearsPicker {
             return 1
         } else {
             return 0
         }
+>>>>>>> develop
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if pickerView == frequencyPicker {
             return BillFrequency.allCases.count
+<<<<<<< HEAD
+    }
+    
+//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//            return BillFrequency.allCases[row].rawValue
+//    }
+=======
         } else if pickerView == yearsPicker {
             return yearsToPickFrom.count
         } else {
@@ -220,12 +288,32 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
             return "0"
         }
     }
+>>>>>>> develop
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
-        if pickerView == frequencyPicker {
             let selectedOption = BillFrequency.allCases[row]
             paymentFrequency.text = selectedOption.rawValue
+<<<<<<< HEAD
+      
+    }
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return 50
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let view = UIView()
+        view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.2486548013)
+        
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: deviceWidth, height: 50))
+        label.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        label.textAlignment = .center
+        label.text = BillFrequency.allCases[row].rawValue
+        
+        view.addSubview(label)
+        
+        return view
+=======
         } else if pickerView == yearsPicker {
             yearPicked = yearsToPickFrom[row]
             yearsTextField.text = "Continue till the end of \(yearPicked)."
@@ -233,7 +321,14 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
         } else {
             print("no picker found")
         }
+>>>>>>> develop
     }
+    
+
+    
+    
+    
+ 
     
     
     
@@ -261,7 +356,7 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
         payemntAmoutTextField.text = ""
         dueDateTextField.text = ""
         paymentFrequency.text = ""
-        notesTextField.text = ""
+        notesTextView.text = ""
     }
     
     
@@ -282,6 +377,17 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     }
     
     
+<<<<<<< HEAD
+    func updatePickers(){
+        #warning("sometimes it works sometimes it doesnt why?")
+        // frequency picker background works once i stopped using opacity
+        frequencyPicker.setValue(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), forKey: "textColor")
+        frequencyPicker.backgroundColor = #colorLiteral(red: 0.1338894367, green: 0.1373356879, blue: 0.4691907763, alpha: 1)
+        
+        datePicker.backgroundColor = #colorLiteral(red: 0.1338894367, green: 0.1373356879, blue: 0.4691907763, alpha: 1)
+        datePicker.setValue(#colorLiteral(red: 0.1338894367, green: 0.1373356879, blue: 0.4691907763, alpha: 1), forKey: "backgroundColor")
+        datePicker.setValue(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), forKey: "textColor")
+=======
     func years() -> [Int] {
         let yearOne = Date().yearAsInt()
         var yearArray = [Int]()
@@ -295,6 +401,7 @@ class AddBillVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UI
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
+>>>>>>> develop
     }
     
 }

@@ -14,8 +14,8 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
     //MARK: - Properties
     var pastDueBills = [NewBill]()
     var dueThisMonth = [NewBill]()
-    var paidBills = [NewBill]()
-    
+   // var paidBills = [NewBill]()
+    var recentlyPaid = [NewBill]()
     
     //MARK: - Outlets
     @IBOutlet weak var curentDateLabel: UILabel!
@@ -35,12 +35,19 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+<<<<<<< HEAD
+        pastDueBills = BillsController.shared.filterBills(by: .isPastDue)
+        dueThisMonth = BillsController.shared.filterBills(by: .isDueThisMonth)
+     //   paidBills = BillsController.shared.filterBills(by: .isPaid)
+        recentlyPaid = BillsController.shared.filterBills(by: .recentleyPaid)
+=======
         pastDueBills = BillsController.shared.filterBills(by: .isPastDue).sorted(by: { (first, second) -> Bool in
             first.dueDate < second.dueDate
         })
         dueThisMonth = BillsController.shared.filterBills(by: .isDueThisMonth).sorted(by: { (first, second) -> Bool in
             first.dueDate < second.dueDate
         })
+>>>>>>> develop
         mainTableView.reloadData()
     }
     
@@ -60,7 +67,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
     
     //MARK: - Table View Delegate Methods
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     
@@ -68,11 +75,15 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
         let view = CustomViewWithRoundedCorners()
         view.backgroundColor = #colorLiteral(red: 0, green: 0.3285208941, blue: 0.5748849511, alpha: 1)
         let label = UILabel()
-        label.textColor = .white
+        label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         switch section {
         case 0 :
             if pastDueBills.count == 0 && dueThisMonth.count == 0 {
+<<<<<<< HEAD
+=======
                 label.font = UIFont(name: "Marker Felt", size: 17)
+>>>>>>> develop
                 label.text = "No bills due this month."
             } else if pastDueBills.count >= 1 {
                 label.font = UIFont(name: "Marker Felt", size: 17)
@@ -89,6 +100,12 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
                 label.font = UIFont(name: "Marker Felt", size: 17)
                 label.text = "Bills due within a month:"
             }
+        case 2:
+            if recentlyPaid.count == 0 {
+                label.text = ""
+            } else {
+                label.text = "Recently Paid:"
+            }
         default:
             label.text = ""
         }
@@ -104,6 +121,8 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
             return pastDueBills.count
         case 1:
             return dueThisMonth.count
+        case 2:
+            return recentlyPaid.count
         default:
             return 0
         }
@@ -117,6 +136,8 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
             cell.bill = pastDueBills[indexPath.row]
         case 1:
             cell.bill = dueThisMonth[indexPath.row]
+        case 2:
+            cell.bill = recentlyPaid[indexPath.row]
         default:
             print("No bills in main view cell")
         }
@@ -138,6 +159,11 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
             BillsController.shared.delete(bill: bill)
             dueThisMonth.remove(at: indexPath.row)
             
+        case 2:
+            let bill = recentlyPaid[indexPath.row]
+            BillsController.shared.delete(bill: bill)
+            recentlyPaid.remove(at: indexPath.row)
+            
         default : print("Error")
         }
         hapticFeedback()
@@ -145,6 +171,20 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
     }
     
     
+<<<<<<< HEAD
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+      //  let bill =
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        if let viewController = storyboard.instantiateViewController(withIdentifier: "GameCVC") as? GameCollectionViewController {
+//           / viewController.tournamentName = turnament
+//            viewController.round = round
+//            viewController.navigationItem.title = round?.round.rawValue
+//            self.navigationController?.pushViewController(viewController, animated: true)
+//        }
+        
+        
+ //   }
+=======
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
@@ -164,6 +204,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
         default : print("Error")
         }
     }
+>>>>>>> develop
     
     
     //MARK: - Custom cell protocol conformance
@@ -197,11 +238,42 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Main
     }
     
     
-    func modified(indexPath: IndexPath) -> Int {
-        return (indexPath.section * 2) + (indexPath.row)
+//    func modified(indexPath: IndexPath) -> Int {
+//        return (indexPath.section * 2) + (indexPath.row)
+//    }
+    
+    
+    //MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toDetailSegue" {
+            guard let destinationVC = segue.destination as? DetailViewVC else {return}
+            guard let indexPath = mainTableView.indexPathForSelectedRow else {return}
+            switch indexPath.section {
+            case 0:
+                destinationVC.bill = pastDueBills[indexPath.row]
+            case 1:
+                destinationVC.bill = dueThisMonth[indexPath.row]
+            default:
+                print("Error")
+                
+            }
+            //toDetailFromMonth
+            
+        }
     }
+<<<<<<< HEAD
+    
+    
+
+    
+    
+    
+    
+=======
 
 
+>>>>>>> develop
 }
 
 

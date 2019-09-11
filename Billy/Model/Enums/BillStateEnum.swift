@@ -10,6 +10,7 @@ import Foundation
 
 enum BillState {
     case isPaid
+    case recentleyPaid
     case isPastDue
     case isDueInFiveDays
     case isDueNextWeek

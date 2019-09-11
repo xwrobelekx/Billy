@@ -22,9 +22,17 @@ class BillsController {
     //MARK: - Temporary paid bills storage
     var paidBills = Set<NewBill>()
     
+<<<<<<< HEAD
+    //MARK: - Create
+    func create(bill: NewBill){
+        
+        // first im adding the initial bill, then checking if there ifs more to add by switching over the frequency
+        NotificationController.shared.setupCustomNotificationWith(title: "\(bill.title) is due in \(SettingController.shared.setting.dayDelay) days.", message: "Payment of $\(bill.paymentAmount) is due on \(bill.dueDate.asString()).", billDueDate: bill.dueDate, customIdentyfier: bill.notificationIdentyfier, daysDelay: SettingController.shared.setting.dayDelay, atHour: SettingController.shared.setting.hour, atMinute: SettingController.shared.setting.minute)
+=======
     
     //MARK: - Create Bill 2
     func createBill2(bill: NewBill, frequency: BillFrequency?, howLongToContinue: Int){
+>>>>>>> develop
         
 //        let todaysYear = Date().yearAsInt()
         let endYear = howLongToContinue
@@ -38,7 +46,7 @@ class BillsController {
         bills.append(bill)
         //        print("🍀 when creating the bill this is the notificvation hour: \(SettingController.shared.setting.notificationTime?.timeAsStringWithAMSymbol()), day delay \(SettingController.shared.setting.dayDelay)")
         
-        guard let frequency = frequency else {return}
+        let frequency = bill.billFrequency
         let dueDate = bill.dueDate
         let calendar = Calendar.current
         switch frequency {
@@ -56,6 +64,15 @@ class BillsController {
             }
             
         case .semiAnual:
+<<<<<<< HEAD
+            guard let newDueDate = calendar.date(byAdding: DateComponents(month: 6), to: dueDate, wrappingComponents: false) else {return}
+            let customIdentyfier = UUID().uuidString
+            
+            let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: customIdentyfier, billUniqueIdentyfier: bill.billUniqueIdentyfier, billFrequency: bill.billFrequency, notes: bill.notes)
+            bills.append(newBill)
+            
+            NotificationController.shared.setupCustomNotificationWith(title: "\(bill.title) is due in \(SettingController.shared.setting.dayDelay) days.", message: "Payment of $\(bill.paymentAmount) is due on \(newDueDate.asString()).", billDueDate: newDueDate, customIdentyfier: customIdentyfier, daysDelay: SettingController.shared.setting.dayDelay, atHour: SettingController.shared.setting.hour, atMinute: SettingController.shared.setting.minute)
+=======
             var monthsAmountToAdd = 6
             while dateForWhileStatement.yearAsInt() <= endYear {
                 guard let newDueDate = calendar.date(byAdding: DateComponents(month: monthsAmountToAdd), to: dueDate, wrappingComponents: false) else {return}
@@ -65,13 +82,19 @@ class BillsController {
                 NotificationController.shared.setupNotificationWith(bill: newBill)
                 monthsAmountToAdd += 6
             }
+>>>>>>> develop
             
         case .quarterly:
             var monthsAmountToAdd = 3
             while dateForWhileStatement.yearAsInt() <= endYear {
                 guard let newDueDate = calendar.date(byAdding: DateComponents(month: monthsAmountToAdd), to: dueDate, wrappingComponents: false) else {return}
+<<<<<<< HEAD
+                let customIdentyfier = UUID().uuidString
+                let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: customIdentyfier,  billUniqueIdentyfier: bill.billUniqueIdentyfier, billFrequency: bill.billFrequency, notes: bill.notes)
+=======
                 dateForWhileStatement = newDueDate
                 let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: generateThreeIdentyfiers(), notes: bill.notes)
+>>>>>>> develop
                 bills.append(newBill)
                 NotificationController.shared.setupNotificationWith(bill: newBill)
                 monthsAmountToAdd += 3
@@ -81,8 +104,13 @@ class BillsController {
             var monthsAmountToAdd = 1
             while dateForWhileStatement.yearAsInt() <= endYear {
                 guard let newDueDate = calendar.date(byAdding: DateComponents(month: monthsAmountToAdd), to: dueDate, wrappingComponents: false) else {return}
+<<<<<<< HEAD
+                let customIdentyfier = UUID().uuidString
+                let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: customIdentyfier,  billUniqueIdentyfier: bill.billUniqueIdentyfier, billFrequency: bill.billFrequency, notes: bill.notes)
+=======
                 dateForWhileStatement = newDueDate
                 let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: generateThreeIdentyfiers(), notes: bill.notes)
+>>>>>>> develop
                 bills.append(newBill)
                 NotificationController.shared.setupNotificationWith(bill: newBill)
                 monthsAmountToAdd += 1
@@ -92,8 +120,13 @@ class BillsController {
             
             while dateForWhileStatement.yearAsInt() <= endYear {
                 guard let newDueDate = calendar.date(byAdding: DateComponents(day: daysToAdd), to: dueDate, wrappingComponents: false) else {return}
+<<<<<<< HEAD
+                let customIdentyfier = UUID().uuidString
+                let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: customIdentyfier,  billUniqueIdentyfier: bill.billUniqueIdentyfier, billFrequency: bill.billFrequency, notes: bill.notes)
+=======
                 dateForWhileStatement = newDueDate
                 let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: generateThreeIdentyfiers(), notes: bill.notes)
+>>>>>>> develop
                 bills.append(newBill)
                 NotificationController.shared.setupNotificationWith(bill: newBill)
                 daysToAdd += 14
@@ -102,8 +135,13 @@ class BillsController {
             var daysToAdd = 7
             while dateForWhileStatement.yearAsInt() <= endYear {
                 guard let newDueDate = calendar.date(byAdding: DateComponents(day: daysToAdd), to: dueDate, wrappingComponents: false) else {return}
+<<<<<<< HEAD
+                let customIdentyfier = UUID().uuidString
+                let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: customIdentyfier,  billUniqueIdentyfier: bill.billUniqueIdentyfier, billFrequency: bill.billFrequency, notes: bill.notes)
+=======
                 dateForWhileStatement = newDueDate
                 let newBill = NewBill(title: bill.title, dueDate: newDueDate, paymentAmount: bill.paymentAmount, isPaid: bill.isPaid, notificationIdentyfier: generateThreeIdentyfiers(), notes: bill.notes)
+>>>>>>> develop
                 bills.append(newBill)
                 NotificationController.shared.setupNotificationWith(bill: newBill)
                 daysToAdd += 7
@@ -133,7 +171,70 @@ class BillsController {
 //        print("⛔️sucesfully deleted bill and its notifications: bill title: \(bill.title), bill due date \(bill.dueDate.asStringLonger()), bill payment amount\(bill.paymentAmount)")
     }
     
+<<<<<<< HEAD
+    //MARK: - Update Bill
+    func update(bill: NewBill, updateAllBills: Bool){
+        
+        #warning("unfinished section - will need something like this if i want to update all the bill with the same title.")
+        if updateAllBills == true {
+            for oldBill in bills {
+                if bill.billUniqueIdentyfier == oldBill.billUniqueIdentyfier && !bill.isPaid {
+                    oldBill.title = bill.title
+                    oldBill.paymentAmount = bill.paymentAmount
+                    oldBill.notes = bill.notes
+                    //if the date was changed - old bill due date is not equal to new bill due date then user updated the date so we need to update notifications
+                    if  oldBill.dueDate != bill.dueDate{
+                        print("‼️ due date was changed - no code here")
+                        return
+                        //need to remove old bills, and create new ones in their place - bc there is no mechanis to recreate notifications
+                        NotificationController.shared.removeNotification(for: oldBill.notificationIdentyfier)
+                        BillsController.shared.delete(bill: oldBill)
+                        #warning("this is not gone work - bc its gone replace old bill due date with new one - but in a way where old due date could be in june, and new one in february")
+                        BillsController.shared.create(bill: bill)
+                        
+                        
+                        
+                       //remove old notification, add new one with the new date - repeat that same amount of time the bill still exists - or add properrty tot he bill called frequency - this would help when recreating the bill
+                        
+                    }
+                }
+            }
+        } else {
+            print("✅ updating bill")
+            for oldBill in bills {
+                if bill.billUniqueIdentyfier == oldBill.billUniqueIdentyfier {
+                    oldBill.title = bill.title
+                    oldBill.dueDate = bill.dueDate
+                    oldBill.paymentAmount = bill.paymentAmount
+                    oldBill.notes = bill.notes
+                    
+                    NotificationController.shared.removeNotification(for: oldBill.notificationIdentyfier)
+                     print("✅ removed notification for \(oldBill.title)")
+                       NotificationController.shared.setupCustomNotificationWith(title: "\(bill.title) is due in \(SettingController.shared.setting.dayDelay) days.", message: "Payment of $\(bill.paymentAmount) is due on \(bill.dueDate.asString()).", billDueDate: bill.dueDate, customIdentyfier: bill.notificationIdentyfier, daysDelay: SettingController.shared.setting.dayDelay, atHour: SettingController.shared.setting.hour, atMinute: SettingController.shared.setting.minute)
+                }
+            }
+            
+        }
+        
+    }
     
+    
+    //MARK: - Number of same bills
+    func returnNumberOfSameBills(as thisBill: NewBill) -> Int {
+        var billCount = 0
+        for bill in bills {
+            if bill.billUniqueIdentyfier == thisBill.billUniqueIdentyfier {
+                billCount += 1
+            }
+            
+        }
+        return billCount
+    }
+    
+
+=======
+    
+>>>>>>> develop
     
     //MARK: - Filter methods
     func filterBills(by billState : BillState) -> [NewBill]{
@@ -143,6 +244,8 @@ class BillsController {
         switch billState {
         case .isPaid:
             currentBills = bills.filter{ $0.isPaid }
+        case .recentleyPaid:
+               currentBills = bills.filter{ $0.isPaid && $0.dueDate > (curnetDate.addingTimeInterval(-14 * 86400)) }
         case .isPastDue:
             currentBills = bills.filter { $0.dueDate < curnetDate && $0.isPaid == false}
         case .isDueInFiveDays:

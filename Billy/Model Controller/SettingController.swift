@@ -14,6 +14,15 @@ class SettingController {
     static var shared = SettingController()
     private init(){}
     
+<<<<<<< HEAD
+    //turn this into system based clock
+    var setting = Setting(hour: 8, minute: 30, dayDelay: 5)
+
+    
+    
+    var hour = Calendar.current.component(.hour, from: Date())
+    var minute = Calendar.current.component(.minute, from: Date())
+=======
     var initialLaunch = true
     
     
@@ -35,6 +44,7 @@ class SettingController {
         notificationState = notificationStates
     }
     
+>>>>>>> develop
     
     //MARK: - Save settings method
     func saveSettings(){

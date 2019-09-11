@@ -8,15 +8,33 @@
 
 import UIKit
 
+<<<<<<< HEAD
+
+
+class MonthVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+   
+   
+    
+   
+    
+
+
+=======
 class MonthVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate, MonthCellCustomDelegate {
     
+>>>>>>> develop
     
     //MARK: - Outlets
     @IBOutlet weak var monthCollectionView: UICollectionView!
     
+<<<<<<< HEAD
+
+    //MARK: - Properties
+=======
     
     //MARK: - Properties
     var firstAppear = true
+>>>>>>> develop
     
     
     //MARK: - LifeCycle Methods
@@ -24,12 +42,17 @@ class MonthVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         super.viewDidLoad()
         monthCollectionView.delegate = self
         monthCollectionView.dataSource = self
+<<<<<<< HEAD
+        navigationController?.isNavigationBarHidden = true
+     
+=======
         let screenSize = UIScreen.main.bounds.size
         let cellWidth = screenSize.width
         let cellHeight = screenSize.height
         let layout = monthCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
         
+>>>>>>> develop
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -46,6 +69,17 @@ class MonthVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = monthCollectionView.dequeueReusableCell(withReuseIdentifier: "monthCell", for: indexPath) as? MonthCollectionViewCell else { return UICollectionViewCell() }
+<<<<<<< HEAD
+        var totalToPay = 0.0
+        let date = Calendar.current
+        let months = date.monthSymbols
+        let currentMoth = months[indexPath.row]
+        let bills = BillsController.shared.filterBills(by: currentMoth)
+        for bill in bills {
+            totalToPay += bill.paymentAmount
+        }
+        cell.totalBillAmout = totalToPay
+=======
         cell.monthDelegate = self
         let date = Calendar.current
         let month = date.monthSymbols
@@ -61,6 +95,7 @@ class MonthVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
             first.dueDate < second.dueDate
         })
         //print("\(bills.count)")
+>>>>>>> develop
         cell.bills = bills
         cell.currentMonth = currentMonth + " " + String(year)
         return cell
@@ -76,6 +111,25 @@ class MonthVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     }
     
     
+<<<<<<< HEAD
+//    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+//        let date = Calendar.current
+//        let months = date.monthSymbols
+//        let currentMoth = months[indexPath.row]
+//        guard let indexOfCurrentMonth = months.index(of: currentMoth) else {return}
+//        let newIndexPath = IndexPath(row: indexOfCurrentMonth, section: indexPath.row)
+//        self.monthCollectionView.scrollToItem(at: newIndexPath, at: .left, animated: false)
+//
+//    }
+ 
+   
+//    func presentDetailView(with bill: NewBill) {
+//        //show the detail view with curent bill
+//    
+//    }
+
+
+=======
     
     //MARK: - Custom Delegate Conformance Method
     func presentDetailViewWith(bill: NewBill) {
@@ -84,4 +138,5 @@ class MonthVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         detailVC.bill = bill
         present(detailVC, animated: true)
     }
+>>>>>>> develop
 }

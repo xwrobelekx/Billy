@@ -27,3 +27,5 @@ class Setting: Codable, Equatable {
     }
     
 }
+
+
